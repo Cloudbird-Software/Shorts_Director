@@ -1,5 +1,5 @@
-// 受控词表 codegen：schema/vocab/v1/*.yaml → codegen/ts/vocab.ts
-// 用法：make gen（写盘）/ import { renderVocabTs } 供 CI 新鲜度测试调用。
+// 受控词表 codegen：schema/vocab/v1/*.yaml → codegen/ts/vocab.ts + codegen/go/vocab/vocab.go
+// 用法：make gen（写盘）/ import { renderVocabTs, renderVocabGo } 供 CI 新鲜度测试调用。
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -9,6 +9,7 @@ import prettier from "prettier";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const vocabDir = path.join(root, "schema", "vocab", "v1");
 const outFile = path.join(root, "codegen", "ts", "vocab.ts");
+const outGoFile = path.join(root, "codegen", "go", "vocab", "vocab.go");
 
 const assert = (cond, msg) => {
   if (!cond) throw new Error(`[gen-vocab] ${msg}`);
@@ -138,11 +139,107 @@ export async function renderVocabTs() {
   return prettier.format(lines.join("\n"), { filepath: outFile });
 }
 
+/** Go 标识符：scene.food → SceneFood / beat_role → BeatRole。 */
+const goIdent = (s) => {
+  const parts = s.split(/[._]/).map((p) => p[0].toUpperCase() + p.slice(1));
+  return parts.join("");
+};
+
+/** gofmt 对 map 复合字面量 key 做列对齐：value 起点列 = 最长 key + 1。 */
+const alignMapEntries = (entries) => {
+  const w = Math.max(...entries.map(([k]) => k.length));
+  return entries.map(([k, v]) => `\t${k.padEnd(w + 1)}${v}`);
+};
+
+/** 生成 codegen/go/vocab/vocab.go 的文本（确定性输出，gofmt 兼容）。 */
+export function renderVocabGo() {
+  const vocabs = loadVocabs();
+  const L = [
+    "// AUTO-GENERATED from schema/vocab/v1/*.yaml by make gen —— 禁止手改。",
+    "// 词表演进规则见 schema/AGENTS.md：enum 只允许追加，废弃用 deprecated/replaced_by。",
+    "package vocab",
+    "",
+    "// Meta 是词表值的元数据：zh 展示名 / def 定义 / 等价类 / 废弃链。",
+    "type Meta struct {",
+    "\tZh               string",
+    "\tDef              string",
+    "\tEquivalenceClass []string",
+    "\tDeprecated       bool",
+    "\tReplacedBy       *string",
+    "}",
+    "",
+    "// VocabFiles 是词表清单（schema/vocab/v1/*.yaml 文件名，不含后缀）。",
+    `var VocabFiles = [...]string{${vocabs
+      .map((v) => `"${v.name}"`)
+      .join(", ")}}`,
+    "",
+    "// ── 枚举值清单 ─────────────────────────────────────────────",
+    "",
+  ];
+  for (const v of vocabs) {
+    const ids = v.values.map((x) => x.id);
+    L.push(
+      `// ${goIdent(v.name)} 是 ${v.name} 词表的值清单（${ids.length} 值${v.frozen ? "，冻结" : ""}）。`,
+      `var ${goIdent(v.name)} = [...]string{${ids
+        .map((id) => `"${id}"`)
+        .join(", ")}}`,
+      "",
+    );
+  }
+  L.push("// ── 词表元数据 ─────────────────────────────────────────────", "");
+  const metaVar = (v) => `${v.name.replace(/[._]/g, "_")}Meta`;
+  for (const v of vocabs) {
+    L.push(`var ${metaVar(v)} = map[string]Meta{`);
+    // gofmt 对 map 复合字面量 key 做列对齐：value 起点列 = 最长 key + 1。
+    const keys = v.values.map((x) => `"${x.id}":`);
+    const keyWidth = Math.max(...keys.map((k) => k.length));
+    v.values.forEach((x, i) => {
+      const fields = [
+        `Zh: ${JSON.stringify(x.zh)}`,
+        `Def: ${JSON.stringify(x.def)}`,
+        `EquivalenceClass: []string{${x.equivalence_class
+          .map((c) => `"${c}"`)
+          .join(", ")}}`,
+      ];
+      if (x.deprecated === true) fields.push(`Deprecated: true`);
+      if (x.replaced_by != null)
+        fields.push(`ReplacedBy: ptr(${JSON.stringify(x.replaced_by)})`);
+      L.push(`\t${keys[i].padEnd(keyWidth + 1)}{${fields.join(", ")}},`);
+    });
+    L.push("}", "");
+  }
+  L.push(
+    "// ── 注册表（按词表名取用，供运行期校验/查询助手） ──────────",
+    "",
+    "// VocabIDs 按词表名取值清单。",
+    "var VocabIDs = map[string][]string{",
+    ...alignMapEntries(
+      vocabs.map((v) => [`"${v.name}":`, `${goIdent(v.name)}[:],`]),
+    ),
+    "}",
+    "",
+    "// VocabMeta 按词表名取元数据表。",
+    "var VocabMeta = map[string]map[string]Meta{",
+    ...alignMapEntries(
+      vocabs.map((v) => [`"${v.name}":`, `${metaVar(v)},`]),
+    ),
+    "}",
+    "",
+    "func ptr(s string) *string { return &s }",
+    "",
+  );
+  return L.join("\n");
+}
+
 async function main() {
   const code = await renderVocabTs();
   mkdirSync(path.dirname(outFile), { recursive: true });
   writeFileSync(outFile, code);
   console.log(`[gen-vocab] wrote ${path.relative(root, outFile)}`);
+  const go = renderVocabGo();
+  mkdirSync(path.dirname(outGoFile), { recursive: true });
+  writeFileSync(outGoFile, go);
+  console.log(`[gen-vocab] wrote ${path.relative(root, outGoFile)}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
