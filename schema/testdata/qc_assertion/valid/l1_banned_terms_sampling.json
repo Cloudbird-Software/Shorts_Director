@@ -1,0 +1,22 @@
+{
+  "assertion_id": "L1.BANNED_TERMS.food",
+  "level": "L1",
+  "severity": "MAJOR",
+  "probe": {
+    "op": "banned_terms",
+    "args": {
+      "terms": ["全城最好吃", "独家秘方"]
+    }
+  },
+  "expect": {
+    "op": "contains_none",
+    "value": ["全城最好吃", "独家秘方"]
+  },
+  "remedy": {
+    "action": "EDIT_COPY",
+    "instruction_template": "文案含违禁词 {{measured}}，替换为合规表达"
+  },
+  "sampling": {
+    "frames": "ALL"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "slot_id": "hook.detail",
+  "must": [
+    {
+      "op": "in",
+      "field": "shot_type_class",
+      "value": ["DETAIL", "FACE"]
+    }
+  ],
+  "fallback_chain": [
+    {
+      "must": [
+        {
+          "op": "eq",
+          "field": "scene",
+          "value": "KITCHEN"
+        }
+      ],
+      "degrade_note": "缺 level"
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 14,
+    "max_uses_per_30d": 3,
+    "prefer_least_used": true
+  }
+}

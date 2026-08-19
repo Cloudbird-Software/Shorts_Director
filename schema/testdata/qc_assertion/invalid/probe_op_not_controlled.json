@@ -1,0 +1,19 @@
+{
+  "assertion_id": "L1.SUBJECT_PRESENT.default",
+  "level": "L1",
+  "severity": "MAJOR",
+  "probe": {
+    "op": "gpt_vibe_score",
+    "args": {}
+  },
+  "expect": {
+    "op": "is_true",
+    "value": true
+  },
+  "remedy": {
+    "action": "RESHOOT",
+    "instruction_template": "画面中未检测到 {{expected}}，请补拍主体入镜的镜头",
+    "auto_fixable": false,
+    "auto_fix_op": null
+  }
+}

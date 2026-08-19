@@ -1,0 +1,18 @@
+{
+  "assertion_id": "L1.SUBJECT_PRESENT.default",
+  "level": "L1",
+  "severity": "MAJOR",
+  "probe": {
+    "op": "object_present",
+    "args": {
+      "object": "NOODLE_BOWL"
+    }
+  },
+  "expect": {
+    "op": "is_true",
+    "value": true
+  },
+  "remedy": {
+    "action": "RESHOOT"
+  }
+}

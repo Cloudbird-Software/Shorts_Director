@@ -1,0 +1,19 @@
+{
+  "assertion_id": "L0.BLACK_FRAMES.default",
+  "level": "L0",
+  "severity": "BLOCKER",
+  "probe": {
+    "op": "blackdetect_ratio",
+    "args": {
+      "threshold": 0.98
+    }
+  },
+  "expect": {
+    "op": "lte",
+    "value": 0.02
+  },
+  "remedy": {
+    "action": "REJECT_SOURCE",
+    "instruction_template": "黑帧占比 {{measured}} 超限 {{expected}}，素材报废"
+  }
+}
