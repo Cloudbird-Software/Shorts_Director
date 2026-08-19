@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/video_plan.json",
+  "title": "VideoPlan IR v1",
+  "description": "单条视频的语义 IR——系统的心脏。设计原则：语义完整（能回答\"为什么这么剪\"）+ 确定性（同一 IR 永远渲出同一帧）+ 可 diff。关键硬规则：所有时间用整数帧（timebase.unit=frame），禁止浮点秒；source.content_hash 钉死媒体版本；ir_digest = sha256(JCS(IR 去除 provenance/budget))。跨字段不变式（实现侧逐条校验）：IV-VP-1 帧数守恒 max(clips[].tl_end) == 总时长；IV-VP-2 clip 不越界（src_out-src_in ≥ 1 且 tl_end>tl_start）；IV-VP-3 字幕/overlay 帧区间落在总时长内且不越 safe_area（渲染器 R-3 复检）；IV-VP-4 overlay.component 必须在渲染组件注册表白名单内；IV-VP-5 aigc_disclosure.required=true 时 explicit_overlay_id 必须非空。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "plan_id",
+    "tenant_id",
+    "scheduled_date",
+    "canvas",
+    "timebase",
+    "beat_schema_ref",
+    "style_theme_ref",
+    "tracks",
+    "copy",
+    "audio",
+    "overlays",
+    "constraints_report",
+    "diversity_signature",
+    "budget",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": { "const": "video_plan/1" },
+    "plan_id": { "type": "string", "description": "UUIDv7" },
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "scheduled_date": { "type": "string", "format": "date" },
+    "canvas": {
+      "type": "object",
+      "required": ["w", "h", "fps", "safe_area"],
+      "properties": {
+        "w": { "const": 1080 },
+        "h": { "const": 1920 },
+        "fps": { "enum": [25, 30] },
+        "safe_area": {
+          "type": "object",
+          "required": ["top", "bottom", "left", "right"],
+          "properties": {
+            "top": { "type": "integer", "minimum": 0 },
+            "bottom": { "type": "integer", "minimum": 0 },
+            "left": { "type": "integer", "minimum": 0 },
+            "right": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false,
+          "description": "平台 UI 遮挡硬约束，像素单位"
+        }
+      },
+      "additionalProperties": false
+    },
+    "timebase": {
+      "type": "object",
+      "required": ["unit", "rate"],
+      "properties": {
+        "unit": { "const": "frame" },
+        "rate": {
+          "type": "integer",
+          "description": "等于 canvas.fps，冗余存储便于单独校验"
+        }
+      },
+      "additionalProperties": false
+    },
+    "beat_schema_ref": {
+      "$ref": "https://shorts.director/schemas/v1/common/versioned_ref.json"
+    },
+    "style_theme_ref": {
+      "$ref": "https://shorts.director/schemas/v1/common/versioned_ref.json"
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["track_id", "kind", "clips"],
+        "properties": {
+          "track_id": { "type": "string" },
+          "kind": {
+            "enum": [
+              "VIDEO_MAIN",
+              "VIDEO_INSERT",
+              "OVERLAY_RENDER",
+              "AUDIO_VO",
+              "AUDIO_MUSIC",
+              "AUDIO_SFX"
+            ]
+          },
+          "clips": { "type": "array", "items": { "$ref": "#/$defs/Clip" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "copy": {
+      "type": "object",
+      "required": ["caption_blocks", "post_text", "hashtags"],
+      "properties": {
+        "caption_blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "block_id",
+              "text",
+              "start_frame",
+              "end_frame",
+              "copy_function",
+              "word_timings"
+            ],
+            "properties": {
+              "block_id": { "type": "string" },
+              "text": { "type": "string", "maxLength": 60 },
+              "start_frame": { "type": "integer", "minimum": 0 },
+              "end_frame": { "type": "integer", "minimum": 1 },
+              "copy_function": {
+                "description": "vocab/copy_function 取值（codegen 注入 enum 校验）"
+              },
+              "word_timings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["w", "s", "e"],
+                  "properties": {
+                    "w": { "type": "string" },
+                    "s": { "type": "integer", "minimum": 0 },
+                    "e": { "type": "integer", "minimum": 0 }
+                  },
+                  "additionalProperties": false
+                },
+                "description": "词级时间戳（帧单位），来自 WhisperX/FunASR 强制对齐"
+              },
+              "emphasis": {
+                "type": "array",
+                "items": { "type": "integer" },
+                "description": "强调词的 word index 列表"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "post_text": { "type": "string" },
+        "hashtags": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "audio": {
+      "type": "object",
+      "required": ["target_lufs", "music_ref", "vo_ref", "ducking"],
+      "properties": {
+        "target_lufs": { "type": "number", "default": -14 },
+        "music_ref": {
+          "oneOf": [
+            {
+              "$ref": "https://shorts.director/schemas/v1/common/licensed_ref.json"
+            },
+            {
+              "type": "null",
+              "description": "静音 + 卡点标记模式（商家在平台发布器选官方音乐）"
+            }
+          ]
+        },
+        "vo_ref": {
+          "type": ["object", "null"],
+          "description": "TTS 产物引用（内容寻址）；静音模式为 null"
+        },
+        "ducking": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "amount_db": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "beat_grid": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "卡点帧号列表；静音模式下按标准 BPM 生成，供商家侧选乐对齐"
+        }
+      },
+      "additionalProperties": false
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "overlay_id",
+          "intent",
+          "component",
+          "props",
+          "start_frame",
+          "end_frame",
+          "layout_box"
+        ],
+        "properties": {
+          "overlay_id": { "type": "string" },
+          "intent": { "description": "vocab/overlay_intent 取值" },
+          "component": {
+            "type": "string",
+            "description": "IV-VP-4：必须是渲染组件注册表白名单（如 caption.karaoke、aigc.disclosure）"
+          },
+          "props": {
+            "type": "object",
+            "description": "由该组件的 zod schema 约束（渲染层注册表）"
+          },
+          "start_frame": { "type": "integer", "minimum": 0 },
+          "end_frame": { "type": "integer", "minimum": 1 },
+          "layout_box": {
+            "type": "object",
+            "required": ["x", "y", "w", "h", "anchor"],
+            "properties": {
+              "x": { "type": "integer" },
+              "y": { "type": "integer" },
+              "w": { "type": "integer", "minimum": 1 },
+              "h": { "type": "integer", "minimum": 1 },
+              "anchor": {
+                "enum": ["TL", "TC", "TR", "CL", "CC", "CR", "BL", "BC", "BR"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "compliance": {
+      "$ref": "https://shorts.director/schemas/v1/common/compliance_result.json"
+    },
+    "constraints_report": {
+      "type": "object",
+      "required": [
+        "hard_satisfied",
+        "soft_scores",
+        "fallbacks_used",
+        "rejected_candidates"
+      ],
+      "properties": {
+        "hard_satisfied": { "type": "array", "items": { "type": "string" } },
+        "soft_scores": { "type": "object" },
+        "fallbacks_used": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "slot_id": { "type": "string" },
+              "level": { "type": "integer" },
+              "reason": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "rejected_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "shot_id": { "type": "string" },
+              "rule": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "求解过程可解释性记录：调试\"为什么今天这条这么烂\"的唯一途径"
+    },
+    "diversity_signature": {
+      "type": "object",
+      "required": [
+        "structural",
+        "visual_phash_first",
+        "copy_ngrams",
+        "music_id",
+        "style_id"
+      ],
+      "properties": {
+        "structural": {
+          "type": "string",
+          "description": "IV-BS-3 生成的结构签名，判同构依据"
+        },
+        "visual_phash_first": { "type": "string" },
+        "copy_ngrams": { "type": "array", "items": { "type": "string" } },
+        "music_id": { "type": "string" },
+        "style_id": { "type": "string" },
+        "shot_ids": { "type": "array", "items": { "type": "string" } },
+        "semantic_topic_embedding": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "叙事疲劳防线（§8.2-②）：约束近 7 天话题余弦相似度"
+        }
+      },
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "planned_cost_cents",
+        "llm_calls",
+        "gpu_seconds",
+        "render_count"
+      ],
+      "properties": {
+        "planned_cost_cents": { "type": "integer", "minimum": 0 },
+        "llm_calls": { "type": "integer", "minimum": 0 },
+        "gpu_seconds": { "type": "number", "minimum": 0 },
+        "render_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "$ref": "https://shorts.director/schemas/v1/common/provenance.json"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Clip": {
+      "type": "object",
+      "required": [
+        "clip_id",
+        "beat_role",
+        "source",
+        "src_in",
+        "src_out",
+        "tl_start",
+        "tl_end",
+        "transform",
+        "transition_in"
+      ],
+      "properties": {
+        "clip_id": { "type": "string" },
+        "beat_role": { "description": "vocab/beat_role 取值（7 值冻结表）" },
+        "source": {
+          "type": "object",
+          "required": ["kind", "ref"],
+          "properties": {
+            "kind": { "enum": ["SHOT", "GRAPHIC", "GENERATED", "COLOR"] },
+            "ref": {
+              "type": "string",
+              "description": "shot_id / graphic_id / color hex"
+            },
+            "content_hash": {
+              "type": "string",
+              "description": "钉死媒体版本：素材重转码后 hash 变化，旧 plan 显式失效而非静默渲出不同结果"
+            }
+          },
+          "additionalProperties": false
+        },
+        "src_in": { "type": "integer", "minimum": 0 },
+        "src_out": { "type": "integer", "minimum": 1 },
+        "tl_start": { "type": "integer", "minimum": 0 },
+        "tl_end": { "type": "integer", "minimum": 1 },
+        "speed": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1.15,
+          "description": "工艺上限 1.15x"
+        },
+        "transform": {
+          "type": "object",
+          "required": ["crop", "scale", "position"],
+          "properties": {
+            "crop": {
+              "type": "object",
+              "properties": {
+                "x": { "type": "integer" },
+                "y": { "type": "integer" },
+                "w": { "type": "integer" },
+                "h": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "scale": { "type": "number" },
+            "position": {
+              "type": "object",
+              "properties": {
+                "x": { "type": "integer" },
+                "y": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "ken_burns": {
+              "type": ["object", "null"],
+              "properties": {
+                "from": { "type": "array", "items": { "type": "number" } },
+                "to": { "type": "array", "items": { "type": "number" } },
+                "easing": { "enum": ["LINEAR", "EASE_IN_OUT"] }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "color": {
+          "type": "object",
+          "properties": {
+            "lut_id": { "type": ["string", "null"] },
+            "exposure": { "type": "number" },
+            "saturation": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "transition_in": {
+          "type": "object",
+          "properties": {
+            "kind": { "enum": ["CUT", "FADE", "WHIP", "ZOOM_PUNCH", "WIPE"] },
+            "duration_frames": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "audio_from_source": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": false
+    }
+  }
+}

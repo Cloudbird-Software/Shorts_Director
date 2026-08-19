@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/common/compliance_result.json",
+  "title": "ComplianceResult",
+  "description": "ComplianceGate 执行结果的回写块。IV-VP-5：aigc_disclosure.required=true 时 explicit_overlay_id 必须指向 aigc.disclosure 组件的 overlay。",
+  "type": "object",
+  "required": ["aigc_disclosure", "checks_passed"],
+  "properties": {
+    "aigc_disclosure": {
+      "type": "object",
+      "required": ["required", "explicit_overlay_id", "implicit_metadata"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "explicit_overlay_id": {
+          "type": ["string", "null"],
+          "description": "显式标识 overlay 引用；required=true 时必须非空"
+        },
+        "implicit_metadata": {
+          "type": "object",
+          "description": "隐式标识字段集（GB 45438-2025，字段映射以官方实践指南为准并版本化）"
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks_passed": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -15,6 +15,7 @@
 - 受控词表 v1 收尾：compliance_risk（16 值）、season（6 值）、ttl_class（4 值）。14 张词表全部冻结。
 - schema 公共块：provenance（溯源）/ versioned_ref（版本化引用）/ licensed_ref（授权引用）。
 - ShotSlotQuery v1：谓词 AST（字段白名单 + 受控操作符 + 降级链 + 消耗策略），IV-SQ-1/SQ-2。
+- VideoPlan IR v1：整数帧 timebase、content_hash 版本钉死、constraints_report、diversity_signature、预算与 AIGC 双轨标识位（IV-VP-1..5）。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
