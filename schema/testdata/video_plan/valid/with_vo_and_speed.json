@@ -169,15 +169,12 @@
     ]
   },
   "diversity_signature": {
-    "structural": "H(1)-P(1)-C(1)|3c|cut",
+    "structural": "H(1)|1c|cut",
     "visual_phash_first": "phash:9f2a7c11b0",
     "copy_ngrams": ["牛肉面", "牛骨现熬"],
     "music_id": "music.upbeat.morning_01",
     "style_id": "st.food.warm_steaming",
-    "shot_ids": [
-      "018f6c01-aaaa-7aaa-8aaa-000000000002",
-      "018f6c01-aaaa-7aaa-8aaa-000000000003"
-    ]
+    "shot_ids": ["018f6c01-aaaa-7aaa-8aaa-000000000002"]
   },
   "budget": {
     "planned_cost_cents": 120,
