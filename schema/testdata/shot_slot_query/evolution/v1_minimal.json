@@ -1,0 +1,22 @@
+{
+  "slot_id": "bumper.logo.evo",
+  "must": [
+    {
+      "op": "eq",
+      "field": "source_kind",
+      "value": "GRAPHIC"
+    }
+  ],
+  "fallback_chain": [
+    {
+      "level": 0,
+      "must": [],
+      "degrade_note": "终端图形兜底：永远可解",
+      "is_terminal_graphic": true
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 0,
+    "max_uses_per_30d": 30
+  }
+}

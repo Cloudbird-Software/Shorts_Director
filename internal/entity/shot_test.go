@@ -159,3 +159,17 @@ func TestValidateIdentity(t *testing.T) {
 		t.Error("duration_frames 与 out-in 不一致应报错")
 	}
 }
+
+// TestShotEvolutionSamples：G5 向后兼容——evolution/ 样本（钉死的上一 major
+// 形态，文件名 v<major>_ 前缀）必须仍可被当前实体消费与校验。
+func TestShotEvolutionSamples(t *testing.T) {
+	entries, err := os.ReadDir(filepath.Join(shotTestdataDir(), "evolution"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		if s := loadShot(t, "evolution", e.Name()); s.Validate() != nil {
+			t.Errorf("evolution 样本 %s 未通过 Validate: %v", e.Name(), s.Validate())
+		}
+	}
+}

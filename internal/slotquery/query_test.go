@@ -173,3 +173,32 @@ func TestMatchScore(t *testing.T) {
 		t.Errorf("Score 不应为负: %v", scored)
 	}
 }
+
+// loadQuerySub 从指定子目录（valid/evolution）加载样本。
+func loadQuerySub(t *testing.T, sub, name string) Query {
+	t.Helper()
+	raw, err := os.ReadFile(filepath.Join(
+		"..", "..", "schema", "testdata", "shot_slot_query", sub, name))
+	if err != nil {
+		t.Fatalf("读样本失败: %v", err)
+	}
+	var q Query
+	if err := json.Unmarshal(raw, &q); err != nil {
+		t.Fatalf("解析 %s: %v", name, err)
+	}
+	return q
+}
+
+// TestEvolutionSamplesValidate：G5 向后兼容——evolution/ 样本必须仍可消费。
+func TestEvolutionSamplesValidate(t *testing.T) {
+	entries, err := os.ReadDir(filepath.Join(
+		"..", "..", "schema", "testdata", "shot_slot_query", "evolution"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		if q := loadQuerySub(t, "evolution", e.Name()); q.Validate() != nil {
+			t.Errorf("evolution 样本 %s 未通过 Validate: %v", e.Name(), q.Validate())
+		}
+	}
+}

@@ -110,6 +110,7 @@ describe("G1 testdata harness", () => {
 describe.each(entities)("G1: %s", (entity) => {
   const validDir = new URL(`${entity}/valid/`, testdataRoot);
   const invalidDir = new URL(`${entity}/invalid/`, testdataRoot);
+  const evolutionDir = new URL(`${entity}/evolution/`, testdataRoot);
   const validate = ajv.getSchema(
     `https://shorts.director/schemas/v1/${entity}.json`,
   ) as (data: unknown) => boolean;
@@ -137,4 +138,26 @@ describe.each(entities)("G1: %s", (entity) => {
       expect(f).toMatch(/^[a-z0-9]+(_[a-z0-9]+)*\.json$/);
     }
   });
+
+  // G5 向后兼容（Freeze Gate）：evolution/ 存放上一 major 的真实样本，
+  // 当前 schema 必须仍能消费。v1 期间先落 v1 基线（v1_minimal.json），
+  // v2 破坏性变更时这些文件即回归基线，禁止随 v2 改写。
+  const evolutionSamples = existsSync(evolutionDir)
+    ? listJson(evolutionDir)
+    : [];
+  if (evolutionSamples.length > 0) {
+    it.each(evolutionSamples)(
+      "evolution/%s 当前 schema 仍可消费（G5）",
+      (f) => {
+        const ok = validate(load(evolutionDir, f));
+        expect(ok).toBe(true);
+        expect(validate.errors ?? []).toEqual([]);
+      },
+    );
+    it("evolution 样本文件名标注来源 major（v<major>_ 前缀）", () => {
+      for (const f of evolutionSamples) {
+        expect(f).toMatch(/^v[0-9]+_[a-z0-9]+(_[a-z0-9]+)*\.json$/);
+      }
+    });
+  }
 });
