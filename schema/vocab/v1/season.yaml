@@ -1,0 +1,42 @@
+# season —— 时效季节词表（6 值）
+# Shot.lifecycle.seasons 取值域；与当前月不匹配的 shot 触发 ReshootTask（IV-SH-3 相邻规则）。
+version: 1
+name: season
+kind: enum
+values:
+  - id: ALL
+    zh: 全季
+    def: 全年可用（默认值）
+    equivalence_class: [EVERGREEN]
+    deprecated: false
+    replaced_by: null
+  - id: SPRING
+    zh: 春
+    def: 3–5 月（含春季时令食材/氛围）
+    equivalence_class: [SEASONAL]
+    deprecated: false
+    replaced_by: null
+  - id: SUMMER
+    zh: 夏
+    def: 6–8 月（冷饮/夜市/冰品）
+    equivalence_class: [SEASONAL]
+    deprecated: false
+    replaced_by: null
+  - id: AUTUMN
+    zh: 秋
+    def: 9–11 月（秋季时令/贴秋膘）
+    equivalence_class: [SEASONAL]
+    deprecated: false
+    replaced_by: null
+  - id: WINTER
+    zh: 冬
+    def: 12–2 月（火锅/热饮/年末）
+    equivalence_class: [SEASONAL]
+    deprecated: false
+    replaced_by: null
+  - id: FESTIVAL
+    zh: 节庆
+    def: 特定节庆窗口（春节/中秋等，配 campaign 绑定）
+    equivalence_class: [SEASONAL, EVENT]
+    deprecated: false
+    replaced_by: null

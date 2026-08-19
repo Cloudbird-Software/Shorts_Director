@@ -1,0 +1,103 @@
+# compliance_risk —— 合规风险类型词表（15–20 值）
+# ComplianceProfile 的禁配规则与 ComplianceGate 各 Gate 的产出分类共用；
+# L3 阈值策略与 L0/L1/L2 相反：宁可错杀（Engineering_plan §5.7）。
+version: 1
+name: compliance_risk
+kind: enum
+values:
+  - id: AD_LAW_SUPERLATIVE
+    zh: 广告法极限词
+    def: 最/第一/国家级等绝对化用语
+    equivalence_class: [AD_LAW]
+    deprecated: false
+    replaced_by: null
+  - id: AD_LAW_UNPROVEN_CLAIM
+    zh: 无依据功效宣称
+    def: 未经证实的功效/效果宣称
+    equivalence_class: [AD_LAW]
+    deprecated: false
+    replaced_by: null
+  - id: MEDICAL_CLAIM
+    zh: 医疗功效表述
+    def: 涉及治疗/预防疾病表述（食品高危）
+    equivalence_class: [AD_LAW, CATEGORY]
+    deprecated: false
+    replaced_by: null
+  - id: FINANCIAL_PROMISE
+    zh: 收益承诺
+    def: 投资回报类承诺表述
+    equivalence_class: [AD_LAW, CATEGORY]
+    deprecated: false
+    replaced_by: null
+  - id: PRICE_FRAUD
+    zh: 价格误导
+    def: 虚构原价/不实折扣
+    equivalence_class: [AD_LAW]
+    deprecated: false
+    replaced_by: null
+  - id: MISSING_QUALIFICATION
+    zh: 类目资质缺失
+    def: 类目准入资质未验证（医疗/医美/金融等）
+    equivalence_class: [CATEGORY]
+    deprecated: false
+    replaced_by: null
+  - id: REQUIRED_DISCLAIMER_MISSING
+    zh: 缺必需声明
+    def: 类目要求的声明缺失（如"效果因人而异"）
+    equivalence_class: [CATEGORY]
+    deprecated: false
+    replaced_by: null
+  - id: PORTRAIT_RIGHT
+    zh: 肖像权
+    def: 未授权人脸出镜
+    equivalence_class: [IP_RIGHTS]
+    deprecated: false
+    replaced_by: null
+  - id: VOICE_RIGHT
+    zh: 声音权
+    def: 声音克隆授权缺失或撤销
+    equivalence_class: [IP_RIGHTS]
+    deprecated: false
+    replaced_by: null
+  - id: TRADEMARK
+    zh: 商标权
+    def: 第三方 logo/品牌标识露出
+    equivalence_class: [IP_RIGHTS]
+    deprecated: false
+    replaced_by: null
+  - id: MUSIC_LICENSE
+    zh: 音乐版权
+    def: 音轨授权缺失/过期/超范围
+    equivalence_class: [IP_RIGHTS]
+    deprecated: false
+    replaced_by: null
+  - id: THIRD_PARTY_CONTENT
+    zh: 三方内容
+    def: 未授权引用他人素材/画面
+    equivalence_class: [IP_RIGHTS]
+    deprecated: false
+    replaced_by: null
+  - id: AIGC_LABEL_REQUIRED
+    zh: AIGC 标识义务
+    def: 生成内容未按规定标识（显式+隐式）
+    equivalence_class: [AIGC_REG]
+    deprecated: false
+    replaced_by: null
+  - id: AI_FACE_MISUSE
+    zh: 深度合成滥用
+    def: 生成人脸未显著标识/冒充真人
+    equivalence_class: [AIGC_REG]
+    deprecated: false
+    replaced_by: null
+  - id: FACT_STALE
+    zh: 事实过期
+    def: BrandKernel 事实字段过期未核验（价格/活动/店主变更）
+    equivalence_class: [FACTUAL]
+    deprecated: false
+    replaced_by: null
+  - id: FACT_UNVERIFIABLE
+    zh: 事实不可验证
+    def: 主张无凭证且无法交叉验证
+    equivalence_class: [FACTUAL]
+    deprecated: false
+    replaced_by: null
