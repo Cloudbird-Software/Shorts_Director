@@ -2,9 +2,14 @@
   "id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8d",
   "tenant_id": "018f6b10-0000-7000-8000-000000000002",
   "source_kind": "GRAPHIC",
-  "content_hash": "sha256:ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221",
+  "content_hash": "sha256:ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221007",
   "storage_uri": "s3://media-gen/tenant-b/graphic/price-tag.png",
   "order_item_id": null,
-  "probe": { "duration_frames": 75, "fps": 25, "w": 1080, "h": 1920 },
+  "probe": {
+    "duration_frames": 75,
+    "fps": 25,
+    "w": 1080,
+    "h": 1920
+  },
   "uploaded_at": "2026-08-12T16:45:00Z"
 }

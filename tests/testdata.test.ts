@@ -71,7 +71,7 @@ describe.each(entities)("G1: %s", (entity) => {
 
   it("invalid 文件名 = 断言（snake_case，描述失败原因）", () => {
     for (const f of listJson(invalidDir)) {
-      expect(f).toMatch(/^[a-z0-9_]+\.json$/);
+      expect(f).toMatch(/^[a-z0-9]+(_[a-z0-9]+)*\.json$/);
     }
   });
 });
