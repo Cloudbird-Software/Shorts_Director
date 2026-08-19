@@ -4,3 +4,8 @@ dist/
 reports/
 CHANGELOG.md
 docs/Engineering_plan.md
+go.mod
+go.sum
+*.go
+baml/
+baml_client/
