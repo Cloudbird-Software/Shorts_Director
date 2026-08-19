@@ -1,0 +1,17 @@
+{
+  "order_id": "po-018f6f00-0001",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "kind": "REAL_SHOOT",
+  "vendor_type": "PHOTOGRAPHER",
+  "acceptance_spec": {
+    "auto_gate_level": "L0+L1",
+    "rework_rounds_included": 1,
+    "payment_terms": "验收通过后 7 日内结算",
+    "pass_threshold": {
+      "blocker_count": 0,
+      "major_count_max": 1
+    }
+  },
+  "deadline": "2026-09-01T18:00:00Z",
+  "budget_cents": 80000
+}
