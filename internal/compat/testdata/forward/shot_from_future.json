@@ -11,23 +11,13 @@
   },
   "semantic": {
     "shot_type": "MEDIUM",
-    "shot_type_classes": [
-      "SUBJECT"
-    ],
+    "shot_type_classes": ["SUBJECT"],
     "camera_motion_type": "PAN",
     "camera_motion_dir": "LEFT",
     "scene": "KITCHEN",
-    "subjects": [
-      "CHEF",
-      "WOK"
-    ],
-    "actions": [
-      "STIR_FRY",
-      "FLIP"
-    ],
-    "mood": [
-      "ENERGETIC"
-    ],
+    "subjects": ["CHEF", "WOK"],
+    "actions": ["STIR_FRY", "FLIP"],
+    "mood": ["ENERGETIC"],
     "future_semantic_field": 42
   },
   "affordance": {
@@ -39,9 +29,7 @@
       "dir": "LEFT",
       "confidence": 0.92
     },
-    "negative_space": [
-      "TOP"
-    ],
+    "negative_space": ["TOP"],
     "subject_bbox_track": [
       {
         "frame": 250,
@@ -71,15 +59,7 @@
     "sharpness": 812.4,
     "niqe": 3.1,
     "shake_score": 0.12,
-    "exposure_hist": [
-      12,
-      45,
-      120,
-      300,
-      280,
-      90,
-      20
-    ],
+    "exposure_hist": [12, 45, 120, 300, 280, 90, 20],
     "color_temp": 4300,
     "flicker_score": 0.03,
     "audio": {
@@ -92,21 +72,15 @@
     "third_party_faces": [],
     "third_party_logos": [],
     "plates": [],
-    "ocr_text": [
-      "招牌小面"
-    ],
+    "ocr_text": ["招牌小面"],
     "risk_flags": []
   },
   "lifecycle": {
     "shot_date": "2026-07-28",
-    "seasons": [
-      "ALL"
-    ],
+    "seasons": ["ALL"],
     "ttl_class": "EVERGREEN",
     "ttl_at": null,
-    "linked_skus": [
-      "sku-noodle-001"
-    ],
+    "linked_skus": ["sku-noodle-001"],
     "linked_campaigns": [],
     "use_count": 0,
     "last_used_at": null
