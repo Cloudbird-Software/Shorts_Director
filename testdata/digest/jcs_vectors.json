@@ -1,0 +1,54 @@
+{
+  "comment": "RFC 8785 JCS 共享向量集：Go(internal/digest) 与 TS(src/digest) 双侧消费，canonical 与 sha256 必须逐字节一致（Freeze Gate G3）。锚点值取自 RFC 8785 §3.2.2.3。",
+  "vectors": [
+    {
+      "name": "literals",
+      "input": "{\"b\":true,\"a\":null,\"c\":false}",
+      "canonical": "{\"a\":null,\"b\":true,\"c\":false}",
+      "sha256": "17073ac6186d8c60c0c0da712ce30cdb52ed5a9155f616983da39a9785dce715",
+      "comment": "字面量与顶层 key 排序"
+    },
+    {
+      "name": "nested_arrays_preserved",
+      "input": "[3,1,{\"z\":1,\"a\":[2,1]},[true,null]]",
+      "canonical": "[3,1,{\"a\":[2,1],\"z\":1},[true,null]]",
+      "sha256": "81a0e496b5709de3c7ddde47f1964e265588658e892e53171c727b4eaf816d50",
+      "comment": "数组顺序保持，对象内排序递归"
+    },
+    {
+      "name": "string_escaping",
+      "input": "{\"ctl\":\"\\u0001\\u001f\",\"quote\":\"\\\"\",\"bs\":\"\\\\\",\"nl\":\"\\n\",\"uni\":\"\\ud83d\\ude00\"}",
+      "canonical": "{\"bs\":\"\\\\\",\"ctl\":\"\\u0001\\u001f\",\"nl\":\"\\n\",\"quote\":\"\\\"\",\"uni\":\"😀\"}",
+      "sha256": "72ebebc0f0d2d6081907e4e855bde2b8d32bd6b5683b530a40db0d009b07170f",
+      "comment": "控制字符 \\u00xx 小写、最小化转义、星体平面原样输出"
+    },
+    {
+      "name": "utf16_key_order",
+      "input": "{\"\\ue000\":\"BMP高区\",\"\\ud83d\\ude00\":\"星体代理对\",\"a\":\"ascii\"}",
+      "canonical": "{\"a\":\"ascii\",\"😀\":\"星体代理对\",\"\":\"BMP高区\"}",
+      "sha256": "a9d1cd0e8a36e51a92855cc563e81bb7db3d35e9a94993d4d68ec17c6c56dc9a",
+      "comment": "RFC 8785 §3.2.3：代理对(0xD83D) \u003c U+E000 \u003c a，与 UTF-8 字节序相反"
+    },
+    {
+      "name": "numbers_es_anchors",
+      "input": "[0,-0,1e21,1e-7,1e-6,299792458,3.141592653589793,5e-324,1.5e+21,1E+2,0.000001]",
+      "canonical": "[0,0,1e+21,1e-7,0.000001,299792458,3.141592653589793,5e-324,1.5e+21,100,0.000001]",
+      "sha256": "a699194ac134594180ecdd7522418bbe6403e17d2c78000b14d11a59e5b3fec0",
+      "comment": "RFC 8785 §3.2.2.3 锚点：-0→0、1e21→1e+21、1e-7→1e-7、1E+2→100"
+    },
+    {
+      "name": "empty_containers",
+      "input": "{\"arr\":[],\"obj\":{}}",
+      "canonical": "{\"arr\":[],\"obj\":{}}",
+      "sha256": "7c557880ceed861401b04be6735c9708e326427e072562fd259da6f6a2612b96",
+      "comment": "空容器"
+    },
+    {
+      "name": "operator_request_shape",
+      "input": "{\"determinism\":{\"seed\":42},\"inputs\":{\"media_path\":\"/mnt/work/abc.mp4\"},\"op\":\"probe\",\"contract_version\":1}",
+      "canonical": "{\"contract_version\":1,\"determinism\":{\"seed\":42},\"inputs\":{\"media_path\":\"/mnt/work/abc.mp4\"},\"op\":\"probe\"}",
+      "sha256": "64d9ffe13103d2c6fe46999ad9254f118c05e0fc8b1532d36b1e013ac029f408",
+      "comment": "仓库真实形态（C2 请求，GoldenKey 输入）"
+    }
+  ]
+}

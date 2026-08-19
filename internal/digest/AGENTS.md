@@ -20,3 +20,11 @@
 
 `go test ./internal/digest/`（含 RFC 8785 Appendix B 数值向量、
 UTF-16 代理对排序反向案例、摘要稳定性）。
+
+## G3 共享向量集
+
+`testdata/digest/jcs_vectors.json`（RFC 8785 锚点 + 仓库真实形态）由 Go
+（internal/digest/vectors_test.go）与 TS（tests/digest.test.ts → src/digest）
+双侧消费，canonical 与 sha256 逐字节对照——任何一侧实现漂移，双侧测试
+同时失败。TS 侧实现见 src/digest/jcs.ts（零依赖，String(n) 即 ES 规范数字、
+默认 sort 即 UTF-16 码元序）。
