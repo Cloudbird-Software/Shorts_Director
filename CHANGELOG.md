@@ -37,6 +37,10 @@
   TS 侧启用既有 fast-check）：digest 键序不敏感/幂等/形态（1000 次）；slotquery 可行性健全性、
   IV-SQ-1 终局可达、池追加排名稳定（1000 次）；planner 帧数守恒与降级可解释性一致（1000 次）；
   compiler 键序重排编译产物逐字节一致；词表 ids↔meta 双闭合、废弃链闭环、大小写漂移不命中（1000 次）。
+- internal/renderer + cmd/shorts-render：Phase 0 最小渲染路径（#43 DoD）——手写 
+  minimal_music_plan.json 经 Compile→RenderRequest→纯色占位帧→ffmpeg（外部二进制，零新 Go 依赖）
+  渲出可播放 mp4；R-1 bitexact 双跑 digest 全等、R-2 帧数守恒落帧==TotalFrames、R-5 版本含字体哈希
+  均有测试；make render-demo 一键演示。
 - internal/compat：前向兼容消费边界（Freeze Gate G8）——`DecodeTolerant` 锁定未知字段忽略语义；`DegradeEnum`/`ScanUnknownEnums` 实现未知枚举降级（UNKNOWN 哨兵 + Raw 保留原值，JSON Pointer 定位），降级 fail-safe（未知 ShotState 不可消费）；golden fixture `testdata/forward/shot_from_future.json` 模拟未来版本生产者。
 - Freeze Gate G5 基础设施：schema/testdata/{shot,shot_slot_query,video_plan}/evolution/ 落 v1 基线样本（v1_minimal.json，文件名 v<major>_ 前缀标注来源 major，钉死不改写）；TS G1 harness 自动纳管 evolution 目录（当前 schema 必须仍可消费 + 文件名规则），Go 侧 entity/videoplan/slotquery 各增 evolution 消费测试；schema/AGENTS.md 补 evolution 语义（v1 期间为 v2 回归基线）。
 - Freeze Gate G3（跨语言 JCS 一致）：src/digest TS 侧 RFC 8785 实现（零依赖：String(n)=ES 规范数字、默认 sort=UTF-16 码元序、JSON.stringify 转义），附 contentDigestJsonText；共享向量集 testdata/digest/jcs_vectors.json（RFC 锚点值 + 转义/UTF-16 排序/C2 请求形态）由 Go 与 TS 双侧对照 canonical 与 sha256，逐字节一致。
