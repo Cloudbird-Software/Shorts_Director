@@ -33,6 +33,10 @@
 - ProductionOrder G1 样本：5 valid（minimal/摄影实拍全量/生成供应商/商家自拍/返修条款）+ 20 invalid（必填缺失×8、kind/vendor_type 枚举、duration_sec 二元组、framing headroom、min_resolution 常量、auto_gate_level、budget 负值、deadline 格式）。
 - VideoPlan G1 样本：5 valid（minimal 音乐计划/口播加变速/纯生成素材/商用音乐带凭证/静音模式）+ 29 invalid（必填缺失×14、canvas w 常量与 fps 枚举、timebase 秒制、clip speed 上限与 src_out 下限、track kind、overlay anchor 与帧区间、LicensedRef 凭证、VersionedRef 版本、caption 长度）；valid 样本 diversity_signature 与实际 tracks/audio 对齐。
 - internal/brandkernel：BrandKernel 根契约 Go 实体层（Freeze Gate G4 收口）——结构体与 schema 一一对应（round-trip + DisallowUnknownFields 防漂移测试），IV-BK-1（pillars ≥3 且各绑 ≥2 proof_type）与 IV-BK-3（category 受控枚举临时集合、决定 compliance_profile_id）校验及失败用例，`ReadyForL3Matching()` 作为 IV-BK-2 的 L3 准入 API（completeness.score ≥ 0.75）。
+- Freeze Gate G9/G10：属性测试与变形不变式落地（零新依赖——Go 侧确定性 LCG 自研生成器，
+  TS 侧启用既有 fast-check）：digest 键序不敏感/幂等/形态（1000 次）；slotquery 可行性健全性、
+  IV-SQ-1 终局可达、池追加排名稳定（1000 次）；planner 帧数守恒与降级可解释性一致（1000 次）；
+  compiler 键序重排编译产物逐字节一致；词表 ids↔meta 双闭合、废弃链闭环、大小写漂移不命中（1000 次）。
 - internal/compat：前向兼容消费边界（Freeze Gate G8）——`DecodeTolerant` 锁定未知字段忽略语义；`DegradeEnum`/`ScanUnknownEnums` 实现未知枚举降级（UNKNOWN 哨兵 + Raw 保留原值，JSON Pointer 定位），降级 fail-safe（未知 ShotState 不可消费）；golden fixture `testdata/forward/shot_from_future.json` 模拟未来版本生产者。
 - Freeze Gate G5 基础设施：schema/testdata/{shot,shot_slot_query,video_plan}/evolution/ 落 v1 基线样本（v1_minimal.json，文件名 v<major>_ 前缀标注来源 major，钉死不改写）；TS G1 harness 自动纳管 evolution 目录（当前 schema 必须仍可消费 + 文件名规则），Go 侧 entity/videoplan/slotquery 各增 evolution 消费测试；schema/AGENTS.md 补 evolution 语义（v1 期间为 v2 回归基线）。
 - C2/C3 契约 G1 样本 + harness 纳管 contracts：operator request/response（5+17 / 5+21）、render request/response（5+22 / 5+22，request 内嵌合法 VideoPlan 且 resolved_media 全量预解析）；G1 harness 改为按 $id 递归发现（支持嵌套 key），新增孤儿样本目录守卫（拼错/$id 不匹配即测试失败，禁止静默跳过）。
