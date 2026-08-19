@@ -29,6 +29,9 @@
 - BrandKernel G1 样本：5 valid（minimal/typical 全字段带溯源与 human_edits/high_completeness/6 支柱边界/digital_human 真人授权）+ 23 invalid（必填缺失×9、schema_version const、pillars 与 proof_types 下限、differentiators/segments 下限、one_liner 长度、target_ratio/completeness/interview_turns 范围、persona/decision_trigger/digital_human.source 枚举、additionalProperties）；schema 修正 digital_human.source 允许 null（enabled=false 时）。
 - ShotSlotQuery G1 样本：5 valid（等价类谓词/复合 and·or·not/数值区间 between·lte·gt/终端图形兜底/空 must 兜底）+ 21 invalid（字段白名单外、op 非受控、数值 op 传字符串、between 三元与非数、semantic top_k 越界、逻辑空 operands、fallback 结构×4、consumption 边界、should 权重越界等）。
 - QCAssertion G1 样本：5 valid（L0 黑帧/L1 条件断言 applies_when/L2 口型 between/L3 AIGC 标识 BLOCKER/违禁词 contains_none + 采样策略）+ 17 invalid（必填缺失×6、level/severity/probe op/expect op/sampling 枚举、remedy 缺模板、applies_when 字段白名单外）。
+- ProductionOrder G1 样本：5 valid（minimal/摄影实拍全量/生成供应商/商家自拍/返修条款）+ 20 invalid（必填缺失×8、kind/vendor_type 枚举、duration_sec 二元组、framing headroom、min_resolution 常量、auto_gate_level、budget 负值、deadline 格式）。
+- VideoPlan G1 样本：5 valid（minimal 音乐计划/口播加变速/纯生成素材/商用音乐带凭证/静音模式）+ 29 invalid（必填缺失×14、canvas w 常量与 fps 枚举、timebase 秒制、clip speed 上限与 src_out 下限、track kind、overlay anchor 与帧区间、LicensedRef 凭证、VersionedRef 版本、caption 长度）；valid 样本 diversity_signature 与实际 tracks/audio 对齐。
+- C2/C3 契约 G1 样本 + harness 纳管 contracts：operator request/response（5+17 / 5+21）、render request/response（5+22 / 5+22，request 内嵌合法 VideoPlan 且 resolved_media 全量预解析）；G1 harness 改为按 $id 递归发现（支持嵌套 key），新增孤儿样本目录守卫（拼错/$id 不匹配即测试失败，禁止静默跳过）。
 
 ### Removed
 - 模板占位：src/index.ts 的 greet 与 tests/smoke.test.ts。
