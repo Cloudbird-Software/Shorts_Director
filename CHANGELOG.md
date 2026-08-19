@@ -32,6 +32,17 @@
 - ProductionOrder G1 样本：5 valid（minimal/摄影实拍全量/生成供应商/商家自拍/返修条款）+ 20 invalid（必填缺失×8、kind/vendor_type 枚举、duration_sec 二元组、framing headroom、min_resolution 常量、auto_gate_level、budget 负值、deadline 格式）。
 - VideoPlan G1 样本：5 valid（minimal 音乐计划/口播加变速/纯生成素材/商用音乐带凭证/静音模式）+ 29 invalid（必填缺失×14、canvas w 常量与 fps 枚举、timebase 秒制、clip speed 上限与 src_out 下限、track kind、overlay anchor 与帧区间、LicensedRef 凭证、VersionedRef 版本、caption 长度）；valid 样本 diversity_signature 与实际 tracks/audio 对齐。
 - C2/C3 契约 G1 样本 + harness 纳管 contracts：operator request/response（5+17 / 5+21）、render request/response（5+22 / 5+22，request 内嵌合法 VideoPlan 且 resolved_media 全量预解析）；G1 harness 改为按 $id 递归发现（支持嵌套 key），新增孤儿样本目录守卫（拼错/$id 不匹配即测试失败，禁止静默跳过）。
+- Go 控制面骨架（#27）：go.mod 工作区、Makefile test 接入、契约版本锚点包 internal/contracts（C2/C3 版本常量与词表清单单一来源）。
+- digest 包（#29）：RFC 8785 JCS 规范化与内容寻址摘要——跨语言（Go/TS/BAML）digest 一致性的 Go 侧实现。
+- slotquery 包（#30/#31）：ShotSlotQuery 谓词 AST 的 Validate/内存求值/字段求值，IV-SQ 校验；降级链取材 Resolve（候选池过滤 → 消耗策略 → 逐级放宽）与排序。
+- entity 包（#30 附带）：Shot 实体生命周期状态机与 IV-SH-1..3 跨字段校验。
+- planner 包（#32）：PlanDay 阶段 B 确定性时长求解与节拍吸附（整数帧，禁 float seconds）。
+- videoplan 包（#33）：VideoPlan IR v1 Go 实体层（结构体与 schema 一一对应，round-trip 防漂移）+ IV-VP-1..4 校验。
+- qc 包（#34）：断言引擎——applies_when 过滤、probe 分组去重、成本排序、BLOCKER 短路、remedy 模板渲染（变量缺失显式报错）。
+- operator 包（#35/#36/#37）：C2 契约执行器 Local/Docker/Fake 三实现（stdin/stdout JSON、结构化错误、golden 驱动）；shorts-operator CLI 与 probe 算子（ffprobe 元信息提取）；RunnerProbeAdapter 桥接 qc↔C2。
+- compiler 包（#38）：VideoPlan → C3 RenderRequest 编译器——媒体引用预解析（R-4 无隐式回退：缺媒体/hash 漂移即报错）、字体完备性校验、确定性输出（排序后逐字节稳定）；Validate 镜像 C3 request schema，5 个契约 valid 样本驱动防漂移。
+- compliance 包（#39）：S8 ComplianceGate 八门串行链（类目准入/违禁词/必需声明/三方权利/音乐授权/声音授权/AIGC 标识/肖像授权），任一 BLOCKER 即停、REVIEW 压低整体结论；外部事实全量注入（可重放审计）；AIGC 双轨——显式 overlay 强制注入（幂等/安全区/post_text 追加）+ 隐式元数据字段映射版本化；videoplan 增加 compliance 回写块与 IV-VP-5。
+- BAML C1 契约（#40）：gen-vocab 新增 BAML 渲染（17 张词表 → baml_src/vocab.baml，AUTO-GENERATED + 新鲜度入 CI）；TagShot（B-2 确定性字段作可信输入 / B-3 uncertain_fields 强制）与 NextInterviewQuestion（苏格拉底追问 + 停止条件）各 6 test block 含 2 对抗样本；Go 结构守卫（B-1 类型可解析 / B-4 测试规模 / 素材引用存在性）；新增词表 mood（8 值）/negative_space（5 值）。
 
 ### Removed
 - 模板占位：src/index.ts 的 greet 与 tests/smoke.test.ts。
