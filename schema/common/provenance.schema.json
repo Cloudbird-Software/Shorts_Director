@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/common/provenance.json",
+  "title": "Provenance",
+  "description": "通用溯源块。每个 LLM 产出的实体必须携带（设计公理 A2）：模型、prompt 版本、输入摘要、人类编辑轨迹全部显式落盘。human_edits 是飞轮的高密度信号源（JSON Patch 级修正记录）。",
+  "type": "object",
+  "required": [
+    "generated_by",
+    "model_id",
+    "prompt_version",
+    "input_digest",
+    "created_at"
+  ],
+  "properties": {
+    "generated_by": {
+      "enum": ["LLM", "HUMAN", "DETERMINISTIC", "HYBRID"],
+      "description": "产出方式。Planner 等确定性代码用 DETERMINISTIC。"
+    },
+    "model_id": {
+      "type": "string",
+      "description": "如 qwen3-vl-32b@2025-11。DETERMINISTIC 时填代码模块版本。"
+    },
+    "prompt_version": {
+      "type": "string",
+      "description": "BAML function 版本或模板版本"
+    },
+    "input_digest": {
+      "type": "string",
+      "description": "sha256(JCS(canonized input))，RFC 8785 规范化后计算"
+    },
+    "seed": {
+      "type": ["integer", "null"],
+      "description": "确定性 PRNG 种子；未用随机性时为 null"
+    },
+    "human_edits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "after", "editor", "at"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer（RFC 6901）"
+          },
+          "before": { "description": "修改前值，可为任意类型；新增时省略" },
+          "after": { "description": "修改后值；删除时为 null" },
+          "editor": {
+            "type": "string",
+            "description": "编辑者标识（脱敏后的操作者 id）"
+          },
+          "at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}

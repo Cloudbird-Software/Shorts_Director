@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/common/versioned_ref.json",
+  "title": "VersionedRef",
+  "description": "跨实体引用的唯一合法形式（schema/AGENTS.md 演进规则 3）。禁止裸 id 引用可变实体：BeatSchema/StyleTheme 等内容资产会被编辑，裸 id 会导致历史产物语义漂移。",
+  "type": "object",
+  "required": ["id", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "可读稳定 slug（如 bs.food.origin_story）或 UUIDv7，按被引用实体的 ID 规则"
+    },
+    "version": { "type": "integer", "minimum": 1 }
+  },
+  "additionalProperties": false
+}
