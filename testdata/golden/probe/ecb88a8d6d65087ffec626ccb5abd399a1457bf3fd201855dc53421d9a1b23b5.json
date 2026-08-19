@@ -1,0 +1,16 @@
+{
+  "contract_version": 1,
+  "metrics": {
+    "wall_ms": 12
+  },
+  "model_versions": {
+    "ffprobe": "7.1"
+  },
+  "op": "probe",
+  "operator_version": "probe@1.0.0",
+  "outputs": {
+    "fps": 30,
+    "width": 1080
+  },
+  "status": "OK"
+}

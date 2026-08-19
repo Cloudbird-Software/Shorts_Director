@@ -35,3 +35,12 @@ schema/contracts/operator/*.json 的 Go 侧实现：控制面 ↔ Python 算子�
 ## 验证
 
 `make go-check`（gofmt + go vet + go test ./internal/operator/...）
+
+## G7 静态检查（golden 字段清单）
+
+- 提交的 golden fixture 在 `testdata/golden/<op>/<GoldenKey>.json`（键 =
+  影响输出请求字段的 JCS 摘要）；同 op 多 fixture 的 outputs 字段集合必须一致。
+- `golden_fields_test.go`：清单生成 + AST 扫描 internal/ 非测试源码的
+  `Outputs["字面量"]` 访问 ⊆ 清单；消费包以 `ConsumedGoldenOps` 声明锚点
+  （现仅 qc 包），未声明包出现访问即失败；负例（fixture 删字段 / 越界访问）
+  必须失败。fixture 经 FakeRunner 与真实消费路径（qc 桥接器）命中——防腐烂。
