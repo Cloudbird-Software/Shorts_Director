@@ -9,3 +9,4 @@ go.sum
 *.go
 baml/
 baml_client/
+internal/operators/testdata/
