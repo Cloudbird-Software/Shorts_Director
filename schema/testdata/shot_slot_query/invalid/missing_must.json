@@ -1,0 +1,38 @@
+{
+  "slot_id": "hook.detail",
+  "fallback_chain": [
+    {
+      "level": 0,
+      "must": [
+        {
+          "op": "in",
+          "field": "shot_type_class",
+          "value": ["DETAIL", "FACE"]
+        }
+      ],
+      "degrade_note": "原始查询"
+    },
+    {
+      "level": 1,
+      "must": [
+        {
+          "op": "eq",
+          "field": "shot_type",
+          "value": "MEDIUM"
+        }
+      ],
+      "degrade_note": "放宽到中景"
+    },
+    {
+      "level": 2,
+      "must": [],
+      "degrade_note": "终端图形兜底：永远可解",
+      "is_terminal_graphic": true
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 14,
+    "max_uses_per_30d": 3,
+    "prefer_least_used": true
+  }
+}

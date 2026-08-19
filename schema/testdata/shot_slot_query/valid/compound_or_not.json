@@ -1,0 +1,63 @@
+{
+  "slot_id": "proof.process",
+  "must": [
+    {
+      "op": "and",
+      "operands": [
+        {
+          "op": "in",
+          "field": "scene",
+          "value": ["KITCHEN", "COUNTER"]
+        },
+        {
+          "op": "or",
+          "operands": [
+            {
+              "op": "eq",
+              "field": "action",
+              "value": "STIR_FRY"
+            },
+            {
+              "op": "eq",
+              "field": "action",
+              "value": "STEAM_RISE"
+            }
+          ]
+        },
+        {
+          "op": "not",
+          "operands": [
+            {
+              "op": "eq",
+              "field": "has_speech",
+              "value": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fallback_chain": [
+    {
+      "level": 0,
+      "must": [
+        {
+          "op": "in",
+          "field": "scene",
+          "value": ["KITCHEN"]
+        }
+      ],
+      "degrade_note": "收窄场景"
+    },
+    {
+      "level": 1,
+      "must": [],
+      "degrade_note": "终端图形兜底：永远可解",
+      "is_terminal_graphic": true
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 7,
+    "max_uses_per_30d": 2
+  }
+}

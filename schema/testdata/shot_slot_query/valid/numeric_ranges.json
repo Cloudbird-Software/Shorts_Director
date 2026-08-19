@@ -1,0 +1,43 @@
+{
+  "slot_id": "body.duration",
+  "must": [
+    {
+      "op": "between",
+      "field": "duration",
+      "range": [50, 150]
+    },
+    {
+      "op": "lte",
+      "field": "use_count",
+      "value": 10
+    },
+    {
+      "op": "gt",
+      "field": "sharpness_tier",
+      "value": 1
+    }
+  ],
+  "fallback_chain": [
+    {
+      "level": 0,
+      "must": [
+        {
+          "op": "between",
+          "field": "duration",
+          "range": [40, 180]
+        }
+      ],
+      "degrade_note": "放宽时长带宽"
+    },
+    {
+      "level": 1,
+      "must": [],
+      "degrade_note": "终端图形兜底：永远可解",
+      "is_terminal_graphic": true
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 3,
+    "max_uses_per_30d": 5
+  }
+}

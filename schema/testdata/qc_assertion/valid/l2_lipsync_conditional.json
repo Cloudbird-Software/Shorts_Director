@@ -1,0 +1,22 @@
+{
+  "assertion_id": "L2.LIPSYNC.default",
+  "level": "L2",
+  "severity": "MAJOR",
+  "probe": {
+    "op": "lipsync_lse_c",
+    "args": {}
+  },
+  "expect": {
+    "op": "between",
+    "value": [0, 6.5]
+  },
+  "remedy": {
+    "action": "REGENERATE",
+    "instruction_template": "口型误差 {{measured}} 超出 {{expected}}，重新生成口型"
+  },
+  "applies_when": {
+    "op": "eq",
+    "field": "has_lipsync",
+    "value": true
+  }
+}

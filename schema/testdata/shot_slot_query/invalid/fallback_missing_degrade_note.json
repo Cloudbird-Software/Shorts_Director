@@ -1,0 +1,21 @@
+{
+  "slot_id": "hook.detail",
+  "must": [
+    {
+      "op": "in",
+      "field": "shot_type_class",
+      "value": ["DETAIL", "FACE"]
+    }
+  ],
+  "fallback_chain": [
+    {
+      "level": 1,
+      "must": []
+    }
+  ],
+  "consumption_policy": {
+    "cooldown_days": 14,
+    "max_uses_per_30d": 3,
+    "prefer_least_used": true
+  }
+}

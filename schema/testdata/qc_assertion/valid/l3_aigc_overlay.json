@@ -1,0 +1,22 @@
+{
+  "assertion_id": "L3.AIGC_DISCLOSURE.cn",
+  "level": "L3",
+  "severity": "BLOCKER",
+  "probe": {
+    "op": "aigc_overlay_present",
+    "args": {
+      "text_pattern": "AI生成"
+    }
+  },
+  "expect": {
+    "op": "is_true",
+    "value": true
+  },
+  "remedy": {
+    "action": "BLOCK_DELIVERY",
+    "instruction_template": "AIGC 标识缺失，补齐后再交付"
+  },
+  "sampling": {
+    "frames": "FIRST_LAST"
+  }
+}
