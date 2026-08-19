@@ -21,6 +21,7 @@
 - QCAssertion v1：判定题断言 DSL（29 个 probe 算子 + remedy 返修模板 + applies_when 条件谓词）；ProductionOrder v1：制作令合同界面（intent/spec/验收断言/handles 余量）。
 - C2 算子协议 v1（request/response：纯函数 CLI、四态 status、model_versions 回填）；C3 渲染契约 v1（R-1 确定性 / R-2 帧数守恒 / R-3 安全区拒绝 / R-4 无隐式回退 / R-5 版本含字体哈希）。
 - src/contracts 契约常量模块（schema 版本/词表清单/冻结枚举/工艺参数），替换模板占位代码；补全 depcruise 边界规则。
+- codegen 流水线（`make gen`）：schema/vocab/v1/*.yaml → codegen/ts/vocab.ts（词表清单 + 全部枚举值与类型，prettier 确定性输出）；CI 新鲜度测试守住"改 schema 必须重生成"；src/contracts 词表锚点切换为生成代码再导出。
 
 ### Removed
 - 模板占位：src/index.ts 的 greet 与 tests/smoke.test.ts。
