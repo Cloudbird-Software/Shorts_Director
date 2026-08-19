@@ -162,7 +162,7 @@ func TestFakeRunnerGolden(t *testing.T) {
 	dir := t.TempDir()
 	req := sampleReq()
 	// 生成 golden：键 = 影响输出字段的 JCS 摘要
-	key, err := goldenKey(req)
+	key, err := GoldenKey(req)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -207,13 +207,13 @@ func TestFakeRunnerMissingFixture(t *testing.T) {
 
 func TestFakeRunnerWorkdirNotInKey(t *testing.T) {
 	// workdir 不影响输出：换目录必须命中同一 golden
-	a, err := goldenKey(sampleReq())
+	a, err := GoldenKey(sampleReq())
 	if err != nil {
 		t.Fatal(err)
 	}
 	req := sampleReq()
 	req.Workdir = "/mnt/other"
-	b, err := goldenKey(req)
+	b, err := GoldenKey(req)
 	if err != nil {
 		t.Fatal(err)
 	}
