@@ -1,0 +1,30 @@
+# ttl_class —— 素材时效等级词表（4 值）
+# 决定 Shot.ttl_at 的默认时长；到期自动出候选池并触发 ReshootTask（IV-SH-3）。
+version: 1
+name: ttl_class
+kind: enum
+values:
+  - id: SHORT
+    zh: 短时效
+    def: 默认 30 天（活动氛围/时事相关）
+    equivalence_class: [DECAYING]
+    deprecated: false
+    replaced_by: null
+  - id: MEDIUM
+    zh: 中时效
+    def: 默认 90 天（当季菜品/着装场景）
+    equivalence_class: [DECAYING]
+    deprecated: false
+    replaced_by: null
+  - id: LONG
+    zh: 长时效
+    def: 默认 180 天（工艺/环境/设备）
+    equivalence_class: [DECAYING]
+    deprecated: false
+    replaced_by: null
+  - id: EVERGREEN
+    zh: 常青
+    def: 默认 365 天（门头/证照/人格出镜，仍需年检式复核）
+    equivalence_class: [EVERGREEN]
+    deprecated: false
+    replaced_by: null
