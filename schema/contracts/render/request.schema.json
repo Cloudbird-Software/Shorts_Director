@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/contracts/render/request.json",
+  "title": "C3 RenderRequest v1",
+  "description": "C3 契约：控制面 ↔ 渲染器（Remotion overlay + FFmpeg 合成）。渲染器不查库：媒体/字体由控制面预解析为本地路径。契约条款：R-4 无隐式回退（缺字体/媒体即报错）；deterministic=true 时禁用一切时间/随机依赖。",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "plan",
+    "resolved_media",
+    "fonts",
+    "output",
+    "modes",
+    "renderer_expect"
+  ],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "plan": { "$ref": "https://shorts.director/schemas/v1/video_plan.json" },
+    "resolved_media": {
+      "type": "array",
+      "description": "控制面预解析；ref 形如 shot:<uuid>",
+      "items": {
+        "type": "object",
+        "required": ["ref", "local_path", "content_hash", "fps"],
+        "properties": {
+          "ref": { "type": "string" },
+          "local_path": { "type": "string" },
+          "content_hash": {
+            "type": "string",
+            "description": "与 plan.clips[].source.content_hash 必须一致（R-4）"
+          },
+          "fps": { "type": "integer" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fonts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["family", "path", "hash"],
+        "properties": {
+          "family": { "type": "string" },
+          "path": { "type": "string" },
+          "hash": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "output": {
+      "type": "object",
+      "required": ["path", "codec"],
+      "properties": {
+        "path": { "type": "string" },
+        "codec": { "enum": ["h264", "prores4444"] },
+        "crf": { "type": "integer" },
+        "preset": { "type": "string" },
+        "audio_bitrate": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "modes": {
+      "type": "object",
+      "required": ["overlay_only", "preview", "deterministic"],
+      "properties": {
+        "overlay_only": {
+          "type": "boolean",
+          "description": "true 时只渲 Remotion alpha 层"
+        },
+        "preview": { "type": "boolean", "description": "低码率快出" },
+        "deterministic": { "type": "boolean", "description": "R-1 的开关" }
+      },
+      "additionalProperties": false
+    },
+    "renderer_expect": {
+      "type": "object",
+      "description": "版本钉死，防漂移；R-5 renderer_version 必须含字体哈希",
+      "required": ["ffmpeg", "remotion", "node"],
+      "properties": {
+        "ffmpeg": { "type": "string" },
+        "remotion": { "type": "string" },
+        "node": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

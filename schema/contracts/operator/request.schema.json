@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/contracts/operator/request.json",
+  "title": "C2 OperatorRequest v1",
+  "description": "C2 契约：控制面 ↔ Python 算子。算子是纯函数 CLI（stdin/stdout JSON + 文件路径），不知道数据库/租户/业务。调用形式：operator <op_name> --contract-version 1 < request.json > response.json。同输入（含 seed）必须同输出——算子作者交付义务包括 golden fixtures。",
+  "type": "object",
+  "required": ["contract_version", "op", "inputs", "workdir", "determinism"],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "op": {
+      "type": "string",
+      "description": "算子名，如 shot_segment / tech_metrics / crop_analyze（12 算子清单见 Engineering_plan §3.2）"
+    },
+    "inputs": {
+      "type": "object",
+      "description": "键值随 op 而定；媒体一律传绝对文件路径，禁止传 URL（算子不许联网）"
+    },
+    "params": {
+      "type": "object",
+      "description": "可调参数（阈值等），有默认值；工艺参数集中管理可回溯"
+    },
+    "workdir": {
+      "type": "string",
+      "description": "该次调用专属工作目录（内容寻址），中间产物落此处"
+    },
+    "determinism": {
+      "type": "object",
+      "required": ["seed"],
+      "properties": {
+        "seed": { "type": ["integer", "null"] },
+        "cpu_threads": {
+          "type": "integer",
+          "description": "数值可复现性要求时钉死"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
