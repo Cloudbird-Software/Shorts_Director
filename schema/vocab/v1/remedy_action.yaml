@@ -1,0 +1,91 @@
+# remedy_action —— 返修动作词表（12–15 值）
+# QCAssertion.remedy.action 的取值域；与 defect -> cause -> layman_action
+# 映射表（S11 返修指令资产）配合生成可执行的人话返修指令。
+version: 1
+name: remedy_action
+kind: enum
+values:
+  - id: RESHOOT
+    zh: 重拍
+    def: 重新拍摄该镜头（返修首选，配构图示意图与反例图）
+    equivalence_class: [MANUAL]
+    deprecated: false
+    replaced_by: null
+  - id: REGENERATE
+    zh: 重新生成
+    def: 重新生成该生成物（换 seed/降语速）
+    equivalence_class: [AUTO_RETRY]
+    deprecated: false
+    replaced_by: null
+  - id: RE_CROP
+    zh: 重新裁切
+    def: 调整裁切窗口重新构图（含自动重定位 auto_crop_recenter）
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: RECOLOR
+    zh: 调色
+    def: 曝光/色彩修正（LUT/曲线）
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: AUDIO_FIX
+    zh: 音频修复
+    def: 降噪/增益/补录
+    equivalence_class: [AUTO_FIX, MANUAL]
+    deprecated: false
+    replaced_by: null
+  - id: REPLACE_SHOT
+    zh: 换镜头
+    def: 用素材池中其他候选 shot 替换
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: TRIM
+    zh: 裁剪时长
+    def: 调整入出点
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: SPEED_ADJUST
+    zh: 变速
+    def: 调整播放速度（上限 1.15x，工艺参数见 craft_params）
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: REWRITE_COPY
+    zh: 改写文案
+    def: 绕开违禁表达/修正事实性错误后重写
+    equivalence_class: [AUTO_RETRY]
+    deprecated: false
+    replaced_by: null
+  - id: MUTE_AUDIO
+    zh: 静音处理
+    def: 去除问题音轨（改走卡点标记模式）
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: BLUR_MASK
+    zh: 打码
+    def: 对第三方人脸/logo 做局部模糊或贴图遮盖
+    equivalence_class: [AUTO_FIX, MANUAL]
+    deprecated: false
+    replaced_by: null
+  - id: ADD_DISCLAIMER
+    zh: 补声明
+    def: 补必需声明（如"效果因人而异"）
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: ADD_LABEL
+    zh: 补标识
+    def: 补 AIGC 显式/隐式标识
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null
+  - id: RE_ORDER
+    zh: 重排
+    def: 调整 beat/clip 顺序
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null

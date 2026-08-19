@@ -1,0 +1,241 @@
+# defect_type —— 缺陷类型词表（QC 断言与返修单共用；25–35 值建议）
+# 命名空间按 QC 层级分组：L0 确定性技术 / L1 内容一致性 / L2 生成物 / L3 合规。
+# defect -> probable_cause -> layman_action 映射表（返修指令资产）以本表 id 为外键。
+version: 1
+name: defect_type
+kind: enum
+values:
+  - id: BLURRY
+    zh: 画面模糊
+    def: 清晰度低于阈值（laplacian_var）
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: SHAKE
+    zh: 抖动
+    def: 运动抖动超标（optical_flow）
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: OVEREXPOSED
+    zh: 过曝
+    def: 高光溢出占比超标
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: UNDEREXPOSED
+    zh: 欠曝
+    def: 暗部死黑占比超标
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: FLICKER
+    zh: 频闪
+    def: 帧间亮度闪烁超标（flicker_index）
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: BLACK_FRAME
+    zh: 黑帧
+    def: 存在黑帧区间（blackdetect）
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: FREEZE_FRAME
+    zh: 画面冻结
+    def: 画面静止区间超标（freezedetect）
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: AUDIO_CLIPPING
+    zh: 爆音
+    def: 真峰值超过 0dBTP
+    equivalence_class: [L0_AUDIO]
+    deprecated: false
+    replaced_by: null
+  - id: AUDIO_TOO_QUIET
+    zh: 音量过低
+    def: 响度低于目标 LUFS 下界
+    equivalence_class: [L0_AUDIO]
+    deprecated: false
+    replaced_by: null
+  - id: NOISY_AUDIO
+    zh: 音频噪声
+    def: 信噪比低于阈值
+    equivalence_class: [L0_AUDIO]
+    deprecated: false
+    replaced_by: null
+  - id: SILENT_AUDIO
+    zh: 无音频
+    def: 声轨为空但声明需同期声
+    equivalence_class: [L0_AUDIO]
+    deprecated: false
+    replaced_by: null
+  - id: RESOLUTION_LOW
+    zh: 分辨率不足
+    def: 低于 1080x1920 要求
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: ASPECT_MISMATCH
+    zh: 画幅不符
+    def: 非竖版 9:16 源
+    equivalence_class: [L0_TECHNICAL]
+    deprecated: false
+    replaced_by: null
+  - id: SUBJECT_MISSING
+    zh: 主体缺失
+    def: 要求的主体未检出（L1 判定题）
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: SUBJECT_TOO_SMALL
+    zh: 主体过小
+    def: 主体面积占比低于 spec 下界
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: SUBJECT_TRUNCATED
+    zh: 主体截断
+    def: 主体越出画面/裁切后断头断尾
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: WRONG_SHOT_TYPE
+    zh: 镜位不符
+    def: 实拍镜位与制作令 spec 不符
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: WRONG_MOTION
+    zh: 运镜不符
+    def: 运镜类型/方向与 spec 不符
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: BAD_FRAMING
+    zh: 构图越界
+    def: 主体/文字越过安全区或画面边缘
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: NEGATIVE_SPACE_MISSING
+    zh: 无可用负空间
+    def: 画面无可安放字幕的连续低纹理区域
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: OBSTRUCTED
+    zh: 遮挡
+    def: 前景异物遮挡主体
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: BACKGROUND_CLUTTER
+    zh: 背景杂乱
+    def: 背景干扰主体辨识（含杂乱后厨/无关人员）
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: HANDLES_MISSING
+    zh: 首尾无余量
+    def: 动作开始/结束无 handles 余量，无法转场
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: DURATION_SHORT
+    zh: 时长不足
+    def: 素材可用时长低于 beat duration_range 下界
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: WRONG_SCENE
+    zh: 场景不符
+    def: 实拍场景与 spec.scene 不符
+    equivalence_class: [L1_CONTENT]
+    deprecated: false
+    replaced_by: null
+  - id: LIPSYNC_OFF
+    zh: 口型不同步
+    def: LSE-C/LSE-D 超标（生成物）
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: FACE_WARP
+    zh: 面部畸变
+    def: 生成面部结构异常
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: HAND_WARP
+    zh: 手部畸变
+    def: 生成手部结构异常
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: TEXT_WARP
+    zh: 文字畸变
+    def: 画面内生成文字乱码/变形
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: TEMPORAL_WARP
+    zh: 时序扭曲
+    def: 帧间运动不连贯（temporal_warp_error）
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: PLASTIC_LOOK
+    zh: 塑料感
+    def: 无参考质量模型判定"AI 感"过强（DOVER/FastVQA）
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: IDENTITY_DRIFT
+    zh: 身份漂移
+    def: 生成人物与目标身份相似度不足（face_identity_sim）
+    equivalence_class: [L2_GENERATED]
+    deprecated: false
+    replaced_by: null
+  - id: THIRD_PARTY_FACE
+    zh: 第三方人脸
+    def: 画面含未授权出镜的第三人
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: THIRD_PARTY_LOGO
+    zh: 第三方标识
+    def: 画面含竞品/第三方 logo、招牌、车牌
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: BANNED_TERM
+    zh: 违禁表达
+    def: 文案/OCR 含违禁词或隐含功效宣称
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: CLAIM_WITHOUT_PROOF
+    zh: 无证据宣称
+    def: 主张无可视觉验证的证据支撑
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: LICENSE_MUSIC_MISSING
+    zh: 音乐无授权
+    def: 音轨缺少有效授权凭证或已过期
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: AIGC_LABEL_MISSING
+    zh: 缺 AIGC 标识
+    def: 缺少显式/隐式 AIGC 标识（GB 45438-2025）
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: PORTRAIT_AUTH_MISSING
+    zh: 缺肖像授权
+    def: 出镜人授权缺失或已撤销
+    equivalence_class: [L3_COMPLIANCE]
+    deprecated: false
+    replaced_by: null
