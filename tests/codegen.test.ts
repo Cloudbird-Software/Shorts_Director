@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { renderVocabTs } from "../scripts/gen-vocab.mjs";
+import { renderVocabGo, renderVocabTs } from "../scripts/gen-vocab.mjs";
 import { shotType, VOCAB_FILES } from "../codegen/ts/vocab.js";
 
 describe("codegen 新鲜度（改 schema 不跑 make gen = CI 红）", () => {
@@ -10,6 +10,14 @@ describe("codegen 新鲜度（改 schema 不跑 make gen = CI 红）", () => {
       "utf8",
     );
     expect(await renderVocabTs()).toBe(committed);
+  });
+
+  it("codegen/go/vocab/vocab.go 与 schema/vocab/v1/*.yaml 再生成结果一致", () => {
+    const committed = readFileSync(
+      new URL("../codegen/go/vocab/vocab.go", import.meta.url),
+      "utf8",
+    );
+    expect(renderVocabGo()).toBe(committed);
   });
 });
 
