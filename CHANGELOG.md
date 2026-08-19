@@ -23,7 +23,8 @@
 - src/contracts 契约常量模块（schema 版本/词表清单/冻结枚举/工艺参数），替换模板占位代码；补全 depcruise 边界规则。
 - codegen 流水线（`make gen`）：schema/vocab/v1/*.yaml → codegen/ts/vocab.ts（词表清单 + 全部枚举值与类型，prettier 确定性输出）；CI 新鲜度测试守住"改 schema 必须重生成"；src/contracts 词表锚点切换为生成代码再导出。
 - 词表元数据生成：zh/def/等价类/废弃链全量进 codegen，附 VOCAB_IDS/VOCAB_META 注册表；src/contracts/vocab.ts 运行期助手（isVocabId/assertVocabId/isDeprecated/replacedBy/equivalenceClassOf/zhOf）——ShotSlotQuery 按类取材与 QC 断言的公共底座；生成器新增废弃值必须 replaced_by 同表合法 id 的结构断言。
-- Freeze Gate G1 校验 harness（ajv 2020-12 + ajv-formats）：schema/testdata/<entity>/{valid,invalid} 自动纳管，valid 全过 / invalid 全拒 / 规模门槛（≥5+≥15）进 CI；Asset 首批样本 5 valid + 18 invalid。
+- Freeze Gate G1 校验 harness（ajv 2020-12 + ajv-formats）：schema/testdata/<entity>/{valid,invalid} 自动纳管，valid 全过 / invalid 全拒 / 规模门槛（≥5+≥15）进 CI；Asset 首批样本 6 valid + 19 invalid，content_hash 钉死 pattern `^sha256:[0-9a-f]{64}$`。
+- Shot G1 样本：5 valid（minimal/typical 打标态/available 全量/pillarbox 声明/单帧边界）+ 25 invalid（必填缺失×11、状态机枚举、fps 枚举、in/out_frame 边界、camera_motion_dir、subjects 超 maxItems=5、safe_crop 缺 ok、quality_tier 越界、provenance 结构×3、additionalProperties×2）。
 
 ### Removed
 - 模板占位：src/index.ts 的 greet 与 tests/smoke.test.ts。
