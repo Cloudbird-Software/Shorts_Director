@@ -32,6 +32,7 @@
 - ProductionOrder G1 样本：5 valid（minimal/摄影实拍全量/生成供应商/商家自拍/返修条款）+ 20 invalid（必填缺失×8、kind/vendor_type 枚举、duration_sec 二元组、framing headroom、min_resolution 常量、auto_gate_level、budget 负值、deadline 格式）。
 - VideoPlan G1 样本：5 valid（minimal 音乐计划/口播加变速/纯生成素材/商用音乐带凭证/静音模式）+ 29 invalid（必填缺失×14、canvas w 常量与 fps 枚举、timebase 秒制、clip speed 上限与 src_out 下限、track kind、overlay anchor 与帧区间、LicensedRef 凭证、VersionedRef 版本、caption 长度）；valid 样本 diversity_signature 与实际 tracks/audio 对齐。
 - internal/brandkernel：BrandKernel 根契约 Go 实体层（Freeze Gate G4 收口）——结构体与 schema 一一对应（round-trip + DisallowUnknownFields 防漂移测试），IV-BK-1（pillars ≥3 且各绑 ≥2 proof_type）与 IV-BK-3（category 受控枚举临时集合、决定 compliance_profile_id）校验及失败用例，`ReadyForL3Matching()` 作为 IV-BK-2 的 L3 准入 API（completeness.score ≥ 0.75）。
+- internal/compat：前向兼容消费边界（Freeze Gate G8）——`DecodeTolerant` 锁定未知字段忽略语义；`DegradeEnum`/`ScanUnknownEnums` 实现未知枚举降级（UNKNOWN 哨兵 + Raw 保留原值，JSON Pointer 定位），降级 fail-safe（未知 ShotState 不可消费）；golden fixture `testdata/forward/shot_from_future.json` 模拟未来版本生产者。
 - C2/C3 契约 G1 样本 + harness 纳管 contracts：operator request/response（5+17 / 5+21）、render request/response（5+22 / 5+22，request 内嵌合法 VideoPlan 且 resolved_media 全量预解析）；G1 harness 改为按 $id 递归发现（支持嵌套 key），新增孤儿样本目录守卫（拼错/$id 不匹配即测试失败，禁止静默跳过）。
 - Go 控制面骨架（#27）：go.mod 工作区、Makefile test 接入、契约版本锚点包 internal/contracts（C2/C3 版本常量与词表清单单一来源）。
 - digest 包（#29）：RFC 8785 JCS 规范化与内容寻址摘要——跨语言（Go/TS/BAML）digest 一致性的 Go 侧实现。
