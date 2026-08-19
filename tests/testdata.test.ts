@@ -44,16 +44,15 @@ const load = (dir: URL, f: string): unknown =>
 // 纳管发现：testdata/<key>/ 存在 ⇒ key 对应 schema $id .../v1/<key>.json
 // key 可嵌套（如 contracts/operator/request），与 schema 目录结构一致
 const ID_PREFIX = "https://shorts.director/schemas/v1/";
-const discoverEntities = (): string[] => {
-  const out: string[] = [];
+const schemaKeys = (): Set<string> => {
+  const keys = new Set<string>();
   const walk = (dir: URL) => {
     for (const f of readdirSync(dir)) {
       if (f.endsWith(".json")) {
         const schema = JSON.parse(readFileSync(new URL(f, dir), "utf8"));
         const id: string = schema.$id ?? "";
         if (id.startsWith(ID_PREFIX)) {
-          const key = id.slice(ID_PREFIX.length).replace(/\.json$/, "");
-          if (existsSync(new URL(`${key}/`, testdataRoot))) out.push(key);
+          keys.add(id.slice(ID_PREFIX.length).replace(/\.json$/, ""));
         }
       } else {
         const sub = new URL(`${f}/`, dir);
@@ -64,14 +63,44 @@ const discoverEntities = (): string[] => {
   for (const dir of ["common", "entities", "contracts"]) {
     walk(new URL(`${dir}/`, schemaRoot));
   }
+  return keys;
+};
+
+// testdata 侧实际存在的 key（含 valid/invalid 子目录的目录）
+const testdataKeys = (): string[] => {
+  const out: string[] = [];
+  const walk = (prefix: string, dir: URL) => {
+    for (const f of readdirSync(dir)) {
+      const sub = new URL(`${f}/`, dir);
+      if (!statSync(sub).isDirectory()) continue;
+      const key = prefix ? `${prefix}/${f}` : f;
+      if (existsSync(new URL("valid/", sub)) || existsSync(new URL("invalid/", sub))) {
+        out.push(key);
+      } else {
+        walk(key, sub);
+      }
+    }
+  };
+  walk("", testdataRoot);
   return out.sort();
 };
+
+const discoverEntities = (): string[] => {
+  const keys = schemaKeys();
+  return testdataKeys().filter((k) => keys.has(k));
+};
+const orphanTestdata = (): string[] =>
+  testdataKeys().filter((k) => !schemaKeys().has(k));
 
 const entities = discoverEntities();
 
 describe("G1 testdata harness", () => {
   it("schema/testdata 至少覆盖一个实体", () => {
     expect(entities.length).toBeGreaterThan(0);
+  });
+
+  it("无孤儿样本目录（拼错/$id 不匹配的 testdata 必须报错，禁止静默跳过）", () => {
+    expect(orphanTestdata()).toEqual([]);
   });
 });
 
