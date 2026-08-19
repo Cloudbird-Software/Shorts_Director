@@ -1,0 +1,19 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "OK",
+  "outputs": {
+    "shots": [
+      {
+        "in_frame": 0,
+        "out_frame": 120,
+        "confidence": 0.9
+      }
+    ]
+  },
+  "metrics": {
+    "wall_ms": 1,
+    "cost_usd": 0.01
+  },
+  "operator_version": "shot_segment@1.2.0"
+}

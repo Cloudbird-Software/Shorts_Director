@@ -1,0 +1,34 @@
+{
+  "contract_version": 1,
+  "resolved_media": [
+    {
+      "ref": "shot:018f6c01-aaaa-7aaa-8aaa-000000000002",
+      "local_path": "/mnt/work/media/shot-0002.mp4",
+      "content_hash": "sha256:1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a",
+      "fps": 30
+    }
+  ],
+  "fonts": [
+    {
+      "family": "NotoSansSC",
+      "path": "/mnt/work/fonts/NotoSansSC.otf",
+      "hash": "sha256:aaaa"
+    }
+  ],
+  "output": {
+    "path": "/mnt/work/out/final.mp4",
+    "codec": "h264",
+    "crf": 18,
+    "preset": "slow"
+  },
+  "modes": {
+    "overlay_only": false,
+    "preview": false,
+    "deterministic": true
+  },
+  "renderer_expect": {
+    "ffmpeg": "7.1",
+    "remotion": "4.0.230",
+    "node": "22.11.0"
+  }
+}

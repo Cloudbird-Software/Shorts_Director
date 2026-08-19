@@ -1,0 +1,20 @@
+{
+  "contract_version": 1,
+  "status": "OK",
+  "output": {
+    "path": "/o.mp4",
+    "content_hash": "h",
+    "duration_frames": 10,
+    "size_bytes": 1,
+    "crf": 18
+  },
+  "verification": {
+    "frame_count_matches_ir": true,
+    "safe_area_violations": []
+  },
+  "cost": {
+    "render_count": 1,
+    "cents": 12
+  },
+  "renderer_version": "renderer@1.0.0+ffmpeg7.1+remotion4.0.230+fonts.aaaa"
+}

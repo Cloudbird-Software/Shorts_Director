@@ -3,7 +3,7 @@
 //   valid ≥5（minimal/typical/maximal/边界）必须全部通过校验
 //   invalid ≥15（文件名即断言）必须全部被拒绝
 // 本文件零实体特判——新增实体只要放好 schema + testdata 目录即自动纳管。
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
@@ -14,14 +14,19 @@ const testdataRoot = new URL("../schema/testdata/", import.meta.url);
 function buildAjv(): InstanceType<typeof Ajv2020> {
   const ajv = new Ajv2020({ strict: false, allErrors: true });
   addFormats(ajv);
-  // 注册全部 common + entities schema，跨文件 $ref（versioned_ref 等）可解析
-  for (const dir of ["common", "entities"]) {
-    const d = new URL(`${dir}/`, schemaRoot);
-    for (const f of readdirSync(d)) {
+  // 注册全部 common + entities + contracts schema，跨文件 $ref 可解析
+  const registerDir = (dir: URL) => {
+    for (const f of readdirSync(dir)) {
+      const p = new URL(f, dir);
       if (f.endsWith(".json")) {
-        ajv.addSchema(JSON.parse(readFileSync(new URL(f, d), "utf8")));
+        ajv.addSchema(JSON.parse(readFileSync(p, "utf8")));
+      } else if (statSync(p).isDirectory()) {
+        registerDir(new URL(`${f}/`, dir));
       }
     }
+  };
+  for (const dir of ["common", "entities", "contracts"]) {
+    registerDir(new URL(`${dir}/`, schemaRoot));
   }
   return ajv;
 }
@@ -36,11 +41,69 @@ const listJson = (dir: URL): string[] =>
 const load = (dir: URL, f: string): unknown =>
   JSON.parse(readFileSync(new URL(f, dir), "utf8"));
 
-const entities = readdirSync(testdataRoot);
+// 纳管发现：testdata/<key>/ 存在 ⇒ key 对应 schema $id .../v1/<key>.json
+// key 可嵌套（如 contracts/operator/request），与 schema 目录结构一致
+const ID_PREFIX = "https://shorts.director/schemas/v1/";
+const schemaKeys = (): Set<string> => {
+  const keys = new Set<string>();
+  const walk = (dir: URL) => {
+    for (const f of readdirSync(dir)) {
+      if (f.endsWith(".json")) {
+        const schema = JSON.parse(readFileSync(new URL(f, dir), "utf8"));
+        const id: string = schema.$id ?? "";
+        if (id.startsWith(ID_PREFIX)) {
+          keys.add(id.slice(ID_PREFIX.length).replace(/\.json$/, ""));
+        }
+      } else {
+        const sub = new URL(`${f}/`, dir);
+        if (statSync(sub).isDirectory()) walk(sub);
+      }
+    }
+  };
+  for (const dir of ["common", "entities", "contracts"]) {
+    walk(new URL(`${dir}/`, schemaRoot));
+  }
+  return keys;
+};
+
+// testdata 侧实际存在的 key（含 valid/invalid 子目录的目录）
+const testdataKeys = (): string[] => {
+  const out: string[] = [];
+  const walk = (prefix: string, dir: URL) => {
+    for (const f of readdirSync(dir)) {
+      const sub = new URL(`${f}/`, dir);
+      if (!statSync(sub).isDirectory()) continue;
+      const key = prefix ? `${prefix}/${f}` : f;
+      if (
+        existsSync(new URL("valid/", sub)) ||
+        existsSync(new URL("invalid/", sub))
+      ) {
+        out.push(key);
+      } else {
+        walk(key, sub);
+      }
+    }
+  };
+  walk("", testdataRoot);
+  return out.sort();
+};
+
+const discoverEntities = (): string[] => {
+  const keys = schemaKeys();
+  return testdataKeys().filter((k) => keys.has(k));
+};
+const orphanTestdata = (): string[] =>
+  testdataKeys().filter((k) => !schemaKeys().has(k));
+
+const entities = discoverEntities();
 
 describe("G1 testdata harness", () => {
   it("schema/testdata 至少覆盖一个实体", () => {
     expect(entities.length).toBeGreaterThan(0);
+  });
+
+  it("无孤儿样本目录（拼错/$id 不匹配的 testdata 必须报错，禁止静默跳过）", () => {
+    expect(orphanTestdata()).toEqual([]);
   });
 });
 
