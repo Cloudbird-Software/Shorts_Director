@@ -1,0 +1,54 @@
+# shot_type —— 镜位（8 值）
+# 与 DB enum shot_type 一一对应；等价类是 ShotSlotQuery 按类取材的依据。
+version: 1
+name: shot_type
+kind: enum
+values:
+  - id: EXTREME_CLOSEUP
+    zh: 大特写
+    def: 主体占画面 >70%，用于质感/细节
+    equivalence_class: [DETAIL]
+    deprecated: false
+    replaced_by: null
+  - id: CLOSEUP
+    zh: 特写
+    def: 主体占画面 30%–70%，面部或单一主体充满视觉中心
+    equivalence_class: [DETAIL, FACE]
+    deprecated: false
+    replaced_by: null
+  - id: MEDIUM
+    zh: 中景
+    def: 主体腰部以上或操作台面全貌，动作可辨认
+    equivalence_class: [SUBJECT]
+    deprecated: false
+    replaced_by: null
+  - id: WIDE
+    zh: 全景
+    def: 环境与主体关系完整可见，交代场所
+    equivalence_class: [CONTEXT, ESTABLISHING]
+    deprecated: false
+    replaced_by: null
+  - id: OTS
+    zh: 过肩/第一视角
+    def: 过肩或第一视角，制造代入感
+    equivalence_class: [SUBJECT, POV]
+    deprecated: false
+    replaced_by: null
+  - id: TABLETOP
+    zh: 俯拍平铺
+    def: 垂直俯拍桌面，适合成品/食材平铺陈列
+    equivalence_class: [DETAIL, PRODUCT]
+    deprecated: false
+    replaced_by: null
+  - id: POV
+    zh: 主观视角
+    def: 模拟观众视角（递给 viewer/端起碗），强代入
+    equivalence_class: [POV]
+    deprecated: false
+    replaced_by: null
+  - id: INSERT
+    zh: 插入镜头
+    def: 补充细节的切入镜头（价签/手部动作/成品切面）
+    equivalence_class: [DETAIL]
+    deprecated: false
+    replaced_by: null

@@ -1,0 +1,55 @@
+# proof_type —— 证明方式（8 值）
+# BrandKernel.differentiators[].proof_types 与 pillars[].proof_types 的取值域；
+# "可视觉验证"的主张必须绑定至少一种 proof_type（IV-BK-1）。
+version: 1
+name: proof_type
+kind: enum
+values:
+  - id: LIVE_DEMO
+    zh: 现场演示
+    def: 拍摄过程本身作为证据（现场切配/现炒/现做）
+    equivalence_class: [PROCESS]
+    deprecated: false
+    replaced_by: null
+  - id: CUSTOMER_TESTIMONY
+    zh: 顾客证言
+    def: 真实顾客出镜评价（需肖像授权）
+    equivalence_class: [SOCIAL]
+    deprecated: false
+    replaced_by: null
+  - id: QUALIFICATION
+    zh: 资质证书
+    def: 证照/检测报告/授权书等文件画面
+    equivalence_class: [DOCUMENT]
+    deprecated: false
+    replaced_by: null
+  - id: DATA
+    zh: 数据
+    def: 可核验的数字（销量/年限/复购率），来源需可追溯
+    equivalence_class: [DOCUMENT]
+    deprecated: false
+    replaced_by: null
+  - id: BEFORE_AFTER
+    zh: 前后对比
+    def: 同主体处理前后对比（注意广告法风险，禁止夸大）
+    equivalence_class: [CONTRAST]
+    deprecated: false
+    replaced_by: null
+  - id: SOURCE_TRACE
+    zh: 溯源
+    def: 食材/物料来源的现场证据（进货单/农场/冷链）
+    equivalence_class: [DOCUMENT, PROCESS]
+    deprecated: false
+    replaced_by: null
+  - id: CRAFT_DETAIL
+    zh: 工艺细节
+    def: 独家手艺/工艺的细节特写
+    equivalence_class: [PROCESS]
+    deprecated: false
+    replaced_by: null
+  - id: SCENE_ATMOSPHERE
+    zh: 现场氛围
+    def: 排队/满座/出餐节奏等现场热度画面
+    equivalence_class: [SOCIAL]
+    deprecated: false
+    replaced_by: null
