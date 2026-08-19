@@ -254,9 +254,15 @@
   "resolved_media": [
     {
       "ref": "shot:018f6c01-aaaa-7aaa-8aaa-000000000002",
-      "local_path": "/mnt/work/media/shot-0002.mp4",
+      "local_path": "/mnt/work/media/0002.mp4",
       "content_hash": "sha256:1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a",
-      "fps": 30
+      "fps": 25
+    },
+    {
+      "ref": "shot:018f6c01-aaaa-7aaa-8aaa-000000000003",
+      "local_path": "/mnt/work/media/0003.mp4",
+      "content_hash": "sha256:2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b",
+      "fps": 25
     }
   ],
   "fonts": [
