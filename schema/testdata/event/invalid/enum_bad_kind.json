@@ -1,0 +1,11 @@
+{
+  "event_id": "018f6d01-cccc-7ccc-8ccc-000000000001",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "plan_id": "018f6e02-dddd-7ddd-8ddd-00000000000a",
+  "ts": "2026-08-10T12:00:00Z",
+  "kind": "PLAN_DELETED",
+  "actor": "SYSTEM",
+  "payload": {
+    "channel": "miniapp"
+  }
+}
