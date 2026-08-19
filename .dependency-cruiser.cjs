@@ -22,21 +22,22 @@ module.exports = {
       from: { orphan: true, pathNot: ["^src/index\\.ts$"] },
       to: {},
     },
-    // TODO: 项目首个 PR 时由 AI 根据模块地图补全，示例：
-    // {
-    //   name: "domain-not-import-infra",
-    //   severity: "error",
-    //   comment: "领域层不得依赖基础设施层",
-    //   from: { path: "^src/domain/" },
-    //   to: { path: "^src/infrastructure/" },
-    // },
-    // {
-    //   name: "entry-only-imports",
-    //   severity: "error",
-    //   comment: "跨模块只能 import 入口文件（index.ts），不得深入实现",
-    //   from: { pathNot: ["^src/([^/]+)/index\\.ts$", "^src/index\\.ts$"] },
-    //   to: { path: "^src/([^/]+)/(.+)$", pathNot: ["^src/$1/index\\.ts$"] },
-    // },
+    // 边界规则随模块地图演进（docs/ARCHITECTURE.md 仓库布局）。
+    // 当前模块：src/contracts（契约常量，零依赖叶子）。
+    {
+      name: "entry-only-imports",
+      severity: "error",
+      comment: "跨模块只能 import 入口文件（index.ts），不得深入实现",
+      from: { pathNot: ["^src/([^/]+)/index\\.ts$", "^src/index\\.ts$"] },
+      to: { path: "^src/([^/]+)/(.+)$", pathNot: ["^src/$1/index\\.ts$"] },
+    },
+    {
+      name: "contracts-is-leaf",
+      severity: "error",
+      comment: "契约常量模块是零依赖叶子：不得 import src 内其他模块",
+      from: { path: "^src/contracts/" },
+      to: { path: "^src/", pathNot: ["^src/contracts/"] },
+    },
   ],
   options: {
     doNotFollow: { path: "node_modules" },
