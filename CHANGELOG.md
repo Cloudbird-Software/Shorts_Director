@@ -6,6 +6,8 @@
 
 ### Added
 - 初始模板工程（CI gate / hygiene / dependabot / automerge 全套护栏）。
+- schema/ 单一真源目录与模块规约（schema/AGENTS.md）。
+- 受控词表 v1 第一批（结构类）：beat_role（冻结）、audio_role、shot_type、camera_motion、proof_type。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。

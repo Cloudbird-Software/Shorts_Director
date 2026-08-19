@@ -1,0 +1,60 @@
+# camera_motion —— 运镜类型（9 值）；方向（dir）是独立字段 LEFT/RIGHT/IN/OUT/UP/DOWN
+# 注意镜像/反放变形测试：水平镜像翻转 dir，PUSH<->PULL 互换（Engineering_plan §4.5）。
+version: 1
+name: camera_motion
+kind: enum
+values:
+  - id: STATIC
+    zh: 固定
+    def: 机位不动（含手机支架固定），画面内运动仅来自主体
+    equivalence_class: [STABLE]
+    deprecated: false
+    replaced_by: null
+  - id: PUSH
+    zh: 推
+    def: 向主体推近，制造聚焦/进入感；dir=IN
+    equivalence_class: [AXIAL]
+    deprecated: false
+    replaced_by: null
+  - id: PULL
+    zh: 拉
+    def: 从主体拉远，交代环境；dir=OUT
+    equivalence_class: [AXIAL]
+    deprecated: false
+    replaced_by: null
+  - id: PAN
+    zh: 摇
+    def: 机位不动水平转动；dir=LEFT/RIGHT
+    equivalence_class: [ROTATIONAL]
+    deprecated: false
+    replaced_by: null
+  - id: TILT
+    zh: 俯仰
+    def: 机位不动垂直转动；dir=UP/DOWN
+    equivalence_class: [ROTATIONAL]
+    deprecated: false
+    replaced_by: null
+  - id: TRACK
+    zh: 移
+    def: 机位平移跟随主体；dir=LEFT/RIGHT
+    equivalence_class: [LATERAL]
+    deprecated: false
+    replaced_by: null
+  - id: HANDHELD
+    zh: 手持
+    def: 手持跟拍，允许轻微晃动（shake_score 阈值放宽）
+    equivalence_class: [LATERAL, DYNAMIC]
+    deprecated: false
+    replaced_by: null
+  - id: ORBIT
+    zh: 环绕
+    def: 围绕主体弧形运动
+    equivalence_class: [ROTATIONAL, DYNAMIC]
+    deprecated: false
+    replaced_by: null
+  - id: WHIP
+    zh: 甩
+    def: 快速甩镜转场，常接匹配剪辑
+    equivalence_class: [DYNAMIC, TRANSITION]
+    deprecated: false
+    replaced_by: null

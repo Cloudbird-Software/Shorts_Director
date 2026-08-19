@@ -1,0 +1,29 @@
+# audio_role —— 音频叙事角色（4 值）
+version: 1
+name: audio_role
+kind: enum
+values:
+  - id: VO
+    zh: 口播
+    def: 主体叙事音频（TTS 或真人），决定 beat 时长下界
+    equivalence_class: [SPEECH]
+    deprecated: false
+    replaced_by: null
+  - id: SYNC
+    zh: 同期声
+    def: 现场收音（环境声/操作声），增强真实感
+    equivalence_class: [AMBIENT]
+    deprecated: false
+    replaced_by: null
+  - id: SILENT
+    zh: 静音
+    def: 无音频输出（BGM 由平台侧添加时使用，配合卡点标记）
+    equivalence_class: [AMBIENT]
+    deprecated: false
+    replaced_by: null
+  - id: SFX
+    zh: 音效
+    def: 点缀性音效（切菜声/收银声），不承担叙事
+    equivalence_class: [AMBIENT]
+    deprecated: false
+    replaced_by: null

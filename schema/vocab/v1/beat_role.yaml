@@ -1,0 +1,49 @@
+# beat_role —— 叙事功能（7 值，冻结，不可扩）
+# beat_role 是 BeatSchema 的骨架字母表；扩值等于重定义叙事学，major bump 级变更。
+version: 1
+name: beat_role
+kind: enum
+frozen: true
+values:
+  - id: HOOK
+    zh: 钩子
+    def: 前 3 秒内承担停留率职责的开口，必须制造信息差或冲突
+    equivalence_class: [OPENING]
+    deprecated: false
+    replaced_by: null
+  - id: CONTEXT
+    zh: 语境
+    def: 交代人物/地点/时间等背景信息，为 PROOF 建立理解前提
+    equivalence_class: [BODY]
+    deprecated: false
+    replaced_by: null
+  - id: PROOF
+    zh: 证据
+    def: 用可见画面证明主张（演示/对比/证言/资质/数据）
+    equivalence_class: [BODY]
+    deprecated: false
+    replaced_by: null
+  - id: CONTRAST
+    zh: 对比
+    def: 呈现"没有对比就没有伤害"，正面回应 audience.objection
+    equivalence_class: [BODY]
+    deprecated: false
+    replaced_by: null
+  - id: OFFER
+    zh: 主张
+    def: 给出具体的转化主张（价格/活动/权益），与 CTA 分工：OFFER 说"什么"，CTA 说"怎么做"
+    equivalence_class: [CLOSING]
+    deprecated: false
+    replaced_by: null
+  - id: CTA
+    zh: 行动号召
+    def: 明确的下一步动作指令，通常在末尾
+    equivalence_class: [CLOSING]
+    deprecated: false
+    replaced_by: null
+  - id: BUMPER
+    zh: 尾板
+    def: 品牌记忆板（店名/位置/slogan），帧数短、可复用
+    equivalence_class: [CLOSING]
+    deprecated: false
+    replaced_by: null
