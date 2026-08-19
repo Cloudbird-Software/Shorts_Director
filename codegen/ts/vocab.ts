@@ -215,7 +215,7 @@ export const proofType = [
 ] as const;
 export type ProofType = (typeof proofType)[number];
 
-/** remedy_action（14 值） */
+/** remedy_action（15 值） */
 export const remedyAction = [
   "RESHOOT",
   "REGENERATE",
@@ -231,6 +231,7 @@ export const remedyAction = [
   "ADD_DISCLAIMER",
   "ADD_LABEL",
   "RE_ORDER",
+  "REJECT_SOURCE",
 ] as const;
 export type RemedyAction = (typeof remedyAction)[number];
 
@@ -1498,6 +1499,13 @@ export const remedyActionMeta = {
   RE_ORDER: {
     zh: "重排",
     def: "调整 beat/clip 顺序",
+    equivalenceClass: ["AUTO_FIX"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  REJECT_SOURCE: {
+    zh: "拒收素材",
+    def: "素材不可修复（黑帧/损坏/分辨率不足），报废不入库",
     equivalenceClass: ["AUTO_FIX"],
     deprecated: false,
     replacedBy: null,
