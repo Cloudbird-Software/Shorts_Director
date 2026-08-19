@@ -1,0 +1,15 @@
+{
+  "id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8a",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "source_kind": "REAL_SHOOT",
+  "content_hash": "sha256:3f1c9a2b8d4e6f0a1b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef90",
+  "storage_uri": "s3://media-inbox/tenant-a/2026/clip-001.mp4",
+  "probe": {
+    "duration_frames": 1500,
+    "fps": 25,
+    "w": 1920,
+    "h": 1080,
+    "secret_extra": true
+  },
+  "uploaded_at": "2026-08-01T09:30:00Z"
+}
