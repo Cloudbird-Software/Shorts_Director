@@ -51,3 +51,4 @@
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
 - 工程设计文档移至 [docs/Engineering_plan.md](docs/Engineering_plan.md)。
 - docs/ARCHITECTURE.md 对齐工程设计：四层分层心智模型、仓库布局、契约纪律与语言栈硬约束。
+- README 阶段声明改为「Phase 0 进行中（契约冻结未达成）」并新增 Freeze Gate 12 项状态表（#50）。
