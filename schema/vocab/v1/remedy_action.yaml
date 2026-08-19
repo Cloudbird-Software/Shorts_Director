@@ -89,3 +89,9 @@ values:
     equivalence_class: [AUTO_FIX]
     deprecated: false
     replaced_by: null
+  - id: REJECT_SOURCE
+    zh: 拒收素材
+    def: 素材不可修复（黑帧/损坏/分辨率不足），报废不入库
+    equivalence_class: [AUTO_FIX]
+    deprecated: false
+    replaced_by: null

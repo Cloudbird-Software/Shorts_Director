@@ -10,10 +10,50 @@ import (
 // "不匹配"处理；类型不匹配（数值谓词用于字符串字段）按错误处理——
 // 这是契约级 bug，不允许静默。
 func Evaluate(p Predicate, s *entity.Shot) (bool, error) {
+	return evalWith(p, func(field string) (any, bool) {
+		return FieldValue(s, field)
+	})
+}
+
+// EvaluateFields 对属性字典求谓词值（QC applies_when 的求值入口）。
+// 字段域仍是 IV-SQ-2 白名单；语义与 Evaluate 完全一致：无值不匹配、
+// 类型不匹配报错。字典适合承载不在 Shot 上的关联字段（如 Asset 的
+// source_kind）——由编排层展平注入。
+func EvaluateFields(p Predicate, fields map[string]any) (bool, error) {
+	return evalWith(p, func(field string) (any, bool) {
+		v, ok := fields[field]
+		return v, ok
+	})
+}
+
+// FieldValue 返回 shot 白名单字段的值（标量或数值统一为 any；
+// 打标未覆盖时 ok=false）。QC/编排层用它把 Shot 展平进属性字典。
+func FieldValue(s *entity.Shot, field string) (any, bool) {
+	if v, ok := scalarField(s, field); ok {
+		return v, true
+	}
+	f, ok := numberField(s, field)
+	return f, ok
+}
+
+// FlattenShot 把 shot 的全部白名单字段展平为属性字典（未打标字段缺省）。
+// QC applies_when 等跨实体求值用它把 Shot 并入属性集。
+func FlattenShot(s *entity.Shot) map[string]any {
+	out := map[string]any{}
+	for f := range fieldWhitelist {
+		if v, ok := FieldValue(s, f); ok {
+			out[f] = v
+		}
+	}
+	return out
+}
+
+// evalWith 是谓词求值的统一骨架：逻辑算子递归，叶子按字段取值器求比较。
+func evalWith(p Predicate, get func(string) (any, bool)) (bool, error) {
 	switch p.Op {
 	case "and":
 		for i, sub := range p.Operands {
-			ok, err := Evaluate(sub, s)
+			ok, err := evalWith(sub, get)
 			if err != nil {
 				return false, fmt.Errorf("and.operands[%d]: %w", i, err)
 			}
@@ -24,7 +64,7 @@ func Evaluate(p Predicate, s *entity.Shot) (bool, error) {
 		return true, nil
 	case "or":
 		for i, sub := range p.Operands {
-			ok, err := Evaluate(sub, s)
+			ok, err := evalWith(sub, get)
 			if err != nil {
 				return false, fmt.Errorf("or.operands[%d]: %w", i, err)
 			}
@@ -34,7 +74,7 @@ func Evaluate(p Predicate, s *entity.Shot) (bool, error) {
 		}
 		return false, nil
 	case "not":
-		ok, err := Evaluate(p.Operands[0], s)
+		ok, err := evalWith(p.Operands[0], get)
 		return !ok, err
 	case "semantic":
 		return false, ErrSemanticNotRankable
@@ -44,17 +84,17 @@ func Evaluate(p Predicate, s *entity.Shot) (bool, error) {
 		return false, fmt.Errorf("slotquery: 字段 %q 不在白名单", p.Field)
 	}
 
-	if numericOps[p.Op] || p.Op == "between" {
-		got, ok := numberField(s, p.Field)
-		if !ok {
-			return false, nil // 字段无值：不匹配
-		}
-		return compareNumber(p, got)
+	got, ok := get(p.Field)
+	if !ok {
+		return false, nil // 字段无值：不匹配
 	}
 
-	got, ok := scalarField(s, p.Field)
-	if !ok {
-		return false, nil
+	if numericOps[p.Op] || p.Op == "between" {
+		f, isNum := toFloat(got)
+		if !isNum {
+			return false, fmt.Errorf("slotquery: op %s 用于非数值字段 %q", p.Op, p.Field)
+		}
+		return compareNumber(p, f)
 	}
 	return compareScalar(p, got)
 }

@@ -43,8 +43,8 @@ var OverlayIntent = [...]string{"EMPHASIZE_NUMBER", "EMPHASIZE_KEYWORD", "KARAOK
 // ProofType 是 proof_type 词表的值清单（8 值）。
 var ProofType = [...]string{"LIVE_DEMO", "CUSTOMER_TESTIMONY", "QUALIFICATION", "DATA", "BEFORE_AFTER", "SOURCE_TRACE", "CRAFT_DETAIL", "SCENE_ATMOSPHERE"}
 
-// RemedyAction 是 remedy_action 词表的值清单（14 值）。
-var RemedyAction = [...]string{"RESHOOT", "REGENERATE", "RE_CROP", "RECOLOR", "AUDIO_FIX", "REPLACE_SHOT", "TRIM", "SPEED_ADJUST", "REWRITE_COPY", "MUTE_AUDIO", "BLUR_MASK", "ADD_DISCLAIMER", "ADD_LABEL", "RE_ORDER"}
+// RemedyAction 是 remedy_action 词表的值清单（15 值）。
+var RemedyAction = [...]string{"RESHOOT", "REGENERATE", "RE_CROP", "RECOLOR", "AUDIO_FIX", "REPLACE_SHOT", "TRIM", "SPEED_ADJUST", "REWRITE_COPY", "MUTE_AUDIO", "BLUR_MASK", "ADD_DISCLAIMER", "ADD_LABEL", "RE_ORDER", "REJECT_SOURCE"}
 
 // SceneFood 是 scene.food 词表的值清单（14 值）。
 var SceneFood = [...]string{"STOREFRONT", "ENTRANCE", "NEIGHBORHOOD", "OUTDOOR_SEATING", "COUNTER", "DELIVERY_COUNTER", "DINING_AREA", "PRIVATE_ROOM", "OPEN_KITCHEN", "KITCHEN", "PREP_STATION", "WASH_STATION", "STORAGE", "SUPPLIER_ARRIVAL"}
@@ -257,6 +257,7 @@ var remedy_actionMeta = map[string]Meta{
 	"ADD_DISCLAIMER": {Zh: "补声明", Def: "补必需声明（如\"效果因人而异\"）", EquivalenceClass: []string{"AUTO_FIX"}},
 	"ADD_LABEL":      {Zh: "补标识", Def: "补 AIGC 显式/隐式标识", EquivalenceClass: []string{"AUTO_FIX"}},
 	"RE_ORDER":       {Zh: "重排", Def: "调整 beat/clip 顺序", EquivalenceClass: []string{"AUTO_FIX"}},
+	"REJECT_SOURCE":  {Zh: "拒收素材", Def: "素材不可修复（黑帧/损坏/分辨率不足），报废不入库", EquivalenceClass: []string{"AUTO_FIX"}},
 }
 
 var scene_foodMeta = map[string]Meta{
