@@ -63,7 +63,7 @@ func (BannedTermsGate) Check(_ context.Context, in *Input) []Finding {
 			if text != "" && strings.Contains(text, t.Term) {
 				fs = append(fs, Finding{
 					Gate: "banned_terms", Risk: t.Risk, Severity: Severity(t.Severity),
-					Detail: fmt.Sprintf("文案命中违禁词 %q", t.Term),
+					Detail:   fmt.Sprintf("文案命中违禁词 %q", t.Term),
 					Evidence: text,
 				})
 				break // 同词只报一次
@@ -115,7 +115,7 @@ func (ThirdPartyRightsGate) Check(_ context.Context, in *Input) []Finding {
 			case "TRADEMARK", "THIRD_PARTY_CONTENT":
 				fs = append(fs, Finding{
 					Gate: "third_party_rights", Risk: flag, Severity: SeverityBlocker,
-					Detail: fmt.Sprintf("shot %s 带风险标记 %s", id, flag),
+					Detail:   fmt.Sprintf("shot %s 带风险标记 %s", id, flag),
 					Evidence: id,
 				})
 			}

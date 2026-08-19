@@ -43,7 +43,7 @@ func fixtureOutput() Output {
 	return Output{Path: "/mnt/work/out/final.mp4", Codec: "h264", CRF: 18, Preset: "slow"}
 }
 
-func fixtureModes() Modes      { return Modes{Deterministic: true} }
+func fixtureModes() Modes { return Modes{Deterministic: true} }
 func fixtureExpect() RendererExpect {
 	return RendererExpect{FFmpeg: "7.1", Remotion: "4.0.230", Node: "22.11.0"}
 }
@@ -134,7 +134,7 @@ func TestCompileConflictingHash(t *testing.T) {
 		Clips: []videoplan.Clip{{
 			ClipID: "ins-c1", BeatRole: "PROOF",
 			Source: videoplan.ClipSource{Kind: "SHOT", Ref: "018f6c01-aaaa-7aaa-8aaa-000000000002", ContentHash: "sha256:dead"},
-			SrcIn: 0, SrcOut: 10, TlStart: 10, TlEnd: 20,
+			SrcIn:  0, SrcOut: 10, TlStart: 10, TlEnd: 20,
 			Transform:    videoplan.Transform{Crop: &videoplan.Crop{W: 1080, H: 1920}, Scale: 1, Position: &videoplan.Position{}},
 			TransitionIn: videoplan.TransitionIn{Kind: "CUT"},
 		}},

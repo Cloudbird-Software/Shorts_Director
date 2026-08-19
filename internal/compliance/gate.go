@@ -35,19 +35,19 @@ const (
 
 // Finding 是一个 Gate 产出的一条合规发现。
 type Finding struct {
-	Gate     string   `json:"gate"`           // 产出 Gate 的名字
-	Risk     string   `json:"risk"`           // vocab/compliance_risk id
-	Severity Severity `json:"severity"`       // BLOCKER|MAJOR|MINOR
-	Detail   string   `json:"detail"`         // 人类可读、确定性描述
+	Gate     string   `json:"gate"`               // 产出 Gate 的名字
+	Risk     string   `json:"risk"`               // vocab/compliance_risk id
+	Severity Severity `json:"severity"`           // BLOCKER|MAJOR|MINOR
+	Detail   string   `json:"detail"`             // 人类可读、确定性描述
 	Evidence string   `json:"evidence,omitempty"` // 定位线索（文本片段/shot_id 等）
 }
 
 // GateResult 是整条链的执行记录（审计凭证，回写 plan.compliance 的数据源）。
 type GateResult struct {
-	Decision      Decision  `json:"decision"`
-	Findings      []Finding `json:"findings"`
-	ChecksPassed  []string  `json:"checks_passed"`  // 依次通过的 Gate 名
-	Skipped       []string  `json:"skipped"`        // 因 BLOCK 短路未执行的 Gate
+	Decision     Decision  `json:"decision"`
+	Findings     []Finding `json:"findings"`
+	ChecksPassed []string  `json:"checks_passed"` // 依次通过的 Gate 名
+	Skipped      []string  `json:"skipped"`       // 因 BLOCK 短路未执行的 Gate
 }
 
 // Gate 是单个门禁。返回该门的发现；err 仅表示执行故障（与合规结论正交）。
