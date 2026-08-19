@@ -8,6 +8,7 @@
 - 初始模板工程（CI gate / hygiene / dependabot / automerge 全套护栏）。
 - schema/ 单一真源目录与模块规约（schema/AGENTS.md）。
 - 受控词表 v1 第一批（结构类）：beat_role（冻结）、audio_role、shot_type、camera_motion、proof_type。
+- 受控词表 v1 第二批（语义类·餐饮垂类）：scene.food（14 值）、subject.food（24 值）。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
