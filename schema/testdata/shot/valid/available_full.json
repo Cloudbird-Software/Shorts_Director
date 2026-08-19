@@ -1,0 +1,71 @@
+{
+  "id": "018f6c01-aaaa-7aaa-8aaa-000000000003",
+  "asset_id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8b",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "state": "AVAILABLE",
+  "identity": {
+    "in_frame": 600,
+    "out_frame": 987,
+    "fps": 30,
+    "duration_frames": 387
+  },
+  "semantic": {
+    "shot_type": "CLOSEUP",
+    "shot_type_classes": ["DETAIL", "FACE"],
+    "camera_motion_type": "STATIC",
+    "camera_motion_dir": null,
+    "scene": "COUNTER",
+    "subjects": ["NOODLE_BOWL"],
+    "actions": ["STEAM_RISE"],
+    "mood": ["APPETIZING", "COZY"]
+  },
+  "affordance": {
+    "is_loopable": true,
+    "clean_in": true,
+    "clean_out": true,
+    "camera_motion": { "type": "STATIC", "dir": null, "confidence": 0.99 },
+    "negative_space": ["TOP", "RIGHT"],
+    "subject_bbox_track": [
+      { "frame": 600, "x": 200, "y": 500, "w": 680, "h": 900 }
+    ],
+    "safe_crop_9x16": { "ok": true, "method": "RECENTER" },
+    "has_speech": true,
+    "has_lipsync": true,
+    "motion_energy": 0.08
+  },
+  "technical": {
+    "sharpness": 1240.7,
+    "niqe": 2.4,
+    "shake_score": 0.01,
+    "exposure_hist": [5, 30, 200, 420, 260, 60, 8],
+    "color_temp": 3800,
+    "flicker_score": 0.01,
+    "audio": { "lufs": -18.0, "snr": 38.5 },
+    "quality_tier": 1
+  },
+  "compliance": {
+    "third_party_faces": [],
+    "third_party_logos": [],
+    "plates": [],
+    "ocr_text": [],
+    "risk_flags": []
+  },
+  "lifecycle": {
+    "shot_date": "2026-07-28",
+    "seasons": ["ALL"],
+    "ttl_class": "EVERGREEN",
+    "ttl_at": null,
+    "linked_skus": [],
+    "linked_campaigns": [],
+    "use_count": 3,
+    "last_used_at": "2026-08-10"
+  },
+  "tag_provenance": {
+    "generated_by": "LLM",
+    "model_id": "qwen3-vl-32b@2025-11",
+    "prompt_version": "tag_shot.v3",
+    "input_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "seed": null,
+    "created_at": "2026-08-01T10:00:00Z"
+  }
+}

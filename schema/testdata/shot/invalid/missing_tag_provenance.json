@@ -1,0 +1,16 @@
+{
+  "id": "018f6c01-bbbb-7bbb-8bbb-000000000001",
+  "asset_id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8a",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "state": "TAGGED",
+  "identity": {
+    "in_frame": 0,
+    "out_frame": 250,
+    "fps": 25
+  },
+  "semantic": {},
+  "affordance": {},
+  "technical": {},
+  "compliance": {},
+  "lifecycle": {}
+}
