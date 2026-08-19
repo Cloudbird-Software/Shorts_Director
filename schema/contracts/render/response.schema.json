@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/contracts/render/response.json",
+  "title": "C3 RenderResult v1",
+  "description": "渲染器出参。契约条款：R-1 确定性（同 plan+renderer_version+deterministic → content_hash 逐字节一致）；R-2 帧数守恒（duration_frames == max(clips[].tl_end)）；R-3 安全区自检——overlay/caption 实际渲出 bbox 越界必须以 safe_area_violations 拒绝（不是警告）。",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "status",
+    "output",
+    "verification",
+    "cost",
+    "renderer_version"
+  ],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "status": {
+      "enum": [
+        "OK",
+        "PLAN_INVALID",
+        "MEDIA_MISSING",
+        "RENDER_ERROR",
+        "REJECTED_SAFE_AREA"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "required": ["path", "content_hash", "duration_frames", "size_bytes"],
+      "properties": {
+        "path": { "type": "string" },
+        "content_hash": { "type": "string" },
+        "duration_frames": { "type": "integer", "minimum": 1 },
+        "size_bytes": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": ["frame_count_matches_ir", "safe_area_violations"],
+      "properties": {
+        "first_frame_phash": { "type": "string" },
+        "audio_fingerprint": { "type": "string" },
+        "measured_lufs": { "type": "number" },
+        "frame_count_matches_ir": { "type": "boolean", "description": "R-2" },
+        "safe_area_violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["overlay_id", "violation"],
+            "properties": {
+              "overlay_id": { "type": "string" },
+              "violation": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "description": "R-3：非空 ⇒ status=REJECTED_SAFE_AREA"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stages": {
+      "type": "array",
+      "description": "耗时分解（去 timing 后进 golden）",
+      "items": {
+        "type": "object",
+        "required": ["name", "ms"],
+        "properties": {
+          "name": { "type": "string" },
+          "ms": { "type": "integer" },
+          "renders": { "type": "integer", "description": "Remotion 计费次数" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "cost": {
+      "type": "object",
+      "required": ["render_count", "cents"],
+      "properties": {
+        "render_count": { "type": "integer", "minimum": 0 },
+        "cents": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "renderer_version": {
+      "type": "string",
+      "description": "R-5：renderer@x.y.z+ffmpeg7.1+remotion4.0.230+fonts.<hash>"
+    }
+  },
+  "additionalProperties": false
+}

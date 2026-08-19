@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/contracts/operator/response.json",
+  "title": "C2 OperatorResponse v1",
+  "description": "算子出参。status 四态：OK / INPUT_ERROR（坏输入，可重传修复）/ RUNTIME_ERROR / TIMEOUT。INPUT_ERROR 必须带可执行的错误描述——这是外包返修指令的上游。model_versions 必须回填，供 provenance 落盘。",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "op",
+    "status",
+    "outputs",
+    "metrics",
+    "operator_version"
+  ],
+  "properties": {
+    "contract_version": { "const": 1 },
+    "op": { "type": "string" },
+    "status": { "enum": ["OK", "INPUT_ERROR", "RUNTIME_ERROR", "TIMEOUT"] },
+    "outputs": {
+      "type": "object",
+      "description": "随 op 而定；Consumer 只允许访问 golden fixtures 中出现过的字段（G7 CI 静态检查）"
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "中间产物（关键帧等），role + paths",
+      "items": {
+        "type": "object",
+        "required": ["role", "paths"],
+        "properties": {
+          "role": { "type": "string" },
+          "paths": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["wall_ms"],
+      "properties": {
+        "wall_ms": { "type": "integer", "minimum": 0 },
+        "gpu_seconds": { "type": "number", "minimum": 0 },
+        "peak_mem_mb": { "type": "number" }
+      },
+      "additionalProperties": false,
+      "description": "成本治理（CostGovernor）的计费依据"
+    },
+    "operator_version": {
+      "type": "string",
+      "description": "如 shot_segment@1.2.0"
+    },
+    "model_versions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "依赖模型/库版本指纹，回填 provenance（A2）"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string", "description": "人话、可执行" },
+        "retryable": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

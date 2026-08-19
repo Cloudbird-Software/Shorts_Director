@@ -19,6 +19,7 @@
 - Asset v1 / Shot v1：五组元数据（identity/semantic/affordance/technical/compliance）+ 生命周期，状态机与 IV-SH-1..3。
 - BrandKernel v1：根契约（IV-BK-1..3），事实字段带 verified_at 防漂移；Event v1：14 种事件的不可变日志，COPY_EDITED 强制 JSON Patch。
 - QCAssertion v1：判定题断言 DSL（29 个 probe 算子 + remedy 返修模板 + applies_when 条件谓词）；ProductionOrder v1：制作令合同界面（intent/spec/验收断言/handles 余量）。
+- C2 算子协议 v1（request/response：纯函数 CLI、四态 status、model_versions 回填）；C3 渲染契约 v1（R-1 确定性 / R-2 帧数守恒 / R-3 安全区拒绝 / R-4 无隐式回退 / R-5 版本含字体哈希）。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
