@@ -15,8 +15,7 @@ var overlayComponentWhitelist = map[string]bool{
 	"badge.price":            true,
 }
 
-// Validate 校验 VideoPlan 的跨字段不变式（IV-VP-1..4；IV-VP-5 依赖的
-// aigc_disclosure 字段尚未进入 schema v1，字段落地时补）。
+// Validate 校验 VideoPlan 的跨字段不变式（IV-VP-1..5）。
 // 结构级约束（required/const/enum）由 TS 侧 G1 harness 负责；
 // 本方法只做"结构合法之后"的业务不变式——边界见 entity 包注释。
 func (p Plan) Validate() error {
@@ -61,7 +60,37 @@ func (p Plan) Validate() error {
 	if err := p.validateAudio(); err != nil {
 		return err
 	}
-	return p.validateOverlays()
+	if err := p.validateOverlays(); err != nil {
+		return err
+	}
+	return p.validateCompliance()
+}
+
+// validateCompliance 强制 IV-VP-5：aigc_disclosure.required=true 时
+// explicit_overlay_id 必须非空且指向 aigc.disclosure 组件的 overlay。
+func (p Plan) validateCompliance() error {
+	c := p.Compliance
+	if c == nil { // Gate 未跑（QC 之前的状态），Delivery 前由 ComplianceGate 补写
+		return nil
+	}
+	if !c.AIGCDisclosure.Required {
+		return nil
+	}
+	id := c.AIGCDisclosure.ExplicitOverlayID
+	if id == nil || *id == "" {
+		return errors.New("videoplan: IV-VP-5 aigc_disclosure.required=true 但 explicit_overlay_id 为空")
+	}
+	for _, o := range p.Overlays {
+		if o.OverlayID == *id {
+			if o.Component != "aigc.disclosure" {
+				return fmt.Errorf(
+					"videoplan: IV-VP-5 explicit_overlay_id %q 指向 %q，必须指向 aigc.disclosure",
+					*id, o.Component)
+			}
+			return nil
+		}
+	}
+	return fmt.Errorf("videoplan: IV-VP-5 explicit_overlay_id %q 不存在于 overlays", *id)
 }
 
 // validateTracks 强制 IV-VP-1（帧数守恒）与 IV-VP-2（clip 不越界）。
