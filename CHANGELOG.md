@@ -17,6 +17,7 @@
 - ShotSlotQuery v1：谓词 AST（字段白名单 + 受控操作符 + 降级链 + 消耗策略），IV-SQ-1/SQ-2。
 - VideoPlan IR v1：整数帧 timebase、content_hash 版本钉死、constraints_report、diversity_signature、预算与 AIGC 双轨标识位（IV-VP-1..5）。
 - Asset v1 / Shot v1：五组元数据（identity/semantic/affordance/technical/compliance）+ 生命周期，状态机与 IV-SH-1..3。
+- BrandKernel v1：根契约（IV-BK-1..3），事实字段带 verified_at 防漂移；Event v1：14 种事件的不可变日志，COPY_EDITED 强制 JSON Patch。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
