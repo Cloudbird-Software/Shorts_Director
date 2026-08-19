@@ -74,7 +74,10 @@ const testdataKeys = (): string[] => {
       const sub = new URL(`${f}/`, dir);
       if (!statSync(sub).isDirectory()) continue;
       const key = prefix ? `${prefix}/${f}` : f;
-      if (existsSync(new URL("valid/", sub)) || existsSync(new URL("invalid/", sub))) {
+      if (
+        existsSync(new URL("valid/", sub)) ||
+        existsSync(new URL("invalid/", sub))
+      ) {
         out.push(key);
       } else {
         walk(key, sub);
