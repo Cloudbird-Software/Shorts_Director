@@ -10,6 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const vocabDir = path.join(root, "schema", "vocab", "v1");
 const outFile = path.join(root, "codegen", "ts", "vocab.ts");
 const outGoFile = path.join(root, "codegen", "go", "vocab", "vocab.go");
+const outBamlFile = path.join(root, "baml_src", "vocab.baml");
 
 const assert = (cond, msg) => {
   if (!cond) throw new Error(`[gen-vocab] ${msg}`);
@@ -229,6 +230,33 @@ export function renderVocabGo() {
   return L.join("\n");
 }
 
+/** 生成 baml_src/vocab.baml 的文本（C1 契约 B-1：BAML 侧 import 的唯一 enum 真源）。 */
+export function renderVocabBaml() {
+  const vocabs = loadVocabs();
+  const L = [
+    "// AUTO-GENERATED from schema/vocab/v1/*.yaml by make gen —— 禁止手改。",
+    "// 契约条款 B-1：BAML function 的返回类型必须引用本文件 enum，不允许 string。",
+    "// 词表演进规则见 schema/AGENTS.md：enum 只允许追加，废弃用 deprecated/replaced_by。",
+  ];
+  for (const v of vocabs) {
+    L.push(
+      "",
+      `// ${v.name}（${v.values.length} 值${v.frozen ? "，冻结" : ""}）`,
+    );
+    L.push(`enum ${pascal(v.name)} {`);
+    for (const x of v.values) {
+      const dep =
+        x.deprecated === true ? "（已废弃→" + x.replaced_by + "）" : "";
+      L.push(
+        `  ${x.id} @description(${JSON.stringify(`${x.zh}：${x.def}${dep}`)})`,
+      );
+    }
+    L.push("}");
+  }
+  L.push("");
+  return L.join("\n");
+}
+
 async function main() {
   const code = await renderVocabTs();
   mkdirSync(path.dirname(outFile), { recursive: true });
@@ -238,6 +266,10 @@ async function main() {
   mkdirSync(path.dirname(outGoFile), { recursive: true });
   writeFileSync(outGoFile, go);
   console.log(`[gen-vocab] wrote ${path.relative(root, outGoFile)}`);
+  const baml = renderVocabBaml();
+  mkdirSync(path.dirname(outBamlFile), { recursive: true });
+  writeFileSync(outBamlFile, baml);
+  console.log(`[gen-vocab] wrote ${path.relative(root, outBamlFile)}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

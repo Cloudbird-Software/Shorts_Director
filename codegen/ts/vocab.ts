@@ -10,6 +10,8 @@ export const VOCAB_FILES = [
   "compliance_risk",
   "copy_function",
   "defect_type",
+  "mood",
+  "negative_space",
   "overlay_intent",
   "proof_type",
   "remedy_action",
@@ -182,6 +184,29 @@ export const defectType = [
   "PORTRAIT_AUTH_MISSING",
 ] as const;
 export type DefectType = (typeof defectType)[number];
+
+/** mood（8 值） */
+export const mood = [
+  "WARM",
+  "ENERGETIC",
+  "COZY",
+  "FRESH",
+  "APPETIZING",
+  "PROFESSIONAL",
+  "PLAYFUL",
+  "CALM",
+] as const;
+export type Mood = (typeof mood)[number];
+
+/** negative_space（5 值） */
+export const negativeSpace = [
+  "TOP",
+  "BOTTOM",
+  "LEFT",
+  "RIGHT",
+  "NONE",
+] as const;
+export type NegativeSpace = (typeof negativeSpace)[number];
 
 /** overlay_intent（14 值） */
 export const overlayIntent = [
@@ -1244,6 +1269,103 @@ export const defectTypeMeta = {
   },
 } as const;
 
+export const moodMeta = {
+  WARM: {
+    zh: "温暖",
+    def: "暖光/烟火气/家常感",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  ENERGETIC: {
+    zh: "热闹",
+    def: "快节奏/人群/市井喧闹",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  COZY: {
+    zh: "惬意",
+    def: "慢节奏/私密/治愈感",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  FRESH: {
+    zh: "清新",
+    def: "冷调/明亮/食材本味感",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  APPETIZING: {
+    zh: "馋人",
+    def: "高饱和/特写食欲诱发",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  PROFESSIONAL: {
+    zh: "专业",
+    def: "工艺流程/匠心/秩序感",
+    equivalenceClass: ["NEUTRAL"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  PLAYFUL: {
+    zh: "俏皮",
+    def: "跳剪/表情包/轻快配乐",
+    equivalenceClass: ["POSITIVE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  CALM: {
+    zh: "安静",
+    def: "静态构图/环境音/留白",
+    equivalenceClass: ["NEUTRAL"],
+    deprecated: false,
+    replacedBy: null,
+  },
+} as const;
+
+export const negativeSpaceMeta = {
+  TOP: {
+    zh: "顶部",
+    def: "画面上 1/3 连续空白",
+    equivalenceClass: ["LAYOUT"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  BOTTOM: {
+    zh: "底部",
+    def: "画面下 1/3 连续空白",
+    equivalenceClass: ["LAYOUT"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  LEFT: {
+    zh: "左侧",
+    def: "画面左 1/3 连续空白",
+    equivalenceClass: ["LAYOUT"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  RIGHT: {
+    zh: "右侧",
+    def: "画面右 1/3 连续空白",
+    equivalenceClass: ["LAYOUT"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  NONE: {
+    zh: "无",
+    def: "无满足面积阈值的空白区（字幕只能压画面）",
+    equivalenceClass: ["LAYOUT"],
+    deprecated: false,
+    replacedBy: null,
+  },
+} as const;
+
 export const overlayIntentMeta = {
   EMPHASIZE_NUMBER: {
     zh: "强调数字",
@@ -1937,6 +2059,8 @@ export const VOCAB_IDS = {
   compliance_risk: complianceRisk,
   copy_function: copyFunction,
   defect_type: defectType,
+  mood: mood,
+  negative_space: negativeSpace,
   overlay_intent: overlayIntent,
   proof_type: proofType,
   remedy_action: remedyAction,
@@ -1955,6 +2079,8 @@ export const VOCAB_META = {
   compliance_risk: complianceRiskMeta,
   copy_function: copyFunctionMeta,
   defect_type: defectTypeMeta,
+  mood: moodMeta,
+  negative_space: negativeSpaceMeta,
   overlay_intent: overlayIntentMeta,
   proof_type: proofTypeMeta,
   remedy_action: remedyActionMeta,

@@ -12,7 +12,7 @@ type Meta struct {
 }
 
 // VocabFiles 是词表清单（schema/vocab/v1/*.yaml 文件名，不含后缀）。
-var VocabFiles = [...]string{"action", "audio_role", "beat_role", "camera_motion", "compliance_risk", "copy_function", "defect_type", "overlay_intent", "proof_type", "remedy_action", "scene.food", "season", "shot_type", "subject.food", "ttl_class"}
+var VocabFiles = [...]string{"action", "audio_role", "beat_role", "camera_motion", "compliance_risk", "copy_function", "defect_type", "mood", "negative_space", "overlay_intent", "proof_type", "remedy_action", "scene.food", "season", "shot_type", "subject.food", "ttl_class"}
 
 // ── 枚举值清单 ─────────────────────────────────────────────
 
@@ -36,6 +36,12 @@ var CopyFunction = [...]string{"QUESTION_HOOK", "NUMBER_HOOK", "COUNTERINTUITIVE
 
 // DefectType 是 defect_type 词表的值清单（39 值）。
 var DefectType = [...]string{"BLURRY", "SHAKE", "OVEREXPOSED", "UNDEREXPOSED", "FLICKER", "BLACK_FRAME", "FREEZE_FRAME", "AUDIO_CLIPPING", "AUDIO_TOO_QUIET", "NOISY_AUDIO", "SILENT_AUDIO", "RESOLUTION_LOW", "ASPECT_MISMATCH", "SUBJECT_MISSING", "SUBJECT_TOO_SMALL", "SUBJECT_TRUNCATED", "WRONG_SHOT_TYPE", "WRONG_MOTION", "BAD_FRAMING", "NEGATIVE_SPACE_MISSING", "OBSTRUCTED", "BACKGROUND_CLUTTER", "HANDLES_MISSING", "DURATION_SHORT", "WRONG_SCENE", "LIPSYNC_OFF", "FACE_WARP", "HAND_WARP", "TEXT_WARP", "TEMPORAL_WARP", "PLASTIC_LOOK", "IDENTITY_DRIFT", "THIRD_PARTY_FACE", "THIRD_PARTY_LOGO", "BANNED_TERM", "CLAIM_WITHOUT_PROOF", "LICENSE_MUSIC_MISSING", "AIGC_LABEL_MISSING", "PORTRAIT_AUTH_MISSING"}
+
+// Mood 是 mood 词表的值清单（8 值）。
+var Mood = [...]string{"WARM", "ENERGETIC", "COZY", "FRESH", "APPETIZING", "PROFESSIONAL", "PLAYFUL", "CALM"}
+
+// NegativeSpace 是 negative_space 词表的值清单（5 值）。
+var NegativeSpace = [...]string{"TOP", "BOTTOM", "LEFT", "RIGHT", "NONE"}
 
 // OverlayIntent 是 overlay_intent 词表的值清单（14 值）。
 var OverlayIntent = [...]string{"EMPHASIZE_NUMBER", "EMPHASIZE_KEYWORD", "KARAOKE_CAPTION", "STATIC_CAPTION", "ANNOTATE_PART", "ANNOTATE_PROOF", "PROGRESS_STEPS", "COUNTDOWN", "PRICE_TAG", "OFFER_BADGE", "LOCATION_CARD", "LOGO_WATERMARK", "AIGC_DISCLOSURE", "SUBTITLE_FOREIGN"}
@@ -214,6 +220,25 @@ var defect_typeMeta = map[string]Meta{
 	"PORTRAIT_AUTH_MISSING":  {Zh: "缺肖像授权", Def: "出镜人授权缺失或已撤销", EquivalenceClass: []string{"L3_COMPLIANCE"}},
 }
 
+var moodMeta = map[string]Meta{
+	"WARM":         {Zh: "温暖", Def: "暖光/烟火气/家常感", EquivalenceClass: []string{"POSITIVE"}},
+	"ENERGETIC":    {Zh: "热闹", Def: "快节奏/人群/市井喧闹", EquivalenceClass: []string{"POSITIVE"}},
+	"COZY":         {Zh: "惬意", Def: "慢节奏/私密/治愈感", EquivalenceClass: []string{"POSITIVE"}},
+	"FRESH":        {Zh: "清新", Def: "冷调/明亮/食材本味感", EquivalenceClass: []string{"POSITIVE"}},
+	"APPETIZING":   {Zh: "馋人", Def: "高饱和/特写食欲诱发", EquivalenceClass: []string{"POSITIVE"}},
+	"PROFESSIONAL": {Zh: "专业", Def: "工艺流程/匠心/秩序感", EquivalenceClass: []string{"NEUTRAL"}},
+	"PLAYFUL":      {Zh: "俏皮", Def: "跳剪/表情包/轻快配乐", EquivalenceClass: []string{"POSITIVE"}},
+	"CALM":         {Zh: "安静", Def: "静态构图/环境音/留白", EquivalenceClass: []string{"NEUTRAL"}},
+}
+
+var negative_spaceMeta = map[string]Meta{
+	"TOP":    {Zh: "顶部", Def: "画面上 1/3 连续空白", EquivalenceClass: []string{"LAYOUT"}},
+	"BOTTOM": {Zh: "底部", Def: "画面下 1/3 连续空白", EquivalenceClass: []string{"LAYOUT"}},
+	"LEFT":   {Zh: "左侧", Def: "画面左 1/3 连续空白", EquivalenceClass: []string{"LAYOUT"}},
+	"RIGHT":  {Zh: "右侧", Def: "画面右 1/3 连续空白", EquivalenceClass: []string{"LAYOUT"}},
+	"NONE":   {Zh: "无", Def: "无满足面积阈值的空白区（字幕只能压画面）", EquivalenceClass: []string{"LAYOUT"}},
+}
+
 var overlay_intentMeta = map[string]Meta{
 	"EMPHASIZE_NUMBER":  {Zh: "强调数字", Def: "放大关键数字（价格/年限/销量）", EquivalenceClass: []string{"EMPHASIS"}},
 	"EMPHASIZE_KEYWORD": {Zh: "强调关键词", Def: "高亮文案关键词", EquivalenceClass: []string{"EMPHASIS"}},
@@ -342,6 +367,8 @@ var VocabIDs = map[string][]string{
 	"compliance_risk": ComplianceRisk[:],
 	"copy_function":   CopyFunction[:],
 	"defect_type":     DefectType[:],
+	"mood":            Mood[:],
+	"negative_space":  NegativeSpace[:],
 	"overlay_intent":  OverlayIntent[:],
 	"proof_type":      ProofType[:],
 	"remedy_action":   RemedyAction[:],
@@ -361,6 +388,8 @@ var VocabMeta = map[string]map[string]Meta{
 	"compliance_risk": compliance_riskMeta,
 	"copy_function":   copy_functionMeta,
 	"defect_type":     defect_typeMeta,
+	"mood":            moodMeta,
+	"negative_space":  negative_spaceMeta,
 	"overlay_intent":  overlay_intentMeta,
 	"proof_type":      proof_typeMeta,
 	"remedy_action":   remedy_actionMeta,

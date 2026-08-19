@@ -1,0 +1,55 @@
+# mood —— 情绪氛围词表（8 值）
+# ShotSlots.mood / ShotTags.mood 取值域；StyleTheme 情绪基调的受控表达。
+# C1 契约 B-1：BAML TagShot 返回的 mood[] 必须引用本表生成的 enum。
+version: 1
+name: mood
+kind: enum
+values:
+  - id: WARM
+    zh: 温暖
+    def: 暖光/烟火气/家常感
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: ENERGETIC
+    zh: 热闹
+    def: 快节奏/人群/市井喧闹
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: COZY
+    zh: 惬意
+    def: 慢节奏/私密/治愈感
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: FRESH
+    zh: 清新
+    def: 冷调/明亮/食材本味感
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: APPETIZING
+    zh: 馋人
+    def: 高饱和/特写食欲诱发
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: PROFESSIONAL
+    zh: 专业
+    def: 工艺流程/匠心/秩序感
+    equivalence_class: [NEUTRAL]
+    deprecated: false
+    replaced_by: null
+  - id: PLAYFUL
+    zh: 俏皮
+    def: 跳剪/表情包/轻快配乐
+    equivalence_class: [POSITIVE]
+    deprecated: false
+    replaced_by: null
+  - id: CALM
+    zh: 安静
+    def: 静态构图/环境音/留白
+    equivalence_class: [NEUTRAL]
+    deprecated: false
+    replaced_by: null
