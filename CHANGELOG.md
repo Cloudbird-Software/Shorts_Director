@@ -31,6 +31,7 @@
 - QCAssertion G1 样本：5 valid（L0 黑帧/L1 条件断言 applies_when/L2 口型 between/L3 AIGC 标识 BLOCKER/违禁词 contains_none + 采样策略）+ 17 invalid（必填缺失×6、level/severity/probe op/expect op/sampling 枚举、remedy 缺模板、applies_when 字段白名单外）。
 - ProductionOrder G1 样本：5 valid（minimal/摄影实拍全量/生成供应商/商家自拍/返修条款）+ 20 invalid（必填缺失×8、kind/vendor_type 枚举、duration_sec 二元组、framing headroom、min_resolution 常量、auto_gate_level、budget 负值、deadline 格式）。
 - VideoPlan G1 样本：5 valid（minimal 音乐计划/口播加变速/纯生成素材/商用音乐带凭证/静音模式）+ 29 invalid（必填缺失×14、canvas w 常量与 fps 枚举、timebase 秒制、clip speed 上限与 src_out 下限、track kind、overlay anchor 与帧区间、LicensedRef 凭证、VersionedRef 版本、caption 长度）；valid 样本 diversity_signature 与实际 tracks/audio 对齐。
+- Freeze Gate G5 基础设施：schema/testdata/{shot,shot_slot_query,video_plan}/evolution/ 落 v1 基线样本（v1_minimal.json，文件名 v<major>_ 前缀标注来源 major，钉死不改写）；TS G1 harness 自动纳管 evolution 目录（当前 schema 必须仍可消费 + 文件名规则），Go 侧 entity/videoplan/slotquery 各增 evolution 消费测试；schema/AGENTS.md 补 evolution 语义（v1 期间为 v2 回归基线）。
 - C2/C3 契约 G1 样本 + harness 纳管 contracts：operator request/response（5+17 / 5+21）、render request/response（5+22 / 5+22，request 内嵌合法 VideoPlan 且 resolved_media 全量预解析）；G1 harness 改为按 $id 递归发现（支持嵌套 key），新增孤儿样本目录守卫（拼错/$id 不匹配即测试失败，禁止静默跳过）。
 - Go 控制面骨架（#27）：go.mod 工作区、Makefile test 接入、契约版本锚点包 internal/contracts（C2/C3 版本常量与词表清单单一来源）。
 - digest 包（#29）：RFC 8785 JCS 规范化与内容寻址摘要——跨语言（Go/TS/BAML）digest 一致性的 Go 侧实现。
