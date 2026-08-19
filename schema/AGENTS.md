@@ -45,8 +45,15 @@ values:
 testdata/<entity>/
 ├── valid/      ≥5 个：minimal / typical / maximal / 边界
 ├── invalid/    ≥15 个：文件名即断言（missing_pillars.json、enum_bad_shot_type.json…）
-└── evolution/  上一 major 版本的真实样本，验证向后兼容
+└── evolution/  上一 major 版本的真实样本，验证向后兼容（G5）
 ```
+
+evolution/ 语义（Freeze Gate G5）：
+
+- 文件名 `v<major>_<形态>.json`（如 `v1_minimal.json`）标注样本来自哪个 major。
+- 样本一旦落盘即**钉死**：未来 major 的破坏性变更不得改写这些文件，
+  新版本的 schema/实现必须仍能消费它们（harness 自动纳管，双侧消费测试）。
+- 当前仅有 v1：先落 v1 基线样本，作为未来 v2 的回归基线。
 
 ## 禁止
 

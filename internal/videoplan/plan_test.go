@@ -158,3 +158,18 @@ func TestTotalFramesAndDescribe(t *testing.T) {
 		t.Errorf("Describe = %q", d)
 	}
 }
+
+// TestEvolutionSamplesConsumable：G5 向后兼容——evolution/ 样本必须仍能
+// 反序列化并通过 IV-VP 校验（v2 破坏性变更时的回归基线，禁止改写样本）。
+func TestEvolutionSamplesConsumable(t *testing.T) {
+	entries, err := os.ReadDir(filepath.Join("..", "..", "schema", "testdata", "video_plan", "evolution"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		p := loadPlan(t, "evolution", e.Name())
+		if err := p.Validate(); err != nil {
+			t.Errorf("evolution 样本 %s 未通过 Validate: %v", e.Name(), err)
+		}
+	}
+}
