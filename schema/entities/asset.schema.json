@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/asset.json",
+  "title": "Asset",
+  "description": "上传的原始媒体文件（L2 物料层）。一条 Asset 可拆分为多个 Shot。content_hash（sha256）用于去重与版本钉死：同租户同 hash 只允许一条记录。",
+  "type": "object",
+  "required": [
+    "id",
+    "tenant_id",
+    "source_kind",
+    "content_hash",
+    "storage_uri",
+    "probe",
+    "uploaded_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid", "description": "UUIDv7" },
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "source_kind": {
+      "enum": ["REAL_SHOOT", "GEN_AVATAR", "GEN_BROLL", "STOCK", "GRAPHIC"],
+      "description": "素材来源，决定 QC 断言集（L2 生成物断言仅对 GEN_* 生效）"
+    },
+    "content_hash": {
+      "type": "string",
+      "description": "sha256；重转码后 hash 变化视为新版本"
+    },
+    "storage_uri": {
+      "type": "string",
+      "description": "对象存储 URI，禁止内嵌访问凭据"
+    },
+    "order_item_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "溯源到制作令 item（外包/自拍素材必须携带）"
+    },
+    "probe": {
+      "type": "object",
+      "required": ["duration_frames", "fps", "w", "h"],
+      "properties": {
+        "duration_frames": { "type": "integer", "minimum": 1 },
+        "fps": { "type": "integer", "minimum": 1 },
+        "w": { "type": "integer", "minimum": 1 },
+        "h": { "type": "integer", "minimum": 1 },
+        "raw": { "type": "object", "description": "ffprobe 原始输出（截选）" }
+      },
+      "additionalProperties": false
+    },
+    "uploaded_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
