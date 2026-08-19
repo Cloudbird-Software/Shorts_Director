@@ -1,0 +1,76 @@
+{
+  "schema_version": "brand_kernel/1",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "category": "FOOD_NOODLE",
+  "identity": {
+    "name": "张记面馆",
+    "one_liner": "三十年只做一碗牛肉面",
+    "differentiators": [
+      {
+        "claim": "牛骨现熬8小时汤底",
+        "visual_provable": true,
+        "proof_types": ["PROCESS_SHOT"]
+      },
+      {
+        "claim": "现拉现煮明档",
+        "visual_provable": true,
+        "proof_types": ["LIVE_DEMO", "PROCESS_SHOT"]
+      }
+    ],
+    "persona": {
+      "voice_tone": "WARM",
+      "speaking_rate": "NORMAL",
+      "first_person": "OWNER",
+      "dialect_hint": "西南官话"
+    }
+  },
+  "audience": {
+    "segments": [
+      {
+        "label": "周边上班族",
+        "pain": "午餐选择困难",
+        "objection": "怕预制菜"
+      }
+    ],
+    "local_radius_km": 3.5,
+    "decision_trigger": "IMPULSE"
+  },
+  "pillars": [
+    {
+      "id": "p1",
+      "label": "真材实料",
+      "intent": "TRUST",
+      "proof_types": ["PROCESS_SHOT", "INGREDIENT_CLOSEUP"],
+      "target_ratio": 0.4
+    },
+    {
+      "id": "p2",
+      "label": "现做锅气",
+      "intent": "DESIRE",
+      "proof_types": ["LIVE_DEMO", "STEAM_MACRO"],
+      "target_ratio": 0.35
+    },
+    {
+      "id": "p3",
+      "label": "回头客证言",
+      "intent": "CONVERSION",
+      "proof_types": ["TESTIMONIAL", "REVIEW_SCREENSHOT"],
+      "target_ratio": 0.25
+    }
+  ],
+  "assets_intent": {
+    "shootable_scenes": ["KITCHEN", "COUNTER"],
+    "non_shootable_needs": ["城市夜景空镜"],
+    "digital_human": {
+      "enabled": false,
+      "source": null,
+      "authorization_id": null
+    }
+  },
+  "compliance_profile_id": "cp-food-cn-2026",
+  "completeness": {
+    "score": 0.82,
+    "missing_slots": ["offers"],
+    "interview_turns": 9
+  }
+}
