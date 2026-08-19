@@ -9,4 +9,10 @@ export default tseslint.config(
     files: ["**/*.cjs"],
     languageOptions: { sourceType: "script", globals: { module: "writable" } },
   },
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: { console: "writable", process: "writable" },
+    },
+  },
 );
