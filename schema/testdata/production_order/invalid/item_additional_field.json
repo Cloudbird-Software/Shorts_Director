@@ -1,0 +1,116 @@
+{
+  "order_id": "po-018f6f00-0001",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+  "kind": "REAL_SHOOT",
+  "vendor_type": "PHOTOGRAPHER",
+  "items": [
+    {
+      "item_id": "it-001",
+      "intent": {
+        "serves_slots": ["hook.detail", "proof.process"],
+        "pillar_id": "p1",
+        "narrative_note": "开场钩子需要汤底特写"
+      },
+      "spec": {
+        "shot_type": "EXTREME_CLOSEUP",
+        "camera_motion": {
+          "type": "PAN",
+          "dir": "LEFT"
+        },
+        "scene": "KITCHEN",
+        "subject": ["NOODLE_BOWL", "STEAM"],
+        "action": "STEAM_RISE",
+        "duration_sec": [3, 5],
+        "framing": {
+          "subject_area_ratio": [0.5, 0.7],
+          "negative_space": "TOP",
+          "headroom": "TIGHT",
+          "reference_image_url": "s3://gen/tenant-a/storyboard/it-001.png"
+        },
+        "coverage": ["MASTER", "INSERT"],
+        "technical": {
+          "min_resolution": "1080x1920",
+          "min_fps": 30,
+          "handles_sec": 1.5,
+          "clean_in_out": true,
+          "no_talking_unless": true,
+          "lighting": "SOFT_KEY",
+          "audio_required": false
+        }
+      },
+      "acceptance_assertions": [
+        {
+          "assertion_id": "L0.RESOLUTION.default",
+          "level": "L0",
+          "severity": "BLOCKER",
+          "probe": {
+            "op": "resolution",
+            "args": {
+              "min_w": 1080,
+              "min_h": 1920
+            }
+          },
+          "expect": {
+            "op": "is_true",
+            "value": true
+          },
+          "remedy": {
+            "action": "REJECT_SOURCE",
+            "instruction_template": "分辨率不足 {{expected}}，请竖拍 1080x1920"
+          }
+        },
+        {
+          "assertion_id": "L1.SUBJECT_PRESENT.default",
+          "level": "L1",
+          "severity": "MAJOR",
+          "probe": {
+            "op": "object_present",
+            "args": {
+              "object": "NOODLE_BOWL"
+            }
+          },
+          "expect": {
+            "op": "is_true",
+            "value": true
+          },
+          "remedy": {
+            "action": "RESHOOT",
+            "instruction_template": "画面未拍到 {{expected}}"
+          }
+        },
+        {
+          "assertion_id": "L0.BLACK_FRAMES.default",
+          "level": "L0",
+          "severity": "BLOCKER",
+          "probe": {
+            "op": "blackdetect_ratio",
+            "args": {
+              "threshold": 0.98
+            }
+          },
+          "expect": {
+            "op": "lte",
+            "value": 0.02
+          },
+          "remedy": {
+            "action": "REJECT_SOURCE",
+            "instruction_template": "黑帧超限 {{measured}} > {{expected}}"
+          }
+        }
+      ],
+      "hard_negatives": ["不要俯拍垃圾桶入镜"],
+      "rush": true
+    }
+  ],
+  "acceptance_spec": {
+    "auto_gate_level": "L0+L1",
+    "rework_rounds_included": 1,
+    "payment_terms": "验收通过后 7 日内结算",
+    "pass_threshold": {
+      "blocker_count": 0,
+      "major_count_max": 1
+    }
+  },
+  "deadline": "2026-09-01T18:00:00Z",
+  "budget_cents": 80000
+}
