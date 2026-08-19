@@ -29,7 +29,7 @@ func (f *FakeRunner) Run(ctx context.Context, req Request) (Response, error) {
 	if err := req.Validate(); err != nil {
 		return Response{}, err
 	}
-	key, err := goldenKey(req)
+	key, err := GoldenKey(req)
 	if err != nil {
 		return Response{}, err
 	}
@@ -51,8 +51,9 @@ func (f *FakeRunner) Run(ctx context.Context, req Request) (Response, error) {
 	return resp, nil
 }
 
-// goldenKey 对影响输出的请求字段做 JCS 摘要。
-func goldenKey(req Request) (string, error) {
+// GoldenKey 对影响输出的请求字段（op+inputs+params+determinism）做
+// JCS 摘要。导出供 fixture 生成工具与跨包测试使用。
+func GoldenKey(req Request) (string, error) {
 	material := map[string]any{
 		"op":          req.Op,
 		"inputs":      req.Inputs,
