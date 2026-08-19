@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/event.json",
+  "title": "Event",
+  "description": "不可变事件日志（append-only）——飞轮燃料。最后一层四态（PUBLISHED/EDITED_PUBLISHED/REJECTED_BY_MERCHANT/IGNORED）是第一飞轮的一等公民字段。COPY_EDITED 的 payload.edits 必须是 JSON Patch（RFC 6902）数组：diff 才是信号，全文是噪声。",
+  "type": "object",
+  "required": ["event_id", "tenant_id", "ts", "kind", "payload", "actor"],
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "plan_id": { "type": ["string", "null"], "format": "uuid" },
+    "ts": { "type": "string", "format": "date-time" },
+    "kind": {
+      "enum": [
+        "PLAN_DELIVERED",
+        "PLAN_VIEWED",
+        "PLAN_PUBLISHED",
+        "PLAN_IGNORED",
+        "PLAN_REJECTED",
+        "COPY_EDITED",
+        "CLIP_REMOVED",
+        "CLIP_REORDERED",
+        "MUSIC_CHANGED",
+        "REGENERATE_REQUESTED",
+        "RESHOOT_SUBMITTED",
+        "PLATFORM_METRICS_SYNCED",
+        "QC_FAILED",
+        "ORDER_REWORKED"
+      ]
+    },
+    "actor": { "enum": ["MERCHANT", "OPERATOR", "SYSTEM", "VENDOR"] },
+    "payload": {
+      "type": "object",
+      "description": "按 kind 约定：COPY_EDITED 必须 { edits: PatchOp[] }；PLAN_REJECTED 必须 { reason_code, reason_text? }；reason_code 为受控枚举（TOO_SALESY/WRONG_FACT/UGLY/NOT_MY_STYLE/SEASON_MISMATCH/OTHER）"
+    }
+  },
+  "additionalProperties": false
+}
