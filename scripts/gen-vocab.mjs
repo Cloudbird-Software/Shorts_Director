@@ -220,9 +220,7 @@ export function renderVocabGo() {
     "",
     "// VocabMeta 按词表名取元数据表。",
     "var VocabMeta = map[string]map[string]Meta{",
-    ...alignMapEntries(
-      vocabs.map((v) => [`"${v.name}":`, `${metaVar(v)},`]),
-    ),
+    ...alignMapEntries(vocabs.map((v) => [`"${v.name}":`, `${metaVar(v)},`])),
     "}",
     "",
     "func ptr(s string) *string { return &s }",
