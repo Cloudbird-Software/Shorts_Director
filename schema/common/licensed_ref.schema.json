@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/common/licensed_ref.json",
+  "title": "LicensedRef",
+  "description": "携带授权凭证的媒体引用（音轨/BGM）。DB 侧有 CHECK 约束：license_kind 非 PLATFORM_LIBRARY 时 license_proof_uri 必填；本 schema 在契约层做同等要求。",
+  "type": "object",
+  "required": ["id", "version", "license_kind"],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "license_kind": { "not": { "const": "PLATFORM_LIBRARY" } }
+        }
+      },
+      "then": { "required": ["license_proof_uri"] }
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "audio_tracks.id，如 music.upbeat.morning_01"
+    },
+    "version": { "type": "integer", "minimum": 1 },
+    "license_kind": { "enum": ["PLATFORM_LIBRARY", "COMMERCIAL", "CC0"] },
+    "license_proof_uri": {
+      "type": "string",
+      "description": "授权凭证 URI；PLATFORM_LIBRARY（平台官方曲库）可省略"
+    }
+  }
+}
