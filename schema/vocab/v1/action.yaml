@@ -1,0 +1,229 @@
+# action —— 动作词表（跨垂类通用，餐饮垂类校准；30–50 值）
+# 是 Shot.semantic.actions 与制作令 spec.action 的取值域；
+# QC L1 断言（object_present / action 可见性）按此表判定。
+version: 1
+name: action
+kind: enum
+values:
+  - id: CUT
+    zh: 切
+    def: 刀具分割食材
+    equivalence_class: [PREP]
+    deprecated: false
+    replaced_by: null
+  - id: WASH
+    zh: 清洗
+    def: 水洗食材/器具
+    equivalence_class: [PREP, HYGIENE]
+    deprecated: false
+    replaced_by: null
+  - id: MARINATE
+    zh: 腌制
+    def: 加调料腌制静置
+    equivalence_class: [PREP]
+    deprecated: false
+    replaced_by: null
+  - id: STIR
+    zh: 搅拌
+    def: 搅拌混合（馅料/面糊/饮品）
+    equivalence_class: [PREP]
+    deprecated: false
+    replaced_by: null
+  - id: POUR
+    zh: 倒
+    def: 倾倒液体/浇汁
+    equivalence_class: [ASSEMBLE]
+    deprecated: false
+    replaced_by: null
+  - id: SPRINKLE
+    zh: 撒
+    def: 撒放调料/葱花/芝麻等
+    equivalence_class: [ASSEMBLE]
+    deprecated: false
+    replaced_by: null
+  - id: SEASON
+    zh: 调味
+    def: 加调味料动作（勺/壶）
+    equivalence_class: [ASSEMBLE]
+    deprecated: false
+    replaced_by: null
+  - id: WRAP
+    zh: 包裹
+    def: 包制（包子/饺子/卷类）
+    equivalence_class: [ASSEMBLE]
+    deprecated: false
+    replaced_by: null
+  - id: ROLL
+    zh: 擀卷
+    def: 擀制/卷制面食
+    equivalence_class: [ASSEMBLE]
+    deprecated: false
+    replaced_by: null
+  - id: KNEAD
+    zh: 揉面
+    def: 揉制面团
+    equivalence_class: [PREP]
+    deprecated: false
+    replaced_by: null
+  - id: STIR_FRY
+    zh: 翻炒
+    def: 锅中翻炒
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: DEEP_FRY
+    zh: 炸
+    def: 油炸烹饪
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: STEAM
+    zh: 蒸
+    def: 蒸制烹饪
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: BOIL
+    zh: 煮烫
+    def: 水煮/汆烫
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: GRILL
+    zh: 煎烤
+    def: 煎/烤/烙制
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: SIMMER
+    zh: 炖焖
+    def: 炖煮/焖制（汤类/卤味）
+    equivalence_class: [COOK]
+    deprecated: false
+    replaced_by: null
+  - id: PLATE
+    zh: 摆盘
+    def: 装盘造型
+    equivalence_class: [PRESENT]
+    deprecated: false
+    replaced_by: null
+  - id: GARNISH
+    zh: 点缀
+    def: 成品上加点缀物
+    equivalence_class: [PRESENT]
+    deprecated: false
+    replaced_by: null
+  - id: LIFT
+    zh: 起锅端起
+    def: 起锅/端起成品展示
+    equivalence_class: [PRESENT]
+    deprecated: false
+    replaced_by: null
+  - id: OPEN_LID
+    zh: 揭盖
+    def: 揭开锅盖/蒸笼（蒸汽释放瞬间）
+    equivalence_class: [PRESENT]
+    deprecated: false
+    replaced_by: null
+  - id: STEAM_RISE
+    zh: 热气升腾
+    def: 无主体的热气/锅气画面（欲望触发物）
+    equivalence_class: [PRESENT]
+    deprecated: false
+    replaced_by: null
+  - id: SERVE
+    zh: 上菜递出
+    def: 递送/上菜到桌
+    equivalence_class: [SERVICE]
+    deprecated: false
+    replaced_by: null
+  - id: PACK
+    zh: 打包
+    def: 装盒/封袋打包
+    equivalence_class: [SERVICE]
+    deprecated: false
+    replaced_by: null
+  - id: TAKE_ORDER
+    zh: 点单
+    def: 接单/推荐点单交互
+    equivalence_class: [SERVICE]
+    deprecated: false
+    replaced_by: null
+  - id: CHECKOUT
+    zh: 收银结账
+    def: 结账/收款动作
+    equivalence_class: [SERVICE]
+    deprecated: false
+    replaced_by: null
+  - id: UNBOX
+    zh: 验货拆箱
+    def: 进货验收/拆箱
+    equivalence_class: [SUPPLY]
+    deprecated: false
+    replaced_by: null
+  - id: WEIGH
+    zh: 称重
+    def: 称量食材/成品
+    equivalence_class: [SUPPLY]
+    deprecated: false
+    replaced_by: null
+  - id: SMILE
+    zh: 微笑
+    def: 人物微笑表情
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: WAVE
+    zh: 招呼
+    def: 挥手/招呼手势
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: POINT
+    zh: 指向
+    def: 手势指向主体（引导视线）
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: RECOMMEND
+    zh: 推荐
+    def: 推荐/介绍手势与姿态
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: THUMBS_UP
+    zh: 认可
+    def: 点赞/认可手势
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: EAT
+    zh: 进食
+    def: 试吃/进食（反应类内容核心）
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: DRINK
+    zh: 饮用
+    def: 饮用/品鉴
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: REACT_SURPRISE
+    zh: 惊讶
+    def: 惊讶/满足等外显情绪反应
+    equivalence_class: [REACTION]
+    deprecated: false
+    replaced_by: null
+  - id: QUEUE
+    zh: 排队等候
+    def: 顾客排队/候餐（热度证据）
+    equivalence_class: [SOCIAL]
+    deprecated: false
+    replaced_by: null
+  - id: WALK_THROUGH
+    zh: 穿行
+    def: 人物在场景中走动（运镜跟随时也标注）
+    equivalence_class: [SOCIAL]
+    deprecated: false
+    replaced_by: null
