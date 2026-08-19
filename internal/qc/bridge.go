@@ -38,6 +38,11 @@ func Operators(runner operator.Runner, workdir string, specs map[string]CostTier
 func (a *RunnerProbeAdapter) ID() string     { return a.Op }
 func (a *RunnerProbeAdapter) Cost() CostTier { return a.Tier }
 
+// ConsumedGoldenOps 声明本包消费 golden 契约的算子（Freeze Gate G7 锚点）：
+// internal/operator 的 golden 清单测试据此校验本包 Outputs 字面访问 ⊆
+// testdata/golden 清单——上游删改输出字段时此处失败，而不是静默读零值。
+var ConsumedGoldenOps = []string{"blackdetect_ratio"}
+
 // Measure 经 C2 Runner 执行算子并提取测量值。
 // 算子四态语义：OK → Measurement；INPUT_ERROR → 引擎错误（上游数据问题，
 // 由编排层决定换素材/重传）；其余 → 引擎错误（基础设施故障不产生假报告）。

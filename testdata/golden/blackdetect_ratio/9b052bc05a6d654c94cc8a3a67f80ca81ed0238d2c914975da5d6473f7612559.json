@@ -1,0 +1,13 @@
+{
+ "contract_version": 1,
+ "metrics": {
+  "wall_ms": 5
+ },
+ "op": "blackdetect_ratio",
+ "operator_version": "blackdetect@1.0",
+ "outputs": {
+  "evidence_uri": "s3://qc/evidence/1.json",
+  "value": 0.01
+ },
+ "status": "OK"
+}
