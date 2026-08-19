@@ -1,0 +1,150 @@
+# subject.food —— 主体词表（餐饮垂类分表，20–40 值）
+# VLM 打标按显著性降序最多输出 5 个；equivalence_class 支撑 slot query 按类取材。
+version: 1
+name: subject.food
+kind: enum
+values:
+  - id: OWNER
+    zh: 店主
+    def: 店主本人出镜（人格化叙事核心主体）
+    equivalence_class: [PERSON, STAFF_ROLE]
+    deprecated: false
+    replaced_by: null
+  - id: CHEF
+    zh: 厨师
+    def: 后厨烹饪人员
+    equivalence_class: [PERSON, STAFF_ROLE]
+    deprecated: false
+    replaced_by: null
+  - id: STAFF
+    zh: 店员
+    def: 前场服务人员
+    equivalence_class: [PERSON, STAFF_ROLE]
+    deprecated: false
+    replaced_by: null
+  - id: CUSTOMER
+    zh: 顾客
+    def: 到店顾客（出镜需肖像合规检查）
+    equivalence_class: [PERSON]
+    deprecated: false
+    replaced_by: null
+  - id: REGULAR_CUSTOMER
+    zh: 熟客
+    def: 可识别的常客（证言类内容主体）
+    equivalence_class: [PERSON]
+    deprecated: false
+    replaced_by: null
+  - id: COURIER
+    zh: 骑手
+    def: 外卖配送人员
+    equivalence_class: [PERSON]
+    deprecated: false
+    replaced_by: null
+  - id: HANDS
+    zh: 手部
+    def: 手部动作特写主体（不计入人数，规避肖像问题）
+    equivalence_class: [PERSON_PART]
+    deprecated: false
+    replaced_by: null
+  - id: SIGNAGE
+    zh: 招牌
+    def: 店名字号/灯箱/门头牌匾
+    equivalence_class: [OBJECT, BRAND_ASSET]
+    deprecated: false
+    replaced_by: null
+  - id: MENU_BOARD
+    zh: 菜单牌
+    def: 菜单/价目表/灯箱菜单
+    equivalence_class: [OBJECT, BRAND_ASSET]
+    deprecated: false
+    replaced_by: null
+  - id: QUALIFICATION_CERT
+    zh: 证照
+    def: 营业执照/食品经营许可等资质文件
+    equivalence_class: [DOCUMENT]
+    deprecated: false
+    replaced_by: null
+  - id: RECEIPT
+    zh: 小票价签
+    def: 收银小票、手写价签
+    equivalence_class: [DOCUMENT]
+    deprecated: false
+    replaced_by: null
+  - id: DISH_FINISHED
+    zh: 成品菜
+    def: 制作完成的出品
+    equivalence_class: [FOOD, PRODUCT]
+    deprecated: false
+    replaced_by: null
+  - id: DISH_PLATING
+    zh: 摆盘出品
+    def: 摆盘/装盘过程中的出品
+    equivalence_class: [FOOD, PRODUCT]
+    deprecated: false
+    replaced_by: null
+  - id: INGREDIENT_RAW
+    zh: 生鲜食材
+    def: 未加工的原始食材
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: INGREDIENT_PREPPED
+    zh: 半成品
+    def: 已切配/腌制的加工中食材
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: MEAT
+    zh: 肉类
+    def: 生鲜肉类食材
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: SEAFOOD
+    zh: 水产
+    def: 活鲜/冰鲜水产
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: VEGETABLE
+    zh: 蔬菜
+    def: 蔬菜类食材
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: STAPLE
+    zh: 主食
+    def: 米面/包子/饺子等主食
+    equivalence_class: [FOOD]
+    deprecated: false
+    replaced_by: null
+  - id: SEASONING
+    zh: 调料
+    def: 调味料及其使用瞬间
+    equivalence_class: [FOOD, INGREDIENT]
+    deprecated: false
+    replaced_by: null
+  - id: BEVERAGE
+    zh: 饮品
+    def: 现制饮品/酒水
+    equivalence_class: [FOOD, PRODUCT]
+    deprecated: false
+    replaced_by: null
+  - id: TABLEWARE
+    zh: 餐具
+    def: 碗碟筷杯等器皿
+    equivalence_class: [OBJECT]
+    deprecated: false
+    replaced_by: null
+  - id: EQUIPMENT
+    zh: 设备器具
+    def: 炉灶/蒸箱/料理机等设备
+    equivalence_class: [OBJECT]
+    deprecated: false
+    replaced_by: null
+  - id: PACKAGING
+    zh: 餐盒包装
+    def: 外卖餐盒/打包袋
+    equivalence_class: [OBJECT, PRODUCT]
+    deprecated: false
+    replaced_by: null

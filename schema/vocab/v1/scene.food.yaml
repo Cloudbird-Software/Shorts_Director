@@ -1,0 +1,90 @@
+# scene.food —— 场景词表（餐饮垂类分表）
+# 命名规则：<name>.<vertical>.yaml；新垂类复制本表结构另建分表。
+version: 1
+name: scene.food
+kind: enum
+values:
+  - id: STOREFRONT
+    zh: 门头
+    def: 店铺正面外观与招牌
+    equivalence_class: [EXTERNAL]
+    deprecated: false
+    replaced_by: null
+  - id: ENTRANCE
+    zh: 出入口
+    def: 进出通道、迎宾位
+    equivalence_class: [EXTERNAL, TRANSIT]
+    deprecated: false
+    replaced_by: null
+  - id: NEIGHBORHOOD
+    zh: 社区周边
+    def: 店铺所在街区环境（通勤人流/邻里氛围）
+    equivalence_class: [EXTERNAL]
+    deprecated: false
+    replaced_by: null
+  - id: OUTDOOR_SEATING
+    zh: 外摆区
+    def: 户外座位区
+    equivalence_class: [EXTERNAL, FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: COUNTER
+    zh: 前台
+    def: 收银/点单/出餐前台
+    equivalence_class: [FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: DELIVERY_COUNTER
+    zh: 外卖档口
+    def: 外卖取餐与打包区
+    equivalence_class: [FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: DINING_AREA
+    zh: 堂食区
+    def: 顾客用餐区域
+    equivalence_class: [FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: PRIVATE_ROOM
+    zh: 包间
+    def: 独立包房
+    equivalence_class: [FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: OPEN_KITCHEN
+    zh: 明档
+    def: 顾客可见的开放操作档口
+    equivalence_class: [BACK_OF_HOUSE, FRONT_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: KITCHEN
+    zh: 后厨
+    def: 封闭厨房（炉灶/炒锅区）
+    equivalence_class: [BACK_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: PREP_STATION
+    zh: 备餐台
+    def: 切配/组装/摆盘操作台
+    equivalence_class: [BACK_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: WASH_STATION
+    zh: 清洗区
+    def: 食材清洗/餐具洗消区
+    equivalence_class: [BACK_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: STORAGE
+    zh: 仓储区
+    def: 冷库/货架/物料存储
+    equivalence_class: [BACK_OF_HOUSE]
+    deprecated: false
+    replaced_by: null
+  - id: SUPPLIER_ARRIVAL
+    zh: 进货到货
+    def: 收货/验货现场（清晨进货场景）
+    equivalence_class: [BACK_OF_HOUSE, TRANSIT]
+    deprecated: false
+    replaced_by: null
