@@ -12,18 +12,18 @@ type Input struct {
 	Artifact *RenderArtifact
 
 	// ---- 外部事实（均为确定性快照） ----
-	Category       string         // 租户经营类目（如 food/medical/beauty）
-	CategoryPolicy CategoryPolicy // 类目准入策略
-	BannedTerms    []BannedTerm   // 违禁词库（冷启动产物，§S8）
+	Category       string              // 租户经营类目（如 food/medical/beauty）
+	CategoryPolicy CategoryPolicy      // 类目准入策略
+	BannedTerms    []BannedTerm        // 违禁词库（冷启动产物，§S8）
 	ShotRiskFlags  map[string][]string // shot_id → entity.Shot.Compliance.RiskFlags
-	Authorizations []Authorization    // 出镜/声音授权记录
-	Now            string             // 判定基准日 YYYY-MM-DD（禁 time.Now）
+	Authorizations []Authorization     // 出镜/声音授权记录
+	Now            string              // 判定基准日 YYYY-MM-DD（禁 time.Now）
 }
 
 // RenderArtifact 是被检渲染产物（隐式标识判定需要读回元数据）。
 type RenderArtifact struct {
-	Path          string            `json:"path"`
-	Metadata      map[string]string `json:"metadata"` // ffprobe 读回的全量元数据
+	Path     string            `json:"path"`
+	Metadata map[string]string `json:"metadata"` // ffprobe 读回的全量元数据
 }
 
 // Authorization 是一条授权记录（肖像/声音）。

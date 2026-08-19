@@ -43,20 +43,20 @@ type Modes struct {
 
 // RendererExpect 是版本钉死清单（防漂移）。
 type RendererExpect struct {
-	FFmpeg  string `json:"ffmpeg"`
+	FFmpeg   string `json:"ffmpeg"`
 	Remotion string `json:"remotion"`
-	Node    string `json:"node"`
+	Node     string `json:"node"`
 }
 
 // RenderRequest 是 C3 RenderRequest v1 的 Go 实体。
 type RenderRequest struct {
-	ContractVersion int               `json:"contract_version"`
-	Plan            videoplan.Plan    `json:"plan"`
-	ResolvedMedia   []ResolvedMedia   `json:"resolved_media"`
-	Fonts           []Font            `json:"fonts"`
-	Output          Output            `json:"output"`
-	Modes           Modes             `json:"modes"`
-	RendererExpect  RendererExpect    `json:"renderer_expect"`
+	ContractVersion int             `json:"contract_version"`
+	Plan            videoplan.Plan  `json:"plan"`
+	ResolvedMedia   []ResolvedMedia `json:"resolved_media"`
+	Fonts           []Font          `json:"fonts"`
+	Output          Output          `json:"output"`
+	Modes           Modes           `json:"modes"`
+	RendererExpect  RendererExpect  `json:"renderer_expect"`
 }
 
 // Validate 校验 RenderRequest 的契约形态（C3 request schema 的 Go 侧镜像）。

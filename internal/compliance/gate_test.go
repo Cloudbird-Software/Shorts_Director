@@ -33,9 +33,9 @@ func passingInput(t *testing.T) *Input {
 	p := loadPlan(t)
 	EnsureAIGCDisclosure(p, "AI 生成内容")
 	return &Input{
-		Plan:     p,
-		Artifact: &RenderArtifact{Path: "/mnt/work/out/final.mp4", Metadata: BuildImplicitLabel("shorts-director", "2026-08-19T00:00:00Z", "plan-1")},
-		Category: "food",
+		Plan:           p,
+		Artifact:       &RenderArtifact{Path: "/mnt/work/out/final.mp4", Metadata: BuildImplicitLabel("shorts-director", "2026-08-19T00:00:00Z", "plan-1")},
+		Category:       "food",
 		CategoryPolicy: CategoryPolicy{Category: "food", Admission: "ALLOWED"},
 		BannedTerms: []BannedTerm{
 			{Term: "全网第一", Risk: "AD_LAW_SUPERLATIVE", Severity: "BLOCKER"},
