@@ -39,9 +39,42 @@ export function loadVocabs() {
       `${file}: id 必须大写蛇形（ /^[A-Z][A-Z0-9_]*$/ ）`,
     );
     assert(new Set(ids).size === ids.length, `${file}: id 重复`);
-    return { name, frozen: doc.frozen === true, ids };
+    for (const v of doc.values) {
+      assert(
+        typeof v.zh === "string" && v.zh.length > 0,
+        `${file}/${v.id}: zh 缺失`,
+      );
+      assert(
+        typeof v.def === "string" && v.def.length > 0,
+        `${file}/${v.id}: def 缺失`,
+      );
+      assert(
+        Array.isArray(v.equivalence_class) && v.equivalence_class.length > 0,
+        `${file}/${v.id}: equivalence_class 至少 1 个`,
+      );
+      assert(
+        v.equivalence_class.every((c) => /^[A-Z][A-Z0-9_]*$/.test(c)),
+        `${file}/${v.id}: equivalence_class 必须大写蛇形`,
+      );
+      if (v.deprecated) {
+        assert(
+          typeof v.replaced_by === "string" && ids.includes(v.replaced_by),
+          `${file}/${v.id}: 废弃值必须 replaced_by 同表合法 id`,
+        );
+      }
+    }
+    return { name, frozen: doc.frozen === true, values: doc.values };
   });
 }
+
+const metaEntry = (v) =>
+  `{ zh: ${JSON.stringify(v.zh)}, def: ${JSON.stringify(v.def)}, equivalenceClass: [${v.equivalence_class
+    .map((c) => `"${c}"`)
+    .join(", ")}], deprecated: ${v.deprecated === true}, replacedBy: ${
+    v.replaced_by === null || v.replaced_by === undefined
+      ? "null"
+      : JSON.stringify(v.replaced_by)
+  } }`;
 
 /** 生成 codegen/ts/vocab.ts 的文本（已 prettier 格式化，确定性输出）。 */
 export async function renderVocabTs() {
@@ -56,17 +89,52 @@ export async function renderVocabTs() {
       .join(", ")}] as const;`,
     "export type VocabName = (typeof VOCAB_FILES)[number];",
     "",
+    "// ── 枚举值（id 元组 + 字面量类型） ─────────────────────────────",
+    "",
   ];
   for (const v of vocabs) {
+    const ids = v.values.map((x) => x.id);
     lines.push(
-      `/** ${v.name}（${v.ids.length} 值${v.frozen ? "，冻结" : ""}） */`,
-      `export const ${camel(v.name)} = [${v.ids
+      `/** ${v.name}（${ids.length} 值${v.frozen ? "，冻结" : ""}） */`,
+      `export const ${camel(v.name)} = [${ids
         .map((id) => `"${id}"`)
         .join(", ")}] as const;`,
       `export type ${pascal(v.name)} = (typeof ${camel(v.name)})[number];`,
       "",
     );
   }
+  lines.push(
+    "// ── 词表元数据（zh 展示名 / def 定义 / 等价类 / 废弃链） ─────",
+    "",
+  );
+  for (const v of vocabs) {
+    lines.push(
+      `export const ${camel(v.name)}Meta = {`,
+      ...v.values.map((x) => `  ${x.id}: ${metaEntry(x)},`),
+      `} as const;`,
+      "",
+    );
+  }
+  lines.push(
+    "// ── 注册表（按 VocabName 泛型取用，供运行期校验/查询助手） ────",
+    "",
+    "export type VocabMetaEntry = {",
+    "  readonly zh: string;",
+    "  readonly def: string;",
+    "  readonly equivalenceClass: readonly string[];",
+    "  readonly deprecated: boolean;",
+    "  readonly replacedBy: string | null;",
+    "};",
+    "",
+    "export const VOCAB_IDS = {",
+    ...vocabs.map((v) => `  "${v.name}": ${camel(v.name)},`),
+    "} satisfies Readonly<Record<VocabName, readonly string[]>>;",
+    "",
+    "export const VOCAB_META = {",
+    ...vocabs.map((v) => `  "${v.name}": ${camel(v.name)}Meta,`),
+    "} satisfies Readonly<Record<VocabName, Readonly<Record<string, VocabMetaEntry>>>>;",
+    "",
+  );
   return prettier.format(lines.join("\n"), { filepath: outFile });
 }
 
