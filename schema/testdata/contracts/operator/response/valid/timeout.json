@@ -1,0 +1,10 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "TIMEOUT",
+  "outputs": {},
+  "metrics": {
+    "wall_ms": 60000
+  },
+  "operator_version": "shot_segment@1.2.0"
+}

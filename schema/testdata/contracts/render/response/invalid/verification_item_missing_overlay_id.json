@@ -1,0 +1,23 @@
+{
+  "contract_version": 1,
+  "status": "REJECTED_SAFE_AREA",
+  "output": {
+    "path": "/mnt/work/out/final.mp4",
+    "content_hash": "sha256:abcd",
+    "duration_frames": 225,
+    "size_bytes": 1048576
+  },
+  "verification": {
+    "frame_count_matches_ir": true,
+    "safe_area_violations": [
+      {
+        "violation": "越界"
+      }
+    ]
+  },
+  "cost": {
+    "render_count": 1,
+    "cents": 12
+  },
+  "renderer_version": "renderer@1.0.0+ffmpeg7.1+remotion4.0.230+fonts.aaaa"
+}

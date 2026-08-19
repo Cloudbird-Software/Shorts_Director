@@ -1,0 +1,10 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "OK",
+  "metrics": {
+    "wall_ms": 3412,
+    "gpu_seconds": 0
+  },
+  "operator_version": "shot_segment@1.2.0"
+}

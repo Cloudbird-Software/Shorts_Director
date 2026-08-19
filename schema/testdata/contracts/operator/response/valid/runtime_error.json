@@ -1,0 +1,16 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "RUNTIME_ERROR",
+  "outputs": {},
+  "metrics": {
+    "wall_ms": 3412,
+    "gpu_seconds": 0
+  },
+  "operator_version": "shot_segment@1.2.0",
+  "error": {
+    "code": "E_CUDA_OOM",
+    "message": "GPU 显存不足",
+    "retryable": false
+  }
+}

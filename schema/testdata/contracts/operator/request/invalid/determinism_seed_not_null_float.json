@@ -1,0 +1,15 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "inputs": {
+    "media_path": "/mnt/work/abc.mp4"
+  },
+  "params": {
+    "threshold": 27,
+    "min_scene_len_frames": 15
+  },
+  "workdir": "/mnt/work/job-123",
+  "determinism": {
+    "seed": 4.2
+  }
+}

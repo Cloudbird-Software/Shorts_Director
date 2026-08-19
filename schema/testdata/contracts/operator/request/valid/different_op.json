@@ -1,0 +1,12 @@
+{
+  "contract_version": 1,
+  "op": "tech_metrics",
+  "inputs": {
+    "media_path": "/mnt/work/x.mp4"
+  },
+  "params": {},
+  "workdir": "/mnt/work/job-123",
+  "determinism": {
+    "seed": 42
+  }
+}

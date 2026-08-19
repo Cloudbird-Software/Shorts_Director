@@ -1,0 +1,24 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "RUNTIME_ERROR",
+  "outputs": {
+    "shots": [
+      {
+        "in_frame": 0,
+        "out_frame": 120,
+        "confidence": 0.9
+      }
+    ]
+  },
+  "metrics": {
+    "wall_ms": 3412,
+    "gpu_seconds": 0
+  },
+  "operator_version": "shot_segment@1.2.0",
+  "error": {
+    "code": "E",
+    "message": "m",
+    "trace": "..."
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "contract_version": 1,
+  "plan": {
+    "schema_version": "video_plan/1",
+    "plan_id": "018f6f11-eeee-7eee-8eee-000000000001",
+    "tenant_id": "018f6b10-0000-7000-8000-000000000001",
+    "scheduled_date": "2026-08-19",
+    "canvas": {
+      "w": 1080,
+      "h": 1920,
+      "fps": 25,
+      "safe_area": {
+        "top": 220,
+        "bottom": 400,
+        "left": 40,
+        "right": 40
+      }
+    },
+    "timebase": {
+      "unit": "frame",
+      "rate": 25
+    },
+    "beat_schema_ref": {
+      "id": "bs.food.origin_story",
+      "version": 1
+    },
+    "style_theme_ref": {
+      "id": "st.food.warm_steaming",
+      "version": 2
+    },
+    "tracks": [
+      {
+        "track_id": "v1",
+        "kind": "VIDEO_MAIN",
+        "clips": [
+          {
+            "clip_id": "c1",
+            "beat_role": "HOOK",
+            "source": {
+              "kind": "SHOT",
+              "ref": "018f6c01-aaaa-7aaa-8aaa-000000000002",
+              "content_hash": "sha256:1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a"
+            },
+            "src_in": 0,
+            "src_out": 75,
+            "tl_start": 0,
+            "tl_end": 75,
+            "transform": {
+              "crop": {
+                "x": 0,
+                "y": 0,
+                "w": 1080,
+                "h": 1920
+              },
+              "scale": 1,
+              "position": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "transition_in": {
+              "kind": "CUT",
+              "duration_frames": 0
+            }
+          },
+          {
+            "clip_id": "c2",
+            "beat_role": "PROOF",
+            "source": {
+              "kind": "SHOT",
+              "ref": "018f6c01-aaaa-7aaa-8aaa-000000000003",
+              "content_hash": "sha256:2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b"
+            },
+            "src_in": 100,
+            "src_out": 175,
+            "tl_start": 75,
+            "tl_end": 150,
+            "transform": {
+              "crop": {
+                "x": 0,
+                "y": 0,
+                "w": 1080,
+                "h": 1920
+              },
+              "scale": 1,
+              "position": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "transition_in": {
+              "kind": "CUT",
+              "duration_frames": 0
+            }
+          },
+          {
+            "clip_id": "c3",
+            "beat_role": "CTA",
+            "source": {
+              "kind": "GRAPHIC",
+              "ref": "card.offer_v1"
+            },
+            "src_in": 0,
+            "src_out": 50,
+            "tl_start": 150,
+            "tl_end": 200,
+            "transform": {
+              "crop": {
+                "x": 0,
+                "y": 0,
+                "w": 1080,
+                "h": 1920
+              },
+              "scale": 1,
+              "position": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "transition_in": {
+              "kind": "CUT",
+              "duration_frames": 0
+            }
+          }
+        ]
+      },
+      {
+        "track_id": "a1",
+        "kind": "AUDIO_MUSIC",
+        "clips": []
+      }
+    ],
+    "copy": {
+      "caption_blocks": [
+        {
+          "block_id": "cap1",
+          "text": "这碗牛肉面，牛骨现熬 8 小时",
+          "start_frame": 0,
+          "end_frame": 70,
+          "copy_function": "HOOK",
+          "word_timings": [
+            {
+              "w": "这碗",
+              "s": 0,
+              "e": 8
+            },
+            {
+              "w": "牛肉面",
+              "s": 8,
+              "e": 24
+            },
+            {
+              "w": "牛骨",
+              "s": 30,
+              "e": 40
+            },
+            {
+              "w": "现熬",
+              "s": 40,
+              "e": 52
+            },
+            {
+              "w": "8小时",
+              "s": 52,
+              "e": 68
+            }
+          ],
+          "emphasis": [3]
+        }
+      ],
+      "post_text": "张记面馆 · 三十年只做一碗牛肉面",
+      "hashtags": ["#牛肉面", "#探店"]
+    },
+    "audio": {
+      "target_lufs": -14,
+      "music_ref": {
+        "id": "music.upbeat.morning_01",
+        "version": 1,
+        "license_kind": "PLATFORM_LIBRARY"
+      },
+      "vo_ref": null,
+      "ducking": {
+        "enabled": true,
+        "amount_db": -6
+      },
+      "beat_grid": [0, 50, 100, 150]
+    },
+    "overlays": [
+      {
+        "overlay_id": "ov1",
+        "intent": "EMPHASIS",
+        "component": "caption.karaoke",
+        "props": {
+          "block_ref": "cap1",
+          "font": "HarmonyOS_Sans_Bold"
+        },
+        "start_frame": 0,
+        "end_frame": 70,
+        "layout_box": {
+          "x": 540,
+          "y": 1400,
+          "w": 900,
+          "h": 180,
+          "anchor": "BC"
+        }
+      }
+    ],
+    "constraints_report": {
+      "hard_satisfied": ["hard.canvas", "hard.safe_area"],
+      "soft_scores": {
+        "diversity": 0.8,
+        "beat_energy": 0.72
+      },
+      "fallbacks_used": [
+        {
+          "slot_id": "hook.detail",
+          "level": 1,
+          "reason": "DETAIL 池耗尽，放宽到 MEDIUM"
+        }
+      ],
+      "rejected_candidates": [
+        {
+          "shot_id": "018f6c01-aaaa-7aaa-8aaa-000000000004",
+          "rule": "cooldown"
+        }
+      ]
+    },
+    "diversity_signature": {
+      "structural": "H(1)-P(1)-C(1)|3c|cut",
+      "visual_phash_first": "phash:9f2a7c11b0",
+      "copy_ngrams": ["牛肉面", "牛骨现熬"],
+      "music_id": "music.upbeat.morning_01",
+      "style_id": "st.food.warm_steaming",
+      "shot_ids": [
+        "018f6c01-aaaa-7aaa-8aaa-000000000002",
+        "018f6c01-aaaa-7aaa-8aaa-000000000003"
+      ]
+    },
+    "budget": {
+      "planned_cost_cents": 120,
+      "llm_calls": 3,
+      "gpu_seconds": 45.5,
+      "render_count": 1
+    },
+    "provenance": {
+      "generated_by": "DETERMINISTIC",
+      "model_id": "planner@0.1.0",
+      "prompt_version": "none",
+      "input_digest": "sha256:9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c",
+      "seed": 20260819,
+      "created_at": "2026-08-18T22:00:00Z"
+    }
+  },
+  "resolved_media": [
+    {
+      "ref": "shot:018f6c01-aaaa-7aaa-8aaa-000000000002",
+      "local_path": "/mnt/work/media/shot-0002.mp4",
+      "content_hash": "sha256:1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a",
+      "fps": 30
+    }
+  ],
+  "fonts": [
+    {
+      "family": "NotoSansSC",
+      "path": "/mnt/work/fonts/NotoSansSC.otf",
+      "hash": "sha256:aaaa"
+    }
+  ],
+  "output": {
+    "path": "/mnt/work/out/final.mp4",
+    "codec": "h264",
+    "crf": 18,
+    "preset": "slow"
+  },
+  "modes": {
+    "overlay_only": false,
+    "preview": false,
+    "deterministic": true
+  },
+  "renderer_expect": {
+    "ffmpeg": "7.1",
+    "remotion": "4.0.230",
+    "node": "22.11.0"
+  }
+}

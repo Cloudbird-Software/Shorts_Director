@@ -1,0 +1,16 @@
+{
+  "contract_version": 1,
+  "op": "shot_segment",
+  "status": "INPUT_ERROR",
+  "outputs": {},
+  "metrics": {
+    "wall_ms": 3412,
+    "gpu_seconds": 0
+  },
+  "operator_version": "shot_segment@1.2.0",
+  "error": {
+    "code": "E_DECODE",
+    "message": "文件损坏：重新导出为 H.264 后重传",
+    "retryable": true
+  }
+}

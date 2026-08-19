@@ -1,0 +1,18 @@
+{
+  "contract_version": 1,
+  "status": "OK",
+  "output": {
+    "path": "/mnt/work/out/final.mp4",
+    "content_hash": "sha256:abcd",
+    "duration_frames": 225,
+    "size_bytes": 1048576
+  },
+  "verification": {
+    "frame_count_matches_ir": true
+  },
+  "cost": {
+    "render_count": 1,
+    "cents": 12
+  },
+  "renderer_version": "renderer@1.0.0+ffmpeg7.1+remotion4.0.230+fonts.aaaa"
+}
