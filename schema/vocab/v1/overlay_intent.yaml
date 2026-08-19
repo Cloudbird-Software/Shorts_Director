@@ -1,0 +1,91 @@
+# overlay_intent —— 覆盖层意图词表（12–20 值）
+# overlays[].intent 的取值域；component 是 Remotion 组件注册表白名单，
+# intent -> 允许的 component 集合由渲染层注册表约束（Engineering_plan §5.6）。
+version: 1
+name: overlay_intent
+kind: enum
+values:
+  - id: EMPHASIZE_NUMBER
+    zh: 强调数字
+    def: 放大关键数字（价格/年限/销量）
+    equivalence_class: [EMPHASIS]
+    deprecated: false
+    replaced_by: null
+  - id: EMPHASIZE_KEYWORD
+    zh: 强调关键词
+    def: 高亮文案关键词
+    equivalence_class: [EMPHASIS]
+    deprecated: false
+    replaced_by: null
+  - id: KARAOKE_CAPTION
+    zh: 逐字字幕
+    def: 词级同步字幕（依赖 word_timings）
+    equivalence_class: [CAPTION]
+    deprecated: false
+    replaced_by: null
+  - id: STATIC_CAPTION
+    zh: 静态字幕
+    def: 整句字幕块
+    equivalence_class: [CAPTION]
+    deprecated: false
+    replaced_by: null
+  - id: ANNOTATE_PART
+    zh: 标注部位
+    def: 指向画面部位/部件的标注
+    equivalence_class: [ANNOTATE]
+    deprecated: false
+    replaced_by: null
+  - id: ANNOTATE_PROOF
+    zh: 标注证据
+    def: 为证照/检测报告等证据加注
+    equivalence_class: [ANNOTATE, TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: PROGRESS_STEPS
+    zh: 步骤进度
+    def: 工艺步骤进度条
+    equivalence_class: [STRUCTURE]
+    deprecated: false
+    replaced_by: null
+  - id: COUNTDOWN
+    zh: 倒计时
+    def: 活动倒计时（配 SCARCITY 文案）
+    equivalence_class: [STRUCTURE, CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: PRICE_TAG
+    zh: 价格牌
+    def: 价格/团购价标牌
+    equivalence_class: [CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: OFFER_BADGE
+    zh: 权益角标
+    def: 活动/权益角标
+    equivalence_class: [CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: LOCATION_CARD
+    zh: 位置卡片
+    def: 店名+位置+营业时间卡片
+    equivalence_class: [CONVERSION, BRAND]
+    deprecated: false
+    replaced_by: null
+  - id: LOGO_WATERMARK
+    zh: 品牌水印
+    def: 店标水印（安全区常驻）
+    equivalence_class: [BRAND]
+    deprecated: false
+    replaced_by: null
+  - id: AIGC_DISCLOSURE
+    zh: AIGC 标识
+    def: 合规显式标识（ComplianceGate 强制注入，禁止 StyleTheme 覆盖）
+    equivalence_class: [COMPLIANCE]
+    deprecated: false
+    replaced_by: null
+  - id: SUBTITLE_FOREIGN
+    zh: 译制字幕
+    def: 外语字幕轨（预留）
+    equivalence_class: [CAPTION]
+    deprecated: false
+    replaced_by: null

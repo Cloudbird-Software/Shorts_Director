@@ -1,0 +1,115 @@
+# copy_function —— 文案功能词表（15–25 值）
+# 是 caption_blocks[].copy_function 与文案生成 BAML 的输出约束；
+# 等价类与 beat_role 对齐，用于多样性判重（copy_ngrams 按功能分组统计）。
+version: 1
+name: copy_function
+kind: enum
+values:
+  - id: QUESTION_HOOK
+    zh: 提问钩
+    def: 以疑问句开头制造信息差
+    equivalence_class: [HOOK]
+    deprecated: false
+    replaced_by: null
+  - id: NUMBER_HOOK
+    zh: 数字钩
+    def: 以具体数字开场（年限/销量/价格）
+    equivalence_class: [HOOK]
+    deprecated: false
+    replaced_by: null
+  - id: COUNTERINTUITIVE_HOOK
+    zh: 反常识钩
+    def: 挑战常识认知引发好奇
+    equivalence_class: [HOOK]
+    deprecated: false
+    replaced_by: null
+  - id: SCENE_HOOK
+    zh: 场景带入钩
+    def: 描绘时间地点场景让目标客代入
+    equivalence_class: [HOOK]
+    deprecated: false
+    replaced_by: null
+  - id: RESULT_FIRST
+    zh: 结果前置
+    def: 先给成品/结果再讲过程
+    equivalence_class: [HOOK, DESIRE]
+    deprecated: false
+    replaced_by: null
+  - id: PAIN_CALLOUT
+    zh: 痛点点名
+    def: 点名目标客群的具体困扰
+    equivalence_class: [CONTEXT]
+    deprecated: false
+    replaced_by: null
+  - id: ORIGIN_STORY
+    zh: 来源故事
+    def: 食材/物料的溯源叙事
+    equivalence_class: [TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: CRAFT_STORY
+    zh: 工艺故事
+    def: 独家手艺/制作工艺叙事
+    equivalence_class: [TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: PERSONA_STORY
+    zh: 人格故事
+    def: 店主/店员的人格化叙事
+    equivalence_class: [TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: TESTIMONY_QUOTE
+    zh: 证言引用
+    def: 引用顾客原话评价
+    equivalence_class: [TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: DATA_CITE
+    zh: 数据引用
+    def: 引用可核验的经营数据
+    equivalence_class: [TRUST]
+    deprecated: false
+    replaced_by: null
+  - id: OBJECTION_RESPOND
+    zh: 抗拒点回应
+    def: 正面回应受众顾虑（贵/远/慢）
+    equivalence_class: [CONTRAST]
+    deprecated: false
+    replaced_by: null
+  - id: COMPARISON
+    zh: 对比句式
+    def: 我家 vs 别家 / 之前 vs 之后
+    equivalence_class: [CONTRAST]
+    deprecated: false
+    replaced_by: null
+  - id: SCARCITY
+    zh: 限时限量
+    def: 时间/数量受限的稀缺表达（广告法高危，需断言检查）
+    equivalence_class: [CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: OFFER_CLAIM
+    zh: 权益主张
+    def: 具体价格/活动/权益说明
+    equivalence_class: [CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: DIRECTION_CTA
+    zh: 行动指令
+    def: 明确下一步动作（到店/私信/点团购）
+    equivalence_class: [CONVERSION]
+    deprecated: false
+    replaced_by: null
+  - id: LOCATION_CUE
+    zh: 位置提示
+    def: 位置/营业时间等到达信息
+    equivalence_class: [CONVERSION, BRAND]
+    deprecated: false
+    replaced_by: null
+  - id: SLOGAN
+    zh: 品牌口号
+    def: 店铺 slogan 或品牌句
+    equivalence_class: [BRAND]
+    deprecated: false
+    replaced_by: null
