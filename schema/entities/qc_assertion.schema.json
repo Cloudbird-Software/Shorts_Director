@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shorts.director/schemas/v1/qc_assertion.json",
+  "title": "QCAssertion",
+  "description": "断言 DSL（设计公理 A5：评估必须判定题化，assertion → bool + 证据，禁止 1–10 打分作门禁）。applies_when 复用 ShotSlotQuery 的 Predicate AST，断言是条件性的（如口型同步只对 has_lipsync=true 的生成片段适用），断言库可全量执行、自行筛选。阈值策略：L0/L1/L2 宁可漏检（返修成本高），L3 宁可错杀（合规不可逆）。",
+  "type": "object",
+  "required": [
+    "assertion_id",
+    "level",
+    "severity",
+    "probe",
+    "expect",
+    "remedy"
+  ],
+  "properties": {
+    "assertion_id": {
+      "type": "string",
+      "description": "如 L1.SUBJECT_PRESENT.knife；层级.名称.限定词"
+    },
+    "level": { "enum": ["L0", "L1", "L2", "L3"] },
+    "severity": { "enum": ["BLOCKER", "MAJOR", "MINOR"] },
+    "probe": {
+      "type": "object",
+      "required": ["op", "args"],
+      "properties": {
+        "op": {
+          "enum": [
+            "ffprobe_field",
+            "blackdetect_ratio",
+            "freezedetect_ratio",
+            "laplacian_var",
+            "optical_flow_magnitude",
+            "loudness_lufs",
+            "true_peak_dbtp",
+            "silence_ratio",
+            "flicker_index",
+            "resolution",
+            "fps",
+            "object_present",
+            "object_area_ratio",
+            "shot_type_match",
+            "camera_motion_match",
+            "negative_space_at",
+            "subject_bbox_within_safe",
+            "vlm_boolean",
+            "lipsync_lse_c",
+            "lipsync_lse_d",
+            "temporal_warp_error",
+            "nr_video_quality",
+            "face_identity_sim",
+            "banned_terms",
+            "required_disclaimer",
+            "third_party_logo",
+            "third_party_face",
+            "aigc_metadata_present",
+            "aigc_overlay_present"
+          ]
+        },
+        "args": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "expect": {
+      "type": "object",
+      "required": ["op", "value"],
+      "properties": {
+        "op": {
+          "enum": [
+            "gte",
+            "lte",
+            "eq",
+            "neq",
+            "between",
+            "is_true",
+            "is_false",
+            "contains_none",
+            "contains_all"
+          ]
+        },
+        "value": { "description": "between 时为二元数组" }
+      },
+      "additionalProperties": false
+    },
+    "remedy": {
+      "type": "object",
+      "required": ["action", "instruction_template"],
+      "description": "返修指令模板，不是错误消息；模板变量 {{measured}} {{expected}}",
+      "properties": {
+        "action": { "description": "vocab/remedy_action" },
+        "instruction_template": {
+          "type": "string",
+          "description": "外包/商家能看懂并执行的人话指令"
+        },
+        "auto_fixable": { "type": "boolean", "default": false },
+        "auto_fix_op": {
+          "type": ["string", "null"],
+          "description": "如 auto_crop_recenter；auto_fixable=true 时必填（实现侧校验）"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sampling": {
+      "type": "object",
+      "properties": {
+        "frames": {
+          "enum": ["ALL", "EVERY_N", "KEYFRAMES", "FIRST_LAST", "N_UNIFORM"]
+        },
+        "n": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "applies_when": {
+      "$ref": "https://shorts.director/schemas/v1/shot_slot_query.json#/$defs/Predicate"
+    }
+  },
+  "additionalProperties": false
+}
