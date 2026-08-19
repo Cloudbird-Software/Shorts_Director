@@ -1,0 +1,21 @@
+{
+  "id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8f",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000003",
+  "source_kind": "GEN_BROLL",
+  "content_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "storage_uri": "s3://media-gen/tenant-c/broll/noodle-pull-4k.mp4",
+  "order_item_id": "018f6b55-1234-7abc-9def-001122334456",
+  "probe": {
+    "duration_frames": 100000,
+    "fps": 30,
+    "w": 7680,
+    "h": 4320,
+    "raw": {
+      "codec": "hevc",
+      "bitrate": 120000000,
+      "pix_fmt": "yuv420p10le",
+      "audio": { "codec": "aac", "channels": 2, "sample_rate": 48000 }
+    }
+  },
+  "uploaded_at": "2026-08-18T23:59:59+14:00"
+}

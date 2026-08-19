@@ -1,0 +1,9 @@
+{
+  "id": "018f6b2e-9c4a-7b3e-a1d2-3f4e5d6c7b8e",
+  "tenant_id": "018f6b10-0000-7000-8000-000000000003",
+  "source_kind": "STOCK",
+  "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+  "storage_uri": "s3://media-inbox/tenant-c/stock/1frame.mp4",
+  "probe": { "duration_frames": 1, "fps": 1, "w": 1, "h": 1 },
+  "uploaded_at": "2026-08-15T00:00:00Z"
+}

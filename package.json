@@ -11,6 +11,8 @@
     "@eslint/js": "^10.0.1",
     "@types/js-yaml": "^4.0.9",
     "@vitest/coverage-v8": "^4.1.10",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "dependency-cruiser": "^18.2.0",
     "eslint": "^10.8.1",
     "fast-check": "^4.9.0",

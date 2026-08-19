@@ -22,6 +22,7 @@
     },
     "content_hash": {
       "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
       "description": "sha256；重转码后 hash 变化视为新版本"
     },
     "storage_uri": {
