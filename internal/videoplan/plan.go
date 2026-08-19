@@ -233,6 +233,21 @@ type Budget struct {
 	RenderCount      int     `json:"render_count"`
 }
 
+// AIGCDisclosure 是 AIGC 标识义务的回写块（common/compliance_result 局部）。
+// IV-VP-5：required=true 时 explicit_overlay_id 必须指向 aigc.disclosure overlay。
+type AIGCDisclosure struct {
+	Required          bool           `json:"required"`
+	ExplicitOverlayID *string        `json:"explicit_overlay_id"`
+	ImplicitMetadata  map[string]any `json:"implicit_metadata"`
+}
+
+// ComplianceResult 是 ComplianceGate 执行结果的回写块——
+// QC 之后、Delivery 之前的唯一强制门禁留下的一致性凭证。
+type ComplianceResult struct {
+	AIGCDisclosure AIGCDisclosure `json:"aigc_disclosure"`
+	ChecksPassed   []string       `json:"checks_passed"`
+}
+
 // Plan 是单条视频的语义 IR——系统的心脏：
 // 语义完整（能回答"为什么这么剪"）+ 确定性（同一 IR 永远渲出同一帧）+ 可 diff。
 type Plan struct {
@@ -251,6 +266,7 @@ type Plan struct {
 	ConstraintsReport  ConstraintsReport   `json:"constraints_report"`
 	DiversitySignature DiversitySignature  `json:"diversity_signature"`
 	Budget             Budget              `json:"budget"`
+	Compliance         *ComplianceResult   `json:"compliance,omitempty"` // ComplianceGate 回写
 	Provenance         entity.Provenance   `json:"provenance"`
 }
 
