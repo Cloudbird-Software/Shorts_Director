@@ -2,6 +2,7 @@ package digest
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -222,6 +223,45 @@ func TestPropertyDigestFormat(t *testing.T) {
 			if !(c >= '0' && c <= '9' || c >= 'a' && c <= 'f') {
 				t.Fatalf("digest 非小写 hex（第 %d 例）：%q", i, d)
 			}
+		}
+	}
+}
+
+// TestPropertyDigestMutationSensitive 是 M4 变形不变式（抗碰撞）：
+// 语义内容变异（注入唯一键）→ ContentDigest 必变。M1 保证键序无关，
+// 本不变式保证反方向——不同内容必不同 digest；若破坏，A2 公理下的一切
+// 内容寻址判重/去重（GoldenKey、content_hash、飞轮样本池）全部失效。
+func TestPropertyDigestMutationSensitive(t *testing.T) {
+	r := &lcg{state: 44443}
+	for i := 0; i < propertyRuns; i++ {
+		base := r.randomValue(3)
+		obj, ok := base.(map[string]any)
+		if !ok {
+			obj = map[string]any{"wrap": base}
+		}
+		raw, err := json.Marshal(obj)
+		if err != nil {
+			t.Fatalf("marshal: %v", err)
+		}
+		d1, err := ContentDigest(raw)
+		if err != nil {
+			t.Fatalf("digest: %v", err)
+		}
+		mutated := make(map[string]any, len(obj)+1)
+		for k, v := range obj {
+			mutated[k] = v
+		}
+		mutated["__mut_"+fmt.Sprint(i)] = i
+		raw2, err := json.Marshal(mutated)
+		if err != nil {
+			t.Fatalf("marshal2: %v", err)
+		}
+		d2, err := ContentDigest(raw2)
+		if err != nil {
+			t.Fatalf("digest2: %v", err)
+		}
+		if d1 == d2 {
+			t.Fatalf("run %d: 语义变异未改变 digest（内容寻址判重失效）", i)
 		}
 	}
 }
