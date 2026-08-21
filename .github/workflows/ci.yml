@@ -13,12 +13,12 @@ permissions:
 
 jobs:
   hygiene:
-    uses: Cloudbird-Software/CI-Workflows/.github/workflows/hygiene.yml@81f5457b33a38c2b11221be06a47e1fb14e524e8 # v1
+    uses: Cloudbird-Software/CI-Workflows/.github/workflows/hygiene.yml@086e3d4577d679089138e3748cad03f263537a88 # v1
 
   check:
-    uses: Cloudbird-Software/CI-Workflows/.github/workflows/check.yml@81f5457b33a38c2b11221be06a47e1fb14e524e8 # v1
+    uses: Cloudbird-Software/CI-Workflows/.github/workflows/check.yml@086e3d4577d679089138e3748cad03f263537a88 # v1
     with:
-      ciw-ref: 81f5457b33a38c2b11221be06a47e1fb14e524e8
+      ciw-ref: 086e3d4577d679089138e3748cad03f263537a88
       runtime: node
       node-version: "24"
 
@@ -27,9 +27,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: Cloudbird-Software/CI-Workflows/.github/workflows/dep-review.yml@81f5457b33a38c2b11221be06a47e1fb14e524e8 # v1
+    uses: Cloudbird-Software/CI-Workflows/.github/workflows/dep-review.yml@086e3d4577d679089138e3748cad03f263537a88 # v1
     with:
-      ciw-ref: 81f5457b33a38c2b11221be06a47e1fb14e524e8
+      ciw-ref: 086e3d4577d679089138e3748cad03f263537a88
 
   contract:
     # 契约兼容性检测门（P2-4，ADR-0038）：OpenAPI/JSON Schema breaking + DB migration
@@ -38,18 +38,18 @@ jobs:
     # BOOTSTRAP 钉扎：uses 与 ciw-ref 均指向 CI-Workflows PR #18 分支提交（两处一致，
     # 被调用侧无法自取自身 ref）；其 squash 合入并走 v1.X.Y 发布四步流程后，两处同改
     # merge SHA（勿用可变 @main）。
-    uses: Cloudbird-Software/CI-Workflows/.github/workflows/contract.yml@81f5457b33a38c2b11221be06a47e1fb14e524e8 # v1
+    uses: Cloudbird-Software/CI-Workflows/.github/workflows/contract.yml@086e3d4577d679089138e3748cad03f263537a88 # v1
     with:
-      ciw-ref: 81f5457b33a38c2b11221be06a47e1fb14e524e8
+      ciw-ref: 086e3d4577d679089138e3748cad03f263537a88
 
   suppression-budget:
     # P2-2 抑制标记预算门（ADR-0036 / .github #87）：净增 ≤3/PR + 合入树总量棘轮
     # + ADR 逃生门。独立 reusable（v1.5.1 内嵌 check.yml 实测触发平台 action 解析
     # 故障，v1.5.3 起独立文件——ADR-0036 修订）。非 PR 事件 n/a-success（无需
     # EXPECTED_SKIP 登记）。
-    uses: Cloudbird-Software/CI-Workflows/.github/workflows/suppression-gate.yml@81f5457b33a38c2b11221be06a47e1fb14e524e8
+    uses: Cloudbird-Software/CI-Workflows/.github/workflows/suppression-gate.yml@086e3d4577d679089138e3748cad03f263537a88
     with:
-      detector-ref: 81f5457b33a38c2b11221be06a47e1fb14e524e8
+      detector-ref: 086e3d4577d679089138e3748cad03f263537a88
 
   gate:
     if: always()
