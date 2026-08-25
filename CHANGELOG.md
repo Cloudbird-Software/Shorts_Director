@@ -38,6 +38,7 @@
   TS 侧启用既有 fast-check）：digest 键序不敏感/幂等/形态（1000 次）；slotquery 可行性健全性、
   IV-SQ-1 终局可达、池追加排名稳定（1000 次）；planner 帧数守恒与降级可解释性一致（1000 次）；
   compiler 键序重排编译产物逐字节一致；词表 ids↔meta 双闭合、废弃链闭环、大小写漂移不命中（1000 次）。
+- Freeze Gate G10 补强：M4 变形不变式（digest 抗碰撞）——语义内容变异（注入唯一键）→ ContentDigest 必变（×1000）；与 M1 键序不变共同构成内容寻址判重的双向保障（方向性 + 注入性）。
 - internal/renderer + cmd/shorts-render：Phase 0 最小渲染路径（#43 DoD）——手写 
   minimal_music_plan.json 经 Compile→RenderRequest→纯色占位帧→ffmpeg（外部二进制，零新 Go 依赖）
   渲出可播放 mp4；R-1 bitexact 双跑 digest 全等、R-2 帧数守恒落帧==TotalFrames、R-5 版本含字体哈希
