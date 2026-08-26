@@ -100,7 +100,7 @@ func SolveTiming(beats []BeatWindow, total TotalRange, p CraftParams) (*TimingRe
 		case b.VOFrames < 0:
 			return nil, fmt.Errorf("planner: beats[%d].VOFrames 不得为负", i)
 		}
-		floor := maxInt(b.MinFrames, b.VOFrames)
+		floor := max(b.MinFrames, b.VOFrames)
 		if b.VOFrames > b.MaxFrames { // VO 超出 beat 上限：钳位 + 降级记录
 			degrades = append(degrades, DegradeRecord{
 				BeatIndex: i, Kind: "VO_SHORTEN",
@@ -109,7 +109,7 @@ func SolveTiming(beats []BeatWindow, total TotalRange, p CraftParams) (*TimingRe
 			floor = b.MaxFrames
 		}
 		floors[i] = floor
-		voFloors[i] = minInt(b.VOFrames, b.MaxFrames)
+		voFloors[i] = min(b.VOFrames, b.MaxFrames)
 		sumFloors += floor
 		sumMin += b.MinFrames
 		sumMax += b.MaxFrames
@@ -122,7 +122,7 @@ func SolveTiming(beats []BeatWindow, total TotalRange, p CraftParams) (*TimingRe
 	}
 
 	// 总量落点：[Σfloors 与 total.Min 取大] 再被 total.Max 封顶。
-	target := maxInt(sumFloors, total.Min)
+	target := max(sumFloors, total.Min)
 	if target > total.Max {
 		target = total.Max
 	}
@@ -138,7 +138,7 @@ func SolveTiming(beats []BeatWindow, total TotalRange, p CraftParams) (*TimingRe
 		d := frames[i]
 		if b.ShotAvail > 0 && d > b.ShotAvail { // 图形卡（≤0）不受限
 			// shot 装不下（被 max 钳位后的）VO ⇒ 换 shot，不硬凑。
-			voNeed := minInt(b.VOFrames, b.MaxFrames)
+			voNeed := min(b.VOFrames, b.MaxFrames)
 			if b.VOFrames > 0 && b.ShotAvail < voNeed {
 				return nil, fmt.Errorf("%w: beats[%d] avail=%d < vo=%d", ErrNeedsRepatch, i, b.ShotAvail, b.VOFrames)
 			}
@@ -293,18 +293,4 @@ func absInt(v int) int {
 		return -v
 	}
 	return v
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func minInt(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

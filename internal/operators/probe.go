@@ -21,18 +21,21 @@ type ProbeOp struct {
 	FFProbeBin string // 默认 "ffprobe"
 }
 
+// ffprobeStream 是 ffprobe 输出中单条流记录的受控子集。
+type ffprobeStream struct {
+	CodecType    string `json:"codec_type"`
+	CodecName    string `json:"codec_name"`
+	Width        int    `json:"width"`
+	Height       int    `json:"height"`
+	AvgFrameRate string `json:"avg_frame_rate"`
+	Duration     string `json:"duration"`
+	NBFrames     string `json:"nb_frames"`
+}
+
 // ffprobeJSON 是 ffprobe -show_format -show_streams 输出的受控子集。
 type ffprobeJSON struct {
-	Streams []struct {
-		CodecType    string `json:"codec_type"`
-		CodecName    string `json:"codec_name"`
-		Width        int    `json:"width"`
-		Height       int    `json:"height"`
-		AvgFrameRate string `json:"avg_frame_rate"`
-		Duration     string `json:"duration"`
-		NBFrames     string `json:"nb_frames"`
-	} `json:"streams"`
-	Format struct {
+	Streams []ffprobeStream `json:"streams"`
+	Format  struct {
 		Duration string `json:"duration"`
 	} `json:"format"`
 }
@@ -79,15 +82,7 @@ func parseFFProbe(raw []byte) (map[string]any, error) {
 	if err := json.Unmarshal(raw, &f); err != nil {
 		return nil, fmt.Errorf("ffprobe 输出不可解析: %w", err)
 	}
-	var video *struct {
-		CodecType    string `json:"codec_type"`
-		CodecName    string `json:"codec_name"`
-		Width        int    `json:"width"`
-		Height       int    `json:"height"`
-		AvgFrameRate string `json:"avg_frame_rate"`
-		Duration     string `json:"duration"`
-		NBFrames     string `json:"nb_frames"`
-	}
+	var video *ffprobeStream
 	hasAudio := false
 	var acodec string
 	for i := range f.Streams {

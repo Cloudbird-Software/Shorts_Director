@@ -5,7 +5,6 @@ package qc
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"regexp"
 	"sort"
@@ -14,6 +13,7 @@ import (
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/digest"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/entity"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/jsoncmp"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
 )
 
@@ -236,7 +236,7 @@ func (e *Engine) Run(ctx context.Context, subj *Subject, assertions []Assertion)
 	return rep, nil
 }
 
-// shortCircuited 报告是否已有 BLOCKER 级失败。
+// shortCircuit 报告是否已有 BLOCKER 级失败。
 func shortCircuit(rep *Report) bool {
 	for _, r := range rep.RemedySheet {
 		if r.Severity == SeverityBlocker {
@@ -248,15 +248,7 @@ func shortCircuit(rep *Report) bool {
 
 // probeKey 生成去重键：op + args 的 JCS 摘要（多处断言共用一次测量）。
 func probeKey(op string, args map[string]any) (string, error) {
-	raw, err := json.Marshal(args)
-	if err != nil {
-		return "", err
-	}
-	canon, err := digest.CanonicalizeJSON(raw)
-	if err != nil {
-		return "", err
-	}
-	h, err := digest.ContentDigest(canon)
+	h, err := digest.ValueDigest(args)
 	if err != nil {
 		return "", err
 	}
@@ -270,8 +262,8 @@ func probeKey(op string, args map[string]any) (string, error) {
 func compareExpect(e Expect, measured any) (bool, error) {
 	switch e.Op {
 	case "gte", "lte", "eq", "neq":
-		m, mok := toFloat(measured)
-		w, wok := toFloat(e.Value)
+		m, mok := jsoncmp.Float(measured)
+		w, wok := jsoncmp.Float(e.Value)
 		if mok && wok {
 			switch e.Op {
 			case "gte":
@@ -285,10 +277,10 @@ func compareExpect(e Expect, measured any) (bool, error) {
 			}
 		}
 		if e.Op == "eq" {
-			return equalAny(measured, e.Value), nil
+			return jsoncmp.Equal(measured, e.Value), nil
 		}
 		if e.Op == "neq" {
-			return !equalAny(measured, e.Value), nil
+			return !jsoncmp.Equal(measured, e.Value), nil
 		}
 		return false, fmt.Errorf("qc: expect.op %s 要求数值，measured=%T expected=%T", e.Op, measured, e.Value)
 	case "between":
@@ -296,12 +288,12 @@ func compareExpect(e Expect, measured any) (bool, error) {
 		if !ok || len(arr) != 2 {
 			return false, fmt.Errorf("qc: between 的 value 必须是二元数组")
 		}
-		m, ok := toFloat(measured)
+		m, ok := jsoncmp.Float(measured)
 		if !ok {
 			return false, fmt.Errorf("qc: between 要求数值 measured，得到 %T", measured)
 		}
-		lo, ok1 := toFloat(arr[0])
-		hi, ok2 := toFloat(arr[1])
+		lo, ok1 := jsoncmp.Float(arr[0])
+		hi, ok2 := jsoncmp.Float(arr[1])
 		if !ok1 || !ok2 {
 			return false, fmt.Errorf("qc: between 的区间端点必须是数值")
 		}
@@ -324,7 +316,7 @@ func compareExpect(e Expect, measured any) (bool, error) {
 		intersect := false
 		for _, w := range want {
 			for _, h := range hits {
-				if equalAny(h, w) {
+				if jsoncmp.Equal(h, w) {
 					intersect = true
 				}
 			}
@@ -335,33 +327,6 @@ func compareExpect(e Expect, measured any) (bool, error) {
 		return intersect, nil
 	}
 	return false, fmt.Errorf("qc: 非受控 expect.op %q", e.Op)
-}
-
-// equalAny 跨 JSON 解码形态比较（number/string/bool）。
-func equalAny(a, b any) bool {
-	if ab, ok := a.(bool); ok {
-		bb, ok2 := b.(bool)
-		return ok2 && ab == bb
-	}
-	if af, ok := toFloat(a); ok {
-		if bf, ok2 := toFloat(b); ok2 {
-			return af == bf
-		}
-		return false
-	}
-	as, aok := a.(string)
-	bs, bok := b.(string)
-	return aok && bok && as == bs
-}
-
-func toFloat(v any) (float64, bool) {
-	switch x := v.(type) {
-	case float64:
-		return x, true
-	case int:
-		return float64(x), true
-	}
-	return 0, false
 }
 
 func deref(p *string) string {

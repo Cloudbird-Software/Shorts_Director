@@ -28,8 +28,7 @@ var ErrUnsupportedType = errors.New("digest: unsupported type for canonicalizati
 // 无空白、字符串最小化转义。
 func CanonicalizeJSON(raw []byte) ([]byte, error) {
 	var v any
-	dec := newDecoder(raw)
-	if err := dec(&v); err != nil {
+	if err := json.Unmarshal(raw, &v); err != nil {
 		return nil, fmt.Errorf("%w: %v", ErrBadJSON, err)
 	}
 	var b strings.Builder
@@ -50,9 +49,15 @@ func ContentDigest(raw []byte) (string, error) {
 	return "sha256:" + hex.EncodeToString(sum[:]), nil
 }
 
-// newDecoder 解析 JSON 到 any（数值语义=IEEE 754 double，与 JCS 一致）。
-func newDecoder(raw []byte) func(*any) error {
-	return func(v *any) error { return json.Unmarshal(raw, v) }
+// ValueDigest 对内存中的值一步求内容寻址摘要：
+// json.Marshal（数值语义=IEEE 754 double，与 JCS 一致）+ 规范化 + sha256。
+// GoldenKey、probe 去重键等"请求字段摘要"共用此入口。
+func ValueDigest(v any) (string, error) {
+	raw, err := json.Marshal(v)
+	if err != nil {
+		return "", err
+	}
+	return ContentDigest(raw)
 }
 
 // writeCanonical 递归写出规范化 JSON。

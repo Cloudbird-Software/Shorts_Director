@@ -11,8 +11,12 @@ import (
 	"io"
 	"time"
 
+	"github.com/Cloudbird-Software/Shorts_Director/internal/contracts"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/operator"
 )
+
+// operatorVersion 是本包 Go 算子的版本指纹（C2 response.operator_version）。
+const operatorVersion = "shorts-operator/go"
 
 // Handler 是一个算子的实现：返回 Response 的 status/outputs/artifacts，
 // 或系统级 error（由 Serve 折叠为 RUNTIME_ERROR——CLI 永远输出合法响应）。
@@ -47,39 +51,36 @@ func writeResponse(w io.Writer, resp operator.Response) error {
 	return enc.Encode(resp)
 }
 
-func inputErrorResponse(op, code, msg string) operator.Response {
+// baseResponse 组装带公共字段的响应骨架（handler/错误构造器只补业务字段）。
+func baseResponse(op string, status operator.Status) operator.Response {
 	return operator.Response{
-		ContractVersion: 1,
+		ContractVersion: contracts.ContractOperator,
 		Op:              op,
-		Status:          operator.StatusInputError,
+		Status:          status,
 		Outputs:         map[string]any{},
-		Metrics:         operator.Metrics{WallMs: 0},
-		OperatorVersion: "shorts-operator/go",
-		Error:           &operator.OpError{Code: code, Message: msg, Retryable: false},
+		OperatorVersion: operatorVersion,
 	}
 }
 
+func inputErrorResponse(op, code, msg string) operator.Response {
+	resp := baseResponse(op, operator.StatusInputError)
+	resp.Metrics = operator.Metrics{WallMs: 0}
+	resp.Error = &operator.OpError{Code: code, Message: msg, Retryable: false}
+	return resp
+}
+
 func runtimeErrorResponse(op string, err error) operator.Response {
-	return operator.Response{
-		ContractVersion: 1,
-		Op:              op,
-		Status:          operator.StatusRuntimeError,
-		Outputs:         map[string]any{},
-		Metrics:         operator.Metrics{WallMs: 0},
-		OperatorVersion: "shorts-operator/go",
-		Error:           &operator.OpError{Code: "INTERNAL", Message: err.Error()},
-	}
+	resp := baseResponse(op, operator.StatusRuntimeError)
+	resp.Metrics = operator.Metrics{WallMs: 0}
+	resp.Error = &operator.OpError{Code: "INTERNAL", Message: err.Error()}
+	return resp
 }
 
 // okResponse 组装 OK 响应（handler 只填业务字段）。
 func okResponse(op string, outputs map[string]any, wall time.Duration, models map[string]string) operator.Response {
-	return operator.Response{
-		ContractVersion: 1,
-		Op:              op,
-		Status:          operator.StatusOK,
-		Outputs:         outputs,
-		Metrics:         operator.Metrics{WallMs: wall.Milliseconds()},
-		OperatorVersion: "shorts-operator/go",
-		ModelVersions:   models,
-	}
+	resp := baseResponse(op, operator.StatusOK)
+	resp.Outputs = outputs
+	resp.Metrics = operator.Metrics{WallMs: wall.Milliseconds()}
+	resp.ModelVersions = models
+	return resp
 }

@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 3 || os.Args[2] != "--contract-version" || os.Args[3] != "1" {
+	if len(os.Args) < 4 || os.Args[2] != "--contract-version" || os.Args[3] != "1" {
 		fmt.Fprintln(os.Stderr, "用法: shorts-operator <op> --contract-version 1 < request.json")
 		os.Exit(2)
 	}

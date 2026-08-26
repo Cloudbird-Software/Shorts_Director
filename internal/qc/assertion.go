@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	vocabgen "github.com/Cloudbird-Software/Shorts_Director/codegen/go/vocab"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/vocab"
 )
 
 // Level 是 QC 分层：L0 确定性 / L1 一致性 / L2 生成物缺陷 / L3 合规。
@@ -171,7 +171,7 @@ func (a Assertion) validateExpectShape() error {
 
 // validateRemedy 校验返修动作在词表内，且 auto_fixable 语义自洽（实现侧校验）。
 func (a Assertion) validateRemedy() error {
-	if !vocabHas("remedy_action", a.Remedy.Action) {
+	if !vocab.IsVocabID("remedy_action", a.Remedy.Action) {
 		return fmt.Errorf("qc: remedy.action %q 不在词表 remedy_action", a.Remedy.Action)
 	}
 	if a.Remedy.InstructionTemplate == "" {
@@ -198,18 +198,4 @@ func (a Assertion) validateSampling() error {
 		return fmt.Errorf("qc: sampling.frames=%s 需要 n≥1", a.Sampling.Frames)
 	}
 	return nil
-}
-
-// vocabHas 复用 codegen 词表产物查询取值域。
-func vocabHas(table, id string) bool {
-	ids, ok := vocabgen.VocabIDs[table]
-	if !ok {
-		return false
-	}
-	for _, v := range ids {
-		if v == id {
-			return true
-		}
-	}
-	return false
 }
