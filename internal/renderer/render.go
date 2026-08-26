@@ -79,8 +79,8 @@ func clipColorAt(t videoplan.Track, frame int) (color.RGBA, bool) {
 // RenderFrames 把整个时间线渲成帧序列（纯 Go、确定性）。
 // 返回写入的帧数；R-2 校验：必须等于 plan.TotalFrames()。
 func RenderFrames(req *compiler.RenderRequest, dir string, h hash.Hash) (int, error) {
-	if req.ContractVersion != 1 {
-		return 0, fmt.Errorf("renderer: 契约版本 %d 不受支持（期望 1）", req.ContractVersion)
+	if req.ContractVersion != contracts.ContractRender {
+		return 0, fmt.Errorf("renderer: 契约版本 %d 不受支持（期望 %d）", req.ContractVersion, contracts.ContractRender)
 	}
 	total := req.Plan.TotalFrames()
 	w, hpx := req.Plan.Canvas.W, req.Plan.Canvas.H

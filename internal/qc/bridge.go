@@ -12,6 +12,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/Cloudbird-Software/Shorts_Director/internal/contracts"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/operator"
 )
 
@@ -60,7 +61,7 @@ func (a *RunnerProbeAdapter) Measure(ctx context.Context, subj *Subject, args ma
 		workdir = "/tmp/qc/" + a.Op // 算子只用 workdir 落中间产物，路径不进 golden 键
 	}
 	resp, err := a.Runner.Run(ctx, operator.Request{
-		ContractVersion: 1,
+		ContractVersion: contracts.ContractOperator,
 		Op:              a.Op,
 		Inputs:          inputs,
 		Workdir:         workdir,

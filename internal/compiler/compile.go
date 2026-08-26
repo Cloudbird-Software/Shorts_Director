@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/Cloudbird-Software/Shorts_Director/internal/contracts"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/videoplan"
 )
 
@@ -99,7 +100,7 @@ func Compile(p videoplan.Plan, idx MediaIndex, fonts []Font,
 	}
 
 	req := &RenderRequest{
-		ContractVersion: 1,
+		ContractVersion: contracts.ContractRender,
 		Plan:            p,
 		ResolvedMedia:   media,
 		Fonts:           fonts,

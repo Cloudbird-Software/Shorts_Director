@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/entity"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/jsoncmp"
 )
 
 // Evaluate 对 shot 求谓词值。字段无值（打标未覆盖）时 eq/in 类谓词按
@@ -90,7 +91,7 @@ func evalWith(p Predicate, get func(string) (any, bool)) (bool, error) {
 	}
 
 	if numericOps[p.Op] || p.Op == "between" {
-		f, isNum := toFloat(got)
+		f, isNum := jsoncmp.Float(got)
 		if !isNum {
 			return false, fmt.Errorf("slotquery: op %s 用于非数值字段 %q", p.Op, p.Field)
 		}
@@ -107,7 +108,7 @@ func compareNumber(p Predicate, got float64) (bool, error) {
 		}
 		return got >= p.Range[0] && got <= p.Range[1], nil
 	}
-	want, ok := toFloat(p.Value)
+	want, ok := jsoncmp.Float(p.Value)
 	if !ok {
 		return false, fmt.Errorf("slotquery: op %s 的 value 必须是数值", p.Op)
 	}
@@ -129,16 +130,16 @@ func compareNumber(p Predicate, got float64) (bool, error) {
 // eq ⇔ 包含；neq ⇔ 不包含；in ⇔ 有交集；nin ⇔ 无交集。
 func compareScalar(p Predicate, got any) (bool, error) {
 	multi, isMulti := got.([]any)
-	single := func(w any) bool { return equalScalar(got, w) }
+	single := func(w any) bool { return jsoncmp.Equal(got, w) }
 	intersects := func(want []any) bool {
 		for _, w := range want {
 			if isMulti {
 				for _, e := range multi {
-					if equalScalar(e, w) {
+					if jsoncmp.Equal(e, w) {
 						return true
 					}
 				}
-			} else if equalScalar(got, w) {
+			} else if jsoncmp.Equal(got, w) {
 				return true
 			}
 		}
@@ -148,7 +149,7 @@ func compareScalar(p Predicate, got any) (bool, error) {
 	case "eq":
 		if isMulti {
 			for _, e := range multi {
-				if equalScalar(e, p.Value) {
+				if jsoncmp.Equal(e, p.Value) {
 					return true, nil
 				}
 			}
@@ -158,7 +159,7 @@ func compareScalar(p Predicate, got any) (bool, error) {
 	case "neq":
 		if isMulti {
 			for _, e := range multi {
-				if equalScalar(e, p.Value) {
+				if jsoncmp.Equal(e, p.Value) {
 					return false, nil
 				}
 			}
@@ -179,33 +180,6 @@ func compareScalar(p Predicate, got any) (bool, error) {
 		return !intersects(want), nil
 	}
 	return false, fmt.Errorf("slotquery: 非标量操作符 %q", p.Op)
-}
-
-// equalScalar 跨 JSON 解码形态比较（number/string/bool）。
-func equalScalar(a, b any) bool {
-	if ab, ok := a.(bool); ok {
-		bb, ok2 := b.(bool)
-		return ok2 && ab == bb
-	}
-	if af, ok := toFloat(a); ok {
-		if bf, ok2 := toFloat(b); ok2 {
-			return af == bf
-		}
-		return false
-	}
-	as, aok := a.(string)
-	bs, bok := b.(string)
-	return aok && bok && as == bs
-}
-
-func toFloat(v any) (float64, bool) {
-	switch x := v.(type) {
-	case float64:
-		return x, true
-	case int:
-		return float64(x), true
-	}
-	return 0, false
 }
 
 // scalarField 从 shot 取白名单字段的标量/数组值；ok=false 表示未打标。

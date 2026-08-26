@@ -3,6 +3,7 @@ package videoplan
 import (
 	"errors"
 	"fmt"
+	"sort"
 )
 
 // overlayComponentWhitelist 是 IV-VP-4 的渲染组件注册表
@@ -137,11 +138,9 @@ func (p Plan) validateTracks() error {
 		return errors.New("videoplan: IV-VP-1 缺少 VIDEO_MAIN 轨 clip")
 	}
 	ordered := append([]Clip(nil), main.Clips...)
-	for i := 1; i < len(ordered); i++ { // 稳定插入排序（clips 通常已有序）
-		for j := i; j > 0 && ordered[j].TlStart < ordered[j-1].TlStart; j-- {
-			ordered[j], ordered[j-1] = ordered[j-1], ordered[j]
-		}
-	}
+	sort.SliceStable(ordered, func(i, j int) bool { // 稳定排序（clips 通常已有序）
+		return ordered[i].TlStart < ordered[j].TlStart
+	})
 	if ordered[0].TlStart != 0 {
 		return fmt.Errorf("videoplan: IV-VP-1 VIDEO_MAIN 首段 tl_start=%d ≠ 0", ordered[0].TlStart)
 	}

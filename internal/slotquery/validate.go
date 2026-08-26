@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	vocabgen "github.com/Cloudbird-Software/Shorts_Director/codegen/go/vocab"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/vocab"
 )
 
 // ErrSemanticNotRankable 表示 semantic 谓词需要注入向量排序器（仅 should）。
@@ -14,30 +15,17 @@ var ErrSemanticNotRankable = errors.New("slotquery: semantic 谓词需要 Semant
 // vocabContains 校验 id 是否落在词表（或带点前缀的任意分表）内。
 func vocabContains(nameOrPrefix, id string) error {
 	if !strings.HasSuffix(nameOrPrefix, ".") {
-		if !vocabHas(nameOrPrefix, id) {
+		if !vocab.IsVocabID(nameOrPrefix, id) {
 			return fmt.Errorf("不在词表 %s", nameOrPrefix)
 		}
 		return nil
 	}
 	for _, table := range vocabgen.VocabFiles {
-		if strings.HasPrefix(table, nameOrPrefix) && vocabHas(table, id) {
+		if strings.HasPrefix(table, nameOrPrefix) && vocab.IsVocabID(table, id) {
 			return nil
 		}
 	}
 	return fmt.Errorf("不在任何 %s* 分表", nameOrPrefix)
-}
-
-func vocabHas(table, id string) bool {
-	ids, ok := vocabgen.VocabIDs[table]
-	if !ok {
-		return false
-	}
-	for _, v := range ids {
-		if v == id {
-			return true
-		}
-	}
-	return false
 }
 
 // ValidateQuery 校验完整查询（must/forbid 禁 semantic + IV-SQ-1 降级链可解性）。

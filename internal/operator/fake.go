@@ -5,10 +5,10 @@ package operator
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/digest"
 )
@@ -60,17 +60,9 @@ func GoldenKey(req Request) (string, error) {
 		"params":      req.Params,
 		"determinism": req.Determinism,
 	}
-	raw, err := json.Marshal(material)
+	h, err := digest.ValueDigest(material)
 	if err != nil {
 		return "", err
 	}
-	canon, err := digest.CanonicalizeJSON(raw)
-	if err != nil {
-		return "", err
-	}
-	h, err := digest.ContentDigest(canon)
-	if err != nil {
-		return "", err
-	}
-	return h[len("sha256:"):], nil
+	return strings.TrimPrefix(h, "sha256:"), nil
 }
