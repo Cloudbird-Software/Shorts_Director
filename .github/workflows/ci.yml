@@ -127,7 +127,16 @@ jobs:
 
   gate:
     if: always()
-    needs: [hygiene, check, go-check, adr-required, deps, contract, suppression-budget]
+    needs:
+      [
+        hygiene,
+        check,
+        go-check,
+        adr-required,
+        deps,
+        contract,
+        suppression-budget,
+      ]
     runs-on: ubuntu-latest
     steps:
       - name: All required jobs green?
