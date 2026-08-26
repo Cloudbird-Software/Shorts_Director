@@ -18,7 +18,7 @@ schema/                  # 唯一真源，人手写（详见 schema/AGENTS.md）
 └── testdata/            # valid / invalid / evolution 样本
 ```
 
-后续语言栈：控制面 Go、算子 Python（无状态 CLI）、渲染层 TypeScript/Remotion。
+后续语言栈：控制面 Go（已落地：cmd/ + internal/）、算子 Python（规划中，尚未落地——operators/ 目录未建）、渲染层 TypeScript/Remotion（规划中）。
 
 ### Freeze Gate 状态（工程设计 §4.8）
 
