@@ -1,6 +1,10 @@
 name: CI
 on:
+  merge_group:
+    # ADR-0042：merge queue 必需订阅
+    types: [checks_requested]
   pull_request:
+
   push:
     branches: [main]
 
@@ -51,9 +55,88 @@ jobs:
     with:
       detector-ref: 4938955db008ddab2df170ec824c2cc3acbc1551
 
+  go-check:
+    # Go 控制面执法（治理对齐补面）：make go-check = gofmt 检查 + go vet + go test
+    # （Makefile 独立目标，此前的 Node 侧 check job 不覆盖——61 个 .go 文件零 CI 执法）
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.24"
+          cache: false
+      - run: make go-check
+
+  adr-required:
+    # C1 脚手架面（ADR-0021，GOVERNANCE C1 scope）：供应链入口文件变更须引用 ADR。
+    # 存在性校验读公开仓 archive/adr（ADR-0085 家园单仓化，GITHUB_TOKEN 可读公开仓，fail-closed）。
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: C1 脚手架变更须引用 ADR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          PR_API="repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
+          CHANGED=$(gh api "$PR_API" --jq '.changed_files')
+          GOT=0; C1_HIT=0; PAGE=1
+          while :; do
+            PAGEJSON=$(gh api "$PR_API/files?per_page=100&page=$PAGE")
+            jq -e 'type == "array"' <<<"$PAGEJSON" >/dev/null 2>&1 || {
+              echo "::error::files API 拉取失败——C1 判定无法保证，fail-closed"; exit 1; }
+            N=$(jq 'length' <<<"$PAGEJSON")
+            GOT=$((GOT+N))
+            if jq -e '[.[] | .filename, (.previous_filename // empty)]
+                     | any(test("^(\\.github/|AGENTS\\.md|Makefile|docs/|zizmor\\.yml|\\.dependency-cruiser\\.cjs)"))' <<<"$PAGEJSON" >/dev/null 2>&1; then
+              C1_HIT=1
+            fi
+            [[ $N -lt 100 ]] && break
+            PAGE=$((PAGE+1))
+          done
+          if [ "$GOT" -lt "$CHANGED" ]; then
+            echo "::error::files API 截断（$GOT/$CHANGED）——fail-closed"; exit 1
+          fi
+          if [ "$C1_HIT" -ne 1 ]; then
+            echo "非 C1 脚手架路径变更，跳过 adr-required"; exit 0
+          fi
+          ADR_RE='\bADR-[0-9]{4}\b'
+          if ! { echo "$PR_TITLE"; echo "$PR_BODY"; } | grep -qE "$ADR_RE"; then
+            echo "::error::C1 脚手架面（.github/AGENTS.md/Makefile/docs/zizmor.yml）变更但 PR 未引用 ADR-NNNN（GOVERNANCE C1——供应链入口，ADR-0021）"
+            exit 1
+          fi
+          ADR_LISTING=$(gh api "repos/Cloudbird-Software/archive/contents/adr?per_page=100" --paginate --jq '.[].name' 2>/dev/null)
+          if [[ -z "$ADR_LISTING" ]]; then
+            echo "::error::archive/adr 清单拉取失败（fail-closed）"; exit 1
+          fi
+          MISSING=0
+          for ref in $( { echo "$PR_TITLE"; echo "$PR_BODY"; } | grep -oE "$ADR_RE" | sort -u ); do
+            num="${ref#ADR-}"
+            grep -q "^ADR-${num}-" <<<"$ADR_LISTING" || {
+              echo "::error::引用的 ${ref} 在 archive/adr/ 无对应文件（幽灵 ADR；ADR-0085 家园单仓化）"; MISSING=1; }
+          done
+          exit $MISSING
+
   gate:
     if: always()
-    needs: [hygiene, check, deps, contract, suppression-budget]
+    needs:
+      [
+        hygiene,
+        check,
+        go-check,
+        adr-required,
+        deps,
+        contract,
+        suppression-budget,
+      ]
     runs-on: ubuntu-latest
     steps:
       - name: All required jobs green?
@@ -67,7 +150,8 @@ jobs:
           # 未登记的 skipped 与一切非 success（failure/cancelled/timed_out/startup_failure）一律红
           case "$EVENT" in
             pull_request) EXPECTED_SKIP="" ;;
-            push)         EXPECTED_SKIP="deps" ;;
+            push)         EXPECTED_SKIP="deps adr-required" ;;
+            merge_group)  EXPECTED_SKIP="deps adr-required" ;;   # ADR-0042: PR-only jobs structurally skipped
             *)            EXPECTED_SKIP="" ;;
           esac
           BAD=$(echo "$NEEDS" | jq -r --arg skip "$EXPECTED_SKIP" '

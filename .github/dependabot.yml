@@ -7,6 +7,16 @@ updates:
       actions:
         patterns: ["*"]
         cooldown-days: 7
+  # Go 控制面依赖（治理对齐补面：仓内有 go.mod 但 dependabot 此前不感知）
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule: { interval: weekly }
+    open-pull-requests-limit: 5
+    groups:
+      minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+        cooldown-days: 7
   - package-ecosystem: npm
     directory: "/"
     schedule: { interval: weekly }
