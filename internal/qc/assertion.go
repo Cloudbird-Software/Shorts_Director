@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/vocab"
 )
 
@@ -61,14 +60,14 @@ type Sampling struct {
 
 // Assertion 是一条完整断言。
 type Assertion struct {
-	AssertionID string               `json:"assertion_id"`
-	Level       Level                `json:"level"`
-	Severity    Severity             `json:"severity"`
-	Probe       Probe                `json:"probe"`
-	Expect      Expect               `json:"expect"`
-	Remedy      Remedy               `json:"remedy"`
-	Sampling    *Sampling            `json:"sampling,omitempty"`
-	AppliesWhen *slotquery.Predicate `json:"applies_when,omitempty"`
+	AssertionID string     `json:"assertion_id"`
+	Level       Level      `json:"level"`
+	Severity    Severity   `json:"severity"`
+	Probe       Probe      `json:"probe"`
+	Expect      Expect     `json:"expect"`
+	Remedy      Remedy     `json:"remedy"`
+	Sampling    *Sampling  `json:"sampling,omitempty"`
+	AppliesWhen *Predicate `json:"applies_when,omitempty"`
 }
 
 // probeOps 是 29 值冻结算子白名单（schema enum 同源；
@@ -141,7 +140,7 @@ func (a Assertion) Validate() error {
 		return err
 	}
 	if a.AppliesWhen != nil {
-		// applies_when 复用 ShotSlotQuery 谓词：字段白名单与词表受控同源校验。
+		// applies_when 谓词：字段白名单与词表受控校验（自 slotquery 迁移精简）。
 		if err := a.AppliesWhen.Validate(); err != nil {
 			return fmt.Errorf("qc: applies_when: %w", err)
 		}

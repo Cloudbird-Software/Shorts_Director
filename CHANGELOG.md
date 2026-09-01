@@ -61,6 +61,7 @@
 
 ### Removed
 - 模板占位：src/index.ts 的 greet 与 tests/smoke.test.ts。
+- IR-0007 退役-1：shot_slot_query 契约整体下线（schema/G2 样本/Go 实体层 slotquery），applies_when 谓词内联进 qc_assertion schema 并迁入 internal/qc/predicate.go；planner（时序编译）同步删除。归档点 tag `archive/pre-retire-ir-0007`。
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。

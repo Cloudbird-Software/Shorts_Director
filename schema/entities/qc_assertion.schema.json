@@ -17,8 +17,12 @@
       "type": "string",
       "description": "如 L1.SUBJECT_PRESENT.knife；层级.名称.限定词"
     },
-    "level": { "enum": ["L0", "L1", "L2", "L3"] },
-    "severity": { "enum": ["BLOCKER", "MAJOR", "MINOR"] },
+    "level": {
+      "enum": ["L0", "L1", "L2", "L3"]
+    },
+    "severity": {
+      "enum": ["BLOCKER", "MAJOR", "MINOR"]
+    },
     "probe": {
       "type": "object",
       "required": ["op", "args"],
@@ -56,7 +60,9 @@
             "aigc_overlay_present"
           ]
         },
-        "args": { "type": "object" }
+        "args": {
+          "type": "object"
+        }
       },
       "additionalProperties": false
     },
@@ -77,7 +83,9 @@
             "contains_all"
           ]
         },
-        "value": { "description": "between 时为二元数组" }
+        "value": {
+          "description": "between 时为二元数组"
+        }
       },
       "additionalProperties": false
     },
@@ -86,12 +94,17 @@
       "required": ["action", "instruction_template"],
       "description": "返修指令模板，不是错误消息；模板变量 {{measured}} {{expected}}",
       "properties": {
-        "action": { "description": "vocab/remedy_action" },
+        "action": {
+          "description": "vocab/remedy_action"
+        },
         "instruction_template": {
           "type": "string",
           "description": "外包/商家能看懂并执行的人话指令"
         },
-        "auto_fixable": { "type": "boolean", "default": false },
+        "auto_fixable": {
+          "type": "boolean",
+          "default": false
+        },
         "auto_fix_op": {
           "type": ["string", "null"],
           "description": "如 auto_crop_recenter；auto_fixable=true 时必填（实现侧校验）"
@@ -105,13 +118,124 @@
         "frames": {
           "enum": ["ALL", "EVERY_N", "KEYFRAMES", "FIRST_LAST", "N_UNIFORM"]
         },
-        "n": { "type": "integer", "minimum": 1 }
+        "n": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
       "additionalProperties": false
     },
     "applies_when": {
-      "$ref": "https://shorts.director/schemas/v1/shot_slot_query.json#/$defs/Predicate"
+      "$ref": "#/$defs/Predicate"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "Field": {
+      "enum": [
+        "shot_type",
+        "shot_type_class",
+        "camera_motion.type",
+        "camera_motion.dir",
+        "scene",
+        "subject",
+        "action",
+        "mood",
+        "is_loopable",
+        "clean_in",
+        "clean_out",
+        "has_speech",
+        "has_lipsync",
+        "negative_space",
+        "safe_crop_9x16.ok",
+        "motion_energy",
+        "duration",
+        "sharpness_tier",
+        "quality_tier",
+        "season",
+        "ttl_at",
+        "linked_sku",
+        "use_count",
+        "last_used_at",
+        "source_kind",
+        "gen_form",
+        "model"
+      ],
+      "description": "applies_when 字段白名单（自 IV-SQ-2 迁移；eval 域新增 gen_form/model）"
+    },
+    "Predicate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["op", "field", "value"],
+          "properties": {
+            "op": {
+              "enum": ["eq", "in", "neq", "nin"]
+            },
+            "field": {
+              "$ref": "#/$defs/Field"
+            },
+            "value": {
+              "description": "eq/neq 为标量；in/nin 为数组。取值受控于对应词表（运行时由 invariants 层校验）"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["op", "field", "value"],
+          "properties": {
+            "op": {
+              "enum": ["gte", "lte", "gt", "lt"]
+            },
+            "field": {
+              "$ref": "#/$defs/Field"
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["op", "field", "range"],
+          "properties": {
+            "op": {
+              "const": "between"
+            },
+            "field": {
+              "$ref": "#/$defs/Field"
+            },
+            "range": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["op", "operands"],
+          "properties": {
+            "op": {
+              "enum": ["and", "or", "not"]
+            },
+            "operands": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/Predicate"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
 }

@@ -22,15 +22,5 @@
     "missing_overlays.json": "required 子对象缺失：同上",
     "missing_diversity_signature.json": "required 子对象缺失：同上",
     "missing_constraints_report.json": "required 子对象缺失：同上"
-  },
-  "shot_slot_query": {
-    "top_level_additional_field.json": "additionalProperties：Go 忽略未知字段",
-    "predicate_additional_field.json": "additionalProperties：同上",
-    "missing_must.json": "required 字段缺失：空 must 是合法兜底语义（terminal 变体）",
-    "numeric_op_string_value.json": "类型约束：数值 op 传字符串，Go any 宽容解码（改进候选）",
-    "should_weight_out_of_range.json": "数值范围：should 权重 ∈[0,1] 未在 Go 侧校验（改进候选）",
-    "fallback_level_negative.json": "数值下界：level ≥0 未在 Go 侧校验（改进候选）",
-    "fallback_missing_degrade_note.json": "required 字段缺失：degrade_note 为文档性字段",
-    "consumption_missing_cooldown.json": "required 字段缺失：零值 cooldown_days=0 语义合法（永不冷却）"
   }
 }

@@ -14,7 +14,6 @@ export const SCHEMA_VERSIONS = {
   brandKernel: "brand_kernel/1",
   shot: "shot/1",
   asset: "asset/1",
-  shotSlotQuery: "shot_slot_query/1",
   videoPlan: "video_plan/1",
   qcAssertion: "qc_assertion/1",
   productionOrder: "production_order/1",

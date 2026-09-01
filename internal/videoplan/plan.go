@@ -1,5 +1,5 @@
 // Package videoplan 是 VideoPlan IR v1（schema/entities/video_plan.schema.json）
-// 的 Go 实体层：PlanDay 组装（internal/planner）的目标产物，Compiler（C3）
+// 的 Go 实体层：生成编排（internal/eval）的时间线产物，Compiler（C3）
 // 的输入。结构体与 schema 字段一一对应（json tag 对齐），漂移由 round-trip
 // 测试发现；跨字段不变式 IV-VP-1..5 在本包 Validate 强制。
 package videoplan

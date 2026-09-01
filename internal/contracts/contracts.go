@@ -11,7 +11,6 @@ const (
 	SchemaBrandKernel     SchemaName = "brand_kernel"     // v1
 	SchemaShot            SchemaName = "shot"             // v1
 	SchemaAsset           SchemaName = "asset"            // v1
-	SchemaShotSlotQuery   SchemaName = "shot_slot_query"  // v1
 	SchemaVideoPlan       SchemaName = "video_plan"       // v1
 	SchemaQCAssertion     SchemaName = "qc_assertion"     // v1
 	SchemaProductionOrder SchemaName = "production_order" // v1

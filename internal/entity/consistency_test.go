@@ -16,7 +16,6 @@ import (
 	"testing"
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/entity"
-	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/videoplan"
 )
 
@@ -38,13 +37,6 @@ var goEntities = []struct {
 			return err
 		}
 		return p.Validate()
-	}},
-	{"shot_slot_query", func(raw []byte) error {
-		var q slotquery.Query
-		if err := json.Unmarshal(raw, &q); err != nil {
-			return err
-		}
-		return q.Validate()
 	}},
 }
 
