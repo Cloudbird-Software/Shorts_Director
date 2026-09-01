@@ -3,7 +3,7 @@ coverage/
 dist/
 reports/
 CHANGELOG.md
-docs/Engineering_plan.md
+docs/history/Engineering_plan.md
 go.mod
 go.sum
 *.go

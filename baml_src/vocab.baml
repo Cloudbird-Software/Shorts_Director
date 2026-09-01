@@ -160,6 +160,16 @@ enum DefectType {
   PORTRAIT_AUTH_MISSING @description("缺肖像授权：出镜人授权缺失或已撤销")
 }
 
+// gen_form（6 值）
+enum GenForm {
+  I2V_AMBIENCE @description("图生视频氛围展示：单张种子图经图生视频模型生成呼吸感运镜氛围片段（产品/场景空镜），叠加确定性信息层")
+  T2V_NARRATIVE @description("文生视频叙事片段：文生视频模型按文案生成多镜头叙事片段（初始值，留待数据配置）")
+  PHOTO_MOTION @description("静图动态化：静图经确定性运镜/局部动效动态化后叠加信息层（初始值，留待数据配置）")
+  DIGITAL_HUMAN @description("数字人口播：人像照经语音合成与口型同步生成数字人口播，叠加品牌信息层（IR-0007 实测对象）")
+  HYBRID_CUT @description("生成片段混合剪辑：生成 B-roll 与模板卡点字幕混合剪辑（初始值，留待数据配置）")
+  PIP_TALKING @description("口播画中画：数字人口播角标叠加氛围 B-roll（初始值，留待数据配置）")
+}
+
 // mood（8 值）
 enum Mood {
   WARM @description("温暖：暖光/烟火气/家常感")
