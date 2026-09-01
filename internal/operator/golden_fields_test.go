@@ -24,6 +24,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Cloudbird-Software/Shorts_Director/internal/eval"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/operator"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/qc"
 )
@@ -143,7 +144,10 @@ func outputsAccesses(t *testing.T, root string) map[string]map[string]bool {
 // 键是相对 internal/ 的包目录（slash 形式）。新增 consumer 包时在此登记，
 // 并在该包暴露 ConsumedGoldenOps 变量。
 func consumerDecl() map[string][]string {
-	return map[string][]string{"qc": qc.ConsumedGoldenOps}
+	return map[string][]string{
+		"qc":   qc.ConsumedGoldenOps,
+		"eval": eval.ConsumedGoldenOps,
+	}
 }
 
 // validateAccesses 判定访问集合 ⊆ 清单（通用适配器按被消费各 op 字段集合的

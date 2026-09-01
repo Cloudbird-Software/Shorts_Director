@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "suite": {
+    "schema_version": 1,
+    "suite_id": "form1_smoke_golden",
+    "gen_form": "I2V_AMBIENCE",
+    "op": "gen_i2v",
+    "model": "fake",
+    "seeds": [7],
+    "fps": 16,
+    "params": {
+      "height": 1024,
+      "width": 576
+    },
+    "entries": [
+      {
+        "id": "noodles",
+        "image_path": "/mnt/assets/noodles_hero.jpg",
+        "prompt": "一碗热气腾腾的牛肉面特写，缓慢推近，蒸汽升腾",
+        "duration_sec": 3
+      }
+    ],
+    "assertion_pack": [
+      {
+        "assertion_id": "L0.res",
+        "level": "L0",
+        "severity": "BLOCKER",
+        "probe": {
+          "op": "resolution",
+          "args": {}
+        },
+        "expect": {
+          "op": "eq",
+          "value": 1080
+        },
+        "remedy": {
+          "action": "REGENERATE",
+          "instruction_template": "分辨率 {{measured}}",
+          "auto_fix_op": null
+        }
+      }
+    ],
+    "budget": {
+      "wall_seconds": 600,
+      "gpu_seconds": 100
+    }
+  },
+  "capability_profile_ref": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "runner_mode": "fake",
+  "started_at": "2023-11-14T22:13:20Z",
+  "finished_at": "2023-11-14T22:13:20Z",
+  "budget_truncated": false,
+  "items": [
+    {
+      "entry_id": "noodles",
+      "seed": 7,
+      "status": "OK",
+      "video_path": "/mnt/work/geni2v-e1/out_fake.mp4",
+      "content_hash": "sha256:80f895f92ea67987e6570346f13820e865ad7421fe89b894ea4e87b3ae83d7c3",
+      "wall_ms": 169,
+      "model_versions": {
+        "ffmpeg": "lavfi",
+        "model": "fake-lavfi@1"
+      },
+      "assertions": [
+        {
+          "assertion_id": "L0.res",
+          "level": "L0",
+          "severity": "BLOCKER",
+          "pass": true,
+          "measured": 1080,
+          "expected": 1080,
+          "evidence_uri": "file:///evidence-golden"
+        }
+      ],
+      "usable": true
+    }
+  ],
+  "yield": {
+    "entries_total": 1,
+    "entries_with_usable": 1,
+    "yield_ratio": 1,
+    "items_total": 1,
+    "items_usable": 1,
+    "items_gen_fail": 0,
+    "items_assert_fail": 0,
+    "items_assert_error": 0,
+    "items_skipped_budget": 0,
+    "gpu_seconds_total": 0
+  },
+  "digest": "sha256:9b86e4f7569441f14ee97e962e560e41f4f3952d6e4975c3377427c7c48e12fe"
+}
