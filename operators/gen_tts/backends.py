@@ -109,10 +109,9 @@ class CosyVoiceTTS:
 
 def torchaudio_save(chunks, out):
     import torch
+    import torchaudio
 
     frames = [torch.from_numpy(c["tts_speech"]) for c in chunks]
-    import torchaudio  # noqa: F401 —— CosyVoice 镜像内自带
-
     torchaudio.save(out, torch.cat(frames, dim=-1), 24000)
 
 
