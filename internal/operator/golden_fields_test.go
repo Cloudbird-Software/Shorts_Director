@@ -26,6 +26,7 @@ import (
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/eval"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/form1"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/form4"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/operator"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/qc"
 )
@@ -149,11 +150,14 @@ func consumerDecl() map[string][]string {
 		"qc":    qc.ConsumedGoldenOps,
 		"eval":  eval.ConsumedGoldenOps,
 		"form1": form1.ConsumedGoldenOps,
+		"form4": form4.ConsumedGoldenOps,
 	}
 }
 
-// validateAccesses 判定访问集合 ⊆ 清单（通用适配器按被消费各 op 字段集合的
-// 交集判界——适配器对任意 op 走同一访问路径）。返回违规描述，空即通过。
+// validateAccesses 判定访问集合 ⊆ 清单（按被消费各 op 字段集合的并集
+// 判界——多算子消费者如 form4 对不同 op 读不同字段；任一访问字段不在
+// 任何所消费 op 的 golden 清单内即失败，上游删改输出仍被拦截）。
+// 返回违规描述，空即通过。
 func validateAccesses(manifest map[string]map[string]bool,
 	accesses map[string]map[string]bool, decl map[string][]string) []string {
 	var violations []string
@@ -172,28 +176,20 @@ func validateAccesses(manifest map[string]map[string]bool,
 				file+": 存在 Outputs 字面访问但包未在 G7 consumerDecl 登记")
 			continue
 		}
-		inter := map[string]bool{}
-		for i, op := range ops {
+		union := map[string]bool{}
+		for _, op := range ops {
 			set, ok := manifest[op]
 			if !ok {
 				violations = append(violations,
 					file+": 声明消费的 op "+op+" 在 testdata/golden 无 fixture")
 				continue
 			}
-			if i == 0 {
-				for k := range set {
-					inter[k] = true
-				}
-			} else {
-				for k := range inter {
-					if !set[k] {
-						delete(inter, k)
-					}
-				}
+			for k := range set {
+				union[k] = true
 			}
 		}
 		for f := range fields {
-			if !inter[f] {
+			if !union[f] {
 				violations = append(violations,
 					file+": 访问字段 "+f+" 不在所消费 op 的 golden 清单内（上游删改了输出？）")
 			}
