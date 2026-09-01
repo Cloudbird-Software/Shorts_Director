@@ -154,7 +154,7 @@ func runPipeline(t *testing.T, suite *eval.Suite, merchants map[string]*form1.Me
 		Engine:     probeEngine(t, workdir),
 		Font:       testFont(t), RunnerMode: "local",
 		WorkdirRoot: workdir, Root: filepath.Dir(workdir),
-		Date:          "2026-09-01",
+		Date:           "2026-09-01",
 		RendererExpect: compiler.RendererExpect{FFmpeg: "test", Remotion: "4.0.230", Node: "22.11.0"},
 	})
 	if err != nil {
@@ -317,8 +317,8 @@ func TestForm4LoadScriptValidation(t *testing.T) {
 	}
 	for name, doc := range map[string]string{
 		"缺 cta": `{"schema_version":1,"merchant_id":"m1","brand":"B","selling_point":"S"}`,
-		"缺品牌":  `{"schema_version":1,"merchant_id":"m1","selling_point":"S","cta":"C"}`,
-		"版本不符": `{"schema_version":2,"merchant_id":"m1","brand":"B","selling_point":"S","cta":"C"}`,
+		"缺品牌":   `{"schema_version":1,"merchant_id":"m1","selling_point":"S","cta":"C"}`,
+		"版本不符":  `{"schema_version":2,"merchant_id":"m1","brand":"B","selling_point":"S","cta":"C"}`,
 	} {
 		if err := os.WriteFile(path, []byte(doc), 0o644); err != nil {
 			t.Fatal(err)
