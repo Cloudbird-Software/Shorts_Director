@@ -25,6 +25,7 @@ import (
 	"testing"
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/eval"
+	"github.com/Cloudbird-Software/Shorts_Director/internal/form1"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/operator"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/qc"
 )
@@ -145,8 +146,9 @@ func outputsAccesses(t *testing.T, root string) map[string]map[string]bool {
 // 并在该包暴露 ConsumedGoldenOps 变量。
 func consumerDecl() map[string][]string {
 	return map[string][]string{
-		"qc":   qc.ConsumedGoldenOps,
-		"eval": eval.ConsumedGoldenOps,
+		"qc":    qc.ConsumedGoldenOps,
+		"eval":  eval.ConsumedGoldenOps,
+		"form1": form1.ConsumedGoldenOps,
 	}
 }
 
