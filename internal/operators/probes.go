@@ -282,7 +282,7 @@ func (p *AIGCOverlayOp) Handle(ctx context.Context, req operator.Request) (opera
 	}
 	// 证据：两张被比对的帧留在 workdir 可回查
 	return okResponse(req.Op, map[string]any{
-		"value":       ratio,
+		"value":        ratio,
 		"evidence_uri": filepath.Join(finalDir, fmt.Sprintf("f_%06d.png", frame)),
 	}, time.Since(start), map[string]string{"method": "pixel-diff-vs-ref"}), nil
 }

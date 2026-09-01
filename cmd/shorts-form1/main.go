@@ -109,9 +109,9 @@ func main() {
 	}
 	summary, _ := json.Marshal(map[string]any{
 		"artifact": path, "digest": art.Digest,
-		"yield_ratio":   art.Yield.YieldRatio,
-		"entries":       []int{art.Yield.EntriesWithUsable, art.Yield.EntriesTotal},
-		"items_usable":  art.Yield.ItemsUsable, "items_total": art.Yield.ItemsTotal,
+		"yield_ratio":  art.Yield.YieldRatio,
+		"entries":      []int{art.Yield.EntriesWithUsable, art.Yield.EntriesTotal},
+		"items_usable": art.Yield.ItemsUsable, "items_total": art.Yield.ItemsTotal,
 	})
 	fmt.Println(string(summary))
 }

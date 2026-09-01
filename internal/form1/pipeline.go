@@ -32,16 +32,21 @@ import (
 // SchemaVersion 是 form1 run artifact 的结构版本。
 const SchemaVersion = 1
 
+// ConsumedGoldenOps 声明本包消费 golden 契约的算子（Freeze Gate G7 锚点）：
+// internal/operator 的 golden 清单测试据此校验本包 Outputs 字面访问 ⊆
+// testdata/golden 清单——上游删改输出字段时此处失败，而不是静默读零值。
+var ConsumedGoldenOps = []string{"gen_i2v"}
+
 // Options 是管线执行的注入面。
 type Options struct {
-	Suite       *eval.Suite            // 条目（种子图/prompt/时长）与生成参数
-	Merchants   map[string]*Merchant   // entry_id → 商家信息表
-	Gen         operator.Runner        // 生成算子执行器
-	Engine      *qc.Engine             // 断言引擎（探针已注册）
-	Font        compiler.Font          // 信息层字体（R-4 哈希核验）
-	RunnerMode  string                 // fake|local|docker
-	ProfileRef  string                 // capability profile 内容寻址引用
-	WorkdirRoot string                 // 逐条目工作目录根
+	Suite       *eval.Suite          // 条目（种子图/prompt/时长）与生成参数
+	Merchants   map[string]*Merchant // entry_id → 商家信息表
+	Gen         operator.Runner      // 生成算子执行器
+	Engine      *qc.Engine           // 断言引擎（探针已注册）
+	Font        compiler.Font        // 信息层字体（R-4 哈希核验）
+	RunnerMode  string               // fake|local|docker
+	ProfileRef  string               // capability profile 内容寻址引用
+	WorkdirRoot string               // 逐条目工作目录根
 	// Root 是套件相对路径（种子图）的解析根，默认当前目录。
 	Root string
 	// Date 是确定性锚（YYYY-MM-DD）：ScheduledDate / 隐式标识 ProduceTime /

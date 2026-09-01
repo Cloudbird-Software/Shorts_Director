@@ -40,12 +40,12 @@ func validMerchant() map[string]any {
 func TestLoadMerchantRejects(t *testing.T) {
 	dir := t.TempDir()
 	cases := map[string]func(m map[string]any){
-		"非 fictional":     func(m map[string]any) { m["fictional"] = false },
-		"缺 fictional 字段":  func(m map[string]any) { delete(m, "fictional") },
-		"schema 版本错":      func(m map[string]any) { m["schema_version"] = 2 },
+		"非 fictional":    func(m map[string]any) { m["fictional"] = false },
+		"缺 fictional 字段": func(m map[string]any) { delete(m, "fictional") },
+		"schema 版本错":     func(m map[string]any) { m["schema_version"] = 2 },
 		"缺 id":           func(m map[string]any) { m["id"] = "" },
-		"缺店名":           func(m map[string]any) { m["info"].(map[string]any)["shop_name"] = "" },
-		"缺 AIGC 文案":     func(m map[string]any) { m["aigc_disclosure"] = "" },
+		"缺店名":            func(m map[string]any) { m["info"].(map[string]any)["shop_name"] = "" },
+		"缺 AIGC 文案":      func(m map[string]any) { m["aigc_disclosure"] = "" },
 	}
 	for name, mutate := range cases {
 		m := validMerchant()

@@ -89,11 +89,11 @@ func (r probeRouter) Run(ctx context.Context, req operator.Request) (operator.Re
 func probeEngine(t *testing.T, dir string) *qc.Engine {
 	t.Helper()
 	router := probeRouter{
-		"ffprobe_field":        (&operators.FFProbeFieldOp{}).Handle,
-		"resolution":           (&operators.ResolutionOp{}).Handle,
-		"blackdetect_ratio":    (&operators.BlackdetectRatioOp{}).Handle,
+		"ffprobe_field":         (&operators.FFProbeFieldOp{}).Handle,
+		"resolution":            (&operators.ResolutionOp{}).Handle,
+		"blackdetect_ratio":     (&operators.BlackdetectRatioOp{}).Handle,
 		"aigc_metadata_present": (&operators.AIGCMetadataOp{}).Handle,
-		"aigc_overlay_present": (&operators.AIGCOverlayOp{}).Handle,
+		"aigc_overlay_present":  (&operators.AIGCOverlayOp{}).Handle,
 	}
 	tiers := map[string]qc.CostTier{
 		"ffprobe_field":         qc.CostFree,

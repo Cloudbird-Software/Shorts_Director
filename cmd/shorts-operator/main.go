@@ -24,11 +24,11 @@ func main() {
 	registry := map[string]operators.Handler{
 		"probe": (&operators.ProbeOp{}).Handle,
 		// QC 断言包探针（IR-0007 AC-6 形态1 断言包执行端）
-		"ffprobe_field":        (&operators.FFProbeFieldOp{}).Handle,
-		"resolution":           (&operators.ResolutionOp{}).Handle,
-		"blackdetect_ratio":    (&operators.BlackdetectRatioOp{}).Handle,
+		"ffprobe_field":         (&operators.FFProbeFieldOp{}).Handle,
+		"resolution":            (&operators.ResolutionOp{}).Handle,
+		"blackdetect_ratio":     (&operators.BlackdetectRatioOp{}).Handle,
 		"aigc_metadata_present": (&operators.AIGCMetadataOp{}).Handle,
-		"aigc_overlay_present": (&operators.AIGCOverlayOp{}).Handle,
+		"aigc_overlay_present":  (&operators.AIGCOverlayOp{}).Handle,
 	}
 	h, ok := registry[op]
 	if !ok {

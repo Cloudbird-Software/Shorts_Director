@@ -16,8 +16,8 @@ import (
 // 形态1 画布常量（gen_form I2V_AMBIENCE bindings：1080×1920；
 // fps 取冻结值 25——渲染时间线与生成源 fps 解耦）。
 const (
-	CanvasW = 1080
-	CanvasH = 1920
+	CanvasW   = 1080
+	CanvasH   = 1920
 	CanvasFPS = 25
 )
 
@@ -54,7 +54,7 @@ func BuildPlan(in planInput) (videoplan.Plan, error) {
 	ov := func(oid, intent, component, text string, box videoplan.LayoutBox, size int) videoplan.Overlay {
 		return videoplan.Overlay{
 			OverlayID: oid, Intent: intent, Component: component,
-			Props: map[string]any{"text": text, "font": in.FontFamily, "size": float64(size)},
+			Props:      map[string]any{"text": text, "font": in.FontFamily, "size": float64(size)},
 			StartFrame: 0, EndFrame: in.Frames, LayoutBox: box,
 		}
 	}
@@ -66,7 +66,7 @@ func BuildPlan(in planInput) (videoplan.Plan, error) {
 		ScheduledDate: in.Date,
 		Canvas: videoplan.Canvas{W: CanvasW, H: CanvasH, FPS: CanvasFPS,
 			SafeArea: videoplan.SafeArea{Top: 120, Bottom: 120, Left: 60, Right: 60}},
-		Timebase:     videoplan.Timebase{Unit: "frame", Rate: CanvasFPS},
+		Timebase:      videoplan.Timebase{Unit: "frame", Rate: CanvasFPS},
 		BeatSchemaRef: videoplan.VersionedRef{ID: "form1_ambience", Version: 1},
 		StyleThemeRef: videoplan.VersionedRef{ID: "warm_default", Version: 1},
 		Tracks: []videoplan.Track{{
@@ -74,7 +74,7 @@ func BuildPlan(in planInput) (videoplan.Plan, error) {
 			Clips: []videoplan.Clip{{
 				ClipID: "clip_gen_1", BeatRole: "HOOK",
 				Source: videoplan.ClipSource{Kind: "GENERATED", Ref: "gen-0001", ContentHash: in.GenHash},
-				SrcIn: 0, SrcOut: in.Frames, TlStart: 0, TlEnd: in.Frames,
+				SrcIn:  0, SrcOut: in.Frames, TlStart: 0, TlEnd: in.Frames,
 				Transform:    videoplan.Transform{Scale: 1, Position: &videoplan.Position{X: 0, Y: 0}},
 				TransitionIn: videoplan.TransitionIn{Kind: "CUT"},
 			}},
