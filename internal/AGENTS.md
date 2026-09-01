@@ -1,7 +1,9 @@
 # internal/ —— Go 控制面（modular monolith）
 
-本目录承载 Engineering_plan.md §3.1 的控制面服务（S1–S11）与公共底座。
-语言：Go（标准库优先，新增第三方依赖须先报批）；LLM 提示契约一律 BAML。
+本目录承载生成一等公民实验平台的 Go 控制面（评估编排/生成编排/QC/合规/
+渲染编译）与公共底座（范式依据 specs/IR-0007；旧意图 S1–S11 服务清单见
+docs/history/Engineering_plan.md）。
+语言：Go（标准库优先，新增第三方依赖须先报批）。
 
 ## 模块规约
 

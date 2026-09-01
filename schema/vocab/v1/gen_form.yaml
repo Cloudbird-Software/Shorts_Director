@@ -1,0 +1,82 @@
+# gen_form —— 生成形态（镜头制式）受控词表（IR-0007 IFACE-3）
+# 形态 = 数据而非代码分支：每形态在 bindings 钉死时长区间（秒）/ 画幅 /
+# 信息层要素清单 / 断言包绑定；enum 只允许追加（schema/AGENTS.md 演进规则），
+# bindings 数值变更视为语义变更，PR 须说明影响面并同步断言包与套件定义。
+# 形态1（I2V_AMBIENCE）与形态4（DIGITAL_HUMAN）为 IR-0007 实测对象（光谱
+# 两端）；其余 4 形态 bindings 为初始值，留待数据配置（IR-0007 nonGoals），
+# 未实测前不得作为门禁依据。
+# bindings 字段为词表扩展元数据：现行 codegen（gen-vocab.mjs）只消费
+# id/zh/def/equivalence_class/deprecated/replaced_by，bindings 供评估编排
+# 与套件定义（internal/eval、evals/）直接读表消费。
+version: 1
+name: gen_form
+kind: enum
+frozen: false
+values:
+  - id: I2V_AMBIENCE
+    zh: 图生视频氛围展示
+    def: 单张种子图经图生视频模型生成呼吸感运镜氛围片段（产品/场景空镜），叠加确定性信息层
+    equivalence_class: [PURE_GEN]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [5, 8]
+      canvas: { w: 1080, h: 1920 }
+      info_layer:
+        [SHOP_NAME, SIGNATURE_ITEM, PRICE, ADDRESS, PHONE, AIGC_DISCLOSURE]
+      assertion_pack: form1_ambience
+  - id: T2V_NARRATIVE
+    zh: 文生视频叙事片段
+    def: 文生视频模型按文案生成多镜头叙事片段（初始值，留待数据配置）
+    equivalence_class: [PURE_GEN]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [8, 15]
+      canvas: { w: 1080, h: 1920 }
+      info_layer: [SHOP_NAME, PRICE, AIGC_DISCLOSURE]
+      assertion_pack: form2_narrative
+  - id: PHOTO_MOTION
+    zh: 静图动态化
+    def: 静图经确定性运镜/局部动效动态化后叠加信息层（初始值，留待数据配置）
+    equivalence_class: [TEMPLATE]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [5, 10]
+      canvas: { w: 1080, h: 1920 }
+      info_layer: [SHOP_NAME, SIGNATURE_ITEM, PRICE, AIGC_DISCLOSURE]
+      assertion_pack: form3_photo_motion
+  - id: DIGITAL_HUMAN
+    zh: 数字人口播
+    def: 人像照经语音合成与口型同步生成数字人口播，叠加品牌信息层（IR-0007 实测对象）
+    equivalence_class: [AVATAR]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [4, 8]
+      canvas: { w: 1080, h: 1920 }
+      info_layer: [BRAND_NAME, AIGC_DISCLOSURE]
+      assertion_pack: form4_digital_human
+  - id: HYBRID_CUT
+    zh: 生成片段混合剪辑
+    def: 生成 B-roll 与模板卡点字幕混合剪辑（初始值，留待数据配置）
+    equivalence_class: [MIXED]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [10, 20]
+      canvas: { w: 1080, h: 1920 }
+      info_layer: [SHOP_NAME, PRICE, AIGC_DISCLOSURE]
+      assertion_pack: form5_hybrid_cut
+  - id: PIP_TALKING
+    zh: 口播画中画
+    def: 数字人口播角标叠加氛围 B-roll（初始值，留待数据配置）
+    equivalence_class: [MIXED]
+    deprecated: false
+    replaced_by: null
+    bindings:
+      duration_s: [8, 15]
+      canvas: { w: 1080, h: 1920 }
+      info_layer: [BRAND_NAME, PRICE, AIGC_DISCLOSURE]
+      assertion_pack: form6_pip_talking

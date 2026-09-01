@@ -12,7 +12,7 @@ type Meta struct {
 }
 
 // VocabFiles 是词表清单（schema/vocab/v1/*.yaml 文件名，不含后缀）。
-var VocabFiles = [...]string{"action", "audio_role", "beat_role", "camera_motion", "compliance_risk", "copy_function", "defect_type", "mood", "negative_space", "overlay_intent", "proof_type", "remedy_action", "scene.food", "season", "shot_type", "subject.food", "ttl_class"}
+var VocabFiles = [...]string{"action", "audio_role", "beat_role", "camera_motion", "compliance_risk", "copy_function", "defect_type", "gen_form", "mood", "negative_space", "overlay_intent", "proof_type", "remedy_action", "scene.food", "season", "shot_type", "subject.food", "ttl_class"}
 
 // ── 枚举值清单 ─────────────────────────────────────────────
 
@@ -36,6 +36,9 @@ var CopyFunction = [...]string{"QUESTION_HOOK", "NUMBER_HOOK", "COUNTERINTUITIVE
 
 // DefectType 是 defect_type 词表的值清单（39 值）。
 var DefectType = [...]string{"BLURRY", "SHAKE", "OVEREXPOSED", "UNDEREXPOSED", "FLICKER", "BLACK_FRAME", "FREEZE_FRAME", "AUDIO_CLIPPING", "AUDIO_TOO_QUIET", "NOISY_AUDIO", "SILENT_AUDIO", "RESOLUTION_LOW", "ASPECT_MISMATCH", "SUBJECT_MISSING", "SUBJECT_TOO_SMALL", "SUBJECT_TRUNCATED", "WRONG_SHOT_TYPE", "WRONG_MOTION", "BAD_FRAMING", "NEGATIVE_SPACE_MISSING", "OBSTRUCTED", "BACKGROUND_CLUTTER", "HANDLES_MISSING", "DURATION_SHORT", "WRONG_SCENE", "LIPSYNC_OFF", "FACE_WARP", "HAND_WARP", "TEXT_WARP", "TEMPORAL_WARP", "PLASTIC_LOOK", "IDENTITY_DRIFT", "THIRD_PARTY_FACE", "THIRD_PARTY_LOGO", "BANNED_TERM", "CLAIM_WITHOUT_PROOF", "LICENSE_MUSIC_MISSING", "AIGC_LABEL_MISSING", "PORTRAIT_AUTH_MISSING"}
+
+// GenForm 是 gen_form 词表的值清单（6 值）。
+var GenForm = [...]string{"I2V_AMBIENCE", "T2V_NARRATIVE", "PHOTO_MOTION", "DIGITAL_HUMAN", "HYBRID_CUT", "PIP_TALKING"}
 
 // Mood 是 mood 词表的值清单（8 值）。
 var Mood = [...]string{"WARM", "ENERGETIC", "COZY", "FRESH", "APPETIZING", "PROFESSIONAL", "PLAYFUL", "CALM"}
@@ -220,6 +223,15 @@ var defect_typeMeta = map[string]Meta{
 	"PORTRAIT_AUTH_MISSING":  {Zh: "缺肖像授权", Def: "出镜人授权缺失或已撤销", EquivalenceClass: []string{"L3_COMPLIANCE"}},
 }
 
+var gen_formMeta = map[string]Meta{
+	"I2V_AMBIENCE":  {Zh: "图生视频氛围展示", Def: "单张种子图经图生视频模型生成呼吸感运镜氛围片段（产品/场景空镜），叠加确定性信息层", EquivalenceClass: []string{"PURE_GEN"}},
+	"T2V_NARRATIVE": {Zh: "文生视频叙事片段", Def: "文生视频模型按文案生成多镜头叙事片段（初始值，留待数据配置）", EquivalenceClass: []string{"PURE_GEN"}},
+	"PHOTO_MOTION":  {Zh: "静图动态化", Def: "静图经确定性运镜/局部动效动态化后叠加信息层（初始值，留待数据配置）", EquivalenceClass: []string{"TEMPLATE"}},
+	"DIGITAL_HUMAN": {Zh: "数字人口播", Def: "人像照经语音合成与口型同步生成数字人口播，叠加品牌信息层（IR-0007 实测对象）", EquivalenceClass: []string{"AVATAR"}},
+	"HYBRID_CUT":    {Zh: "生成片段混合剪辑", Def: "生成 B-roll 与模板卡点字幕混合剪辑（初始值，留待数据配置）", EquivalenceClass: []string{"MIXED"}},
+	"PIP_TALKING":   {Zh: "口播画中画", Def: "数字人口播角标叠加氛围 B-roll（初始值，留待数据配置）", EquivalenceClass: []string{"MIXED"}},
+}
+
 var moodMeta = map[string]Meta{
 	"WARM":         {Zh: "温暖", Def: "暖光/烟火气/家常感", EquivalenceClass: []string{"POSITIVE"}},
 	"ENERGETIC":    {Zh: "热闹", Def: "快节奏/人群/市井喧闹", EquivalenceClass: []string{"POSITIVE"}},
@@ -367,6 +379,7 @@ var VocabIDs = map[string][]string{
 	"compliance_risk": ComplianceRisk[:],
 	"copy_function":   CopyFunction[:],
 	"defect_type":     DefectType[:],
+	"gen_form":        GenForm[:],
 	"mood":            Mood[:],
 	"negative_space":  NegativeSpace[:],
 	"overlay_intent":  OverlayIntent[:],
@@ -388,6 +401,7 @@ var VocabMeta = map[string]map[string]Meta{
 	"compliance_risk": compliance_riskMeta,
 	"copy_function":   copy_functionMeta,
 	"defect_type":     defect_typeMeta,
+	"gen_form":        gen_formMeta,
 	"mood":            moodMeta,
 	"negative_space":  negative_spaceMeta,
 	"overlay_intent":  overlay_intentMeta,

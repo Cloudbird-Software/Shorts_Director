@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 ### Added
+- IR-0007 退役-3/3：gen_form 受控词表（6 生成形态，bindings 钉死时长区间/画幅/信息层要素/断言包，IFACE-3）；README Freeze Gate 看板替换为假设看板骨架（E0–E7，初始 pending）。
 - 初始模板工程（CI gate / hygiene / dependabot / automerge 全套护栏）。
 - schema/ 单一真源目录与模块规约（schema/AGENTS.md）。
 - 受控词表 v1 第一批（结构类）：beat_role（冻结）、audio_role、shot_type、camera_motion、proof_type。
@@ -66,6 +67,7 @@
 
 ### Changed
 - 仓库定位从 template-service 模板切换为 Shorts_Director（README 重写、包名更新）。
+- IR-0007：docs/Engineering_plan.md 归档至 docs/history/（旧意图）；docs/ARCHITECTURE.md 与 schema/AGENTS.md 对齐生成一等公民范式。
 - 工程设计文档移至 [docs/Engineering_plan.md](docs/Engineering_plan.md)。
 - docs/ARCHITECTURE.md 对齐工程设计：四层分层心智模型、仓库布局、契约纪律与语言栈硬约束。
 - README 阶段声明改为「Phase 0 进行中（契约冻结未达成）」并新增 Freeze Gate 12 项状态表（#50）。

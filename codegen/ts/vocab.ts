@@ -10,6 +10,7 @@ export const VOCAB_FILES = [
   "compliance_risk",
   "copy_function",
   "defect_type",
+  "gen_form",
   "mood",
   "negative_space",
   "overlay_intent",
@@ -184,6 +185,17 @@ export const defectType = [
   "PORTRAIT_AUTH_MISSING",
 ] as const;
 export type DefectType = (typeof defectType)[number];
+
+/** gen_form（6 值） */
+export const genForm = [
+  "I2V_AMBIENCE",
+  "T2V_NARRATIVE",
+  "PHOTO_MOTION",
+  "DIGITAL_HUMAN",
+  "HYBRID_CUT",
+  "PIP_TALKING",
+] as const;
+export type GenForm = (typeof genForm)[number];
 
 /** mood（8 值） */
 export const mood = [
@@ -1269,6 +1281,51 @@ export const defectTypeMeta = {
   },
 } as const;
 
+export const genFormMeta = {
+  I2V_AMBIENCE: {
+    zh: "图生视频氛围展示",
+    def: "单张种子图经图生视频模型生成呼吸感运镜氛围片段（产品/场景空镜），叠加确定性信息层",
+    equivalenceClass: ["PURE_GEN"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  T2V_NARRATIVE: {
+    zh: "文生视频叙事片段",
+    def: "文生视频模型按文案生成多镜头叙事片段（初始值，留待数据配置）",
+    equivalenceClass: ["PURE_GEN"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  PHOTO_MOTION: {
+    zh: "静图动态化",
+    def: "静图经确定性运镜/局部动效动态化后叠加信息层（初始值，留待数据配置）",
+    equivalenceClass: ["TEMPLATE"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  DIGITAL_HUMAN: {
+    zh: "数字人口播",
+    def: "人像照经语音合成与口型同步生成数字人口播，叠加品牌信息层（IR-0007 实测对象）",
+    equivalenceClass: ["AVATAR"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  HYBRID_CUT: {
+    zh: "生成片段混合剪辑",
+    def: "生成 B-roll 与模板卡点字幕混合剪辑（初始值，留待数据配置）",
+    equivalenceClass: ["MIXED"],
+    deprecated: false,
+    replacedBy: null,
+  },
+  PIP_TALKING: {
+    zh: "口播画中画",
+    def: "数字人口播角标叠加氛围 B-roll（初始值，留待数据配置）",
+    equivalenceClass: ["MIXED"],
+    deprecated: false,
+    replacedBy: null,
+  },
+} as const;
+
 export const moodMeta = {
   WARM: {
     zh: "温暖",
@@ -2059,6 +2116,7 @@ export const VOCAB_IDS = {
   compliance_risk: complianceRisk,
   copy_function: copyFunction,
   defect_type: defectType,
+  gen_form: genForm,
   mood: mood,
   negative_space: negativeSpace,
   overlay_intent: overlayIntent,
@@ -2079,6 +2137,7 @@ export const VOCAB_META = {
   compliance_risk: complianceRiskMeta,
   copy_function: copyFunctionMeta,
   defect_type: defectTypeMeta,
+  gen_form: genFormMeta,
   mood: moodMeta,
   negative_space: negativeSpaceMeta,
   overlay_intent: overlayIntentMeta,
