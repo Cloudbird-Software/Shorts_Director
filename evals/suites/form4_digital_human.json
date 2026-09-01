@@ -11,20 +11,32 @@
     {
       "id": "yueyan_beauty",
       "image_path": "evals/merchants/yueyan_beauty/seed_portrait.png",
-      "prompt": "悦颜美甲美睫工作室，进口光疗 gel 美甲单色 128 元，地址在春熙里 3 号楼 802 室，预约电话 137-0000-9012，本视频由 AI 生成仅作演示。",
+      "prompt": "悦颜美甲128元，预约13700009012",
+      "duration_sec": 6
+    },
+    {
+      "id": "noodles_lanjie",
+      "image_path": "evals/merchants/noodles_lanjie/seed_portrait.png",
+      "prompt": "兰姐牛肉面28元，外卖13800001234",
+      "duration_sec": 6
+    },
+    {
+      "id": "valley_coffee",
+      "image_path": "evals/merchants/valley_coffee/seed_portrait.png",
+      "prompt": "山谷咖啡32元，来店13900005678",
       "duration_sec": 6
     }
   ],
   "assertion_pack": [
     {
-      "assertion_id": "L0.duration_in_form_range",
+      "assertion_id": "L0.duration_upper_bound",
       "level": "L0",
       "severity": "BLOCKER",
       "probe": { "op": "ffprobe_field", "args": { "field": "duration_sec" } },
-      "expect": { "op": "between", "value": [4, 8] },
+      "expect": { "op": "lte", "value": 6.0 },
       "remedy": {
         "action": "TRIM",
-        "instruction_template": "时长 {{measured}}s 超出形态区间 4–8s"
+        "instruction_template": "时长 {{measured}}s 超制式上限 6.0s，缩口播或加速"
       }
     },
     {
@@ -76,10 +88,21 @@
       "level": "L3",
       "severity": "BLOCKER",
       "probe": { "op": "aigc_overlay_present", "args": {} },
+      "expect": { "op": "gte", "value": 0.005 },
+      "remedy": {
+        "action": "ADD_DISCLAIMER",
+        "instruction_template": "AIGC 角标区域差异占比 {{measured}}，披露文案未叠加"
+      }
+    },
+    {
+      "assertion_id": "L3.aigc_implicit_metadata",
+      "level": "L3",
+      "severity": "BLOCKER",
+      "probe": { "op": "aigc_metadata_present", "args": {} },
       "expect": { "op": "is_true", "value": true },
       "remedy": {
         "action": "ADD_DISCLAIMER",
-        "instruction_template": "缺 AIGC 标识，信息层必须叠加披露文案"
+        "instruction_template": "容器元数据缺完整 AIGC 隐式标识块"
       }
     }
   ],
