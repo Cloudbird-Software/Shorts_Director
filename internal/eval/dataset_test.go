@@ -104,8 +104,8 @@ func TestEvalsSuites(t *testing.T) {
 	if s := suites["form1_ambience.json"]; len(s.Seeds) != 5 || len(s.Entries) != 3 {
 		t.Fatalf("形态1 套件须 3 商家 × K=5: seeds=%d entries=%d", len(s.Seeds), len(s.Entries))
 	}
-	if s := suites["form4_digital_human.json"]; len(s.Seeds) != 5 || len(s.Entries) != 1 {
-		t.Fatalf("形态4 套件须 1 商家 × K=5: seeds=%d entries=%d", len(s.Seeds), len(s.Entries))
+	if s := suites["form4_digital_human.json"]; len(s.Seeds) != 5 || len(s.Entries) != 3 {
+		t.Fatalf("形态4 套件须 3 商家（AC-7）× K=5: seeds=%d entries=%d", len(s.Seeds), len(s.Entries))
 	}
 	if s := suites["form1_ambience.json"]; len(s.AssertionPack) < 3 {
 		t.Fatalf("形态1 断言包过薄: %d", len(s.AssertionPack))
