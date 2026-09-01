@@ -4,8 +4,6 @@ import (
 	"context"
 	"strings"
 	"testing"
-
-	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
 )
 
 // mockProbe 是测试用算子桩：返回固定测量值并计数调用次数。
@@ -350,6 +348,6 @@ func TestNewEngineDuplicateProbe(t *testing.T) {
 }
 
 // predicateHasLipsync 构造 applies_when 谓词。
-func predicateHasLipsync(v bool) *slotquery.Predicate {
-	return &slotquery.Predicate{Op: "eq", Field: "has_lipsync", Value: v}
+func predicateHasLipsync(v bool) *Predicate {
+	return &Predicate{Op: "eq", Field: "has_lipsync", Value: v}
 }

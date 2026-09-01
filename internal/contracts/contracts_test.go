@@ -6,7 +6,7 @@ import "testing"
 func TestSchemaVersionAnchors(t *testing.T) {
 	got := map[SchemaName]string{}
 	for _, n := range []SchemaName{
-		SchemaBrandKernel, SchemaShot, SchemaAsset, SchemaShotSlotQuery,
+		SchemaBrandKernel, SchemaShot, SchemaAsset,
 		SchemaVideoPlan, SchemaQCAssertion, SchemaProductionOrder, SchemaEvent,
 	} {
 		got[n] = SchemaVersion(n)
@@ -15,7 +15,6 @@ func TestSchemaVersionAnchors(t *testing.T) {
 		SchemaBrandKernel:     "brand_kernel/1",
 		SchemaShot:            "shot/1",
 		SchemaAsset:           "asset/1",
-		SchemaShotSlotQuery:   "shot_slot_query/1",
 		SchemaVideoPlan:       "video_plan/1",
 		SchemaQCAssertion:     "qc_assertion/1",
 		SchemaProductionOrder: "production_order/1",

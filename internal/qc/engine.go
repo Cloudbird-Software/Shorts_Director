@@ -12,9 +12,7 @@ import (
 	"strings"
 
 	"github.com/Cloudbird-Software/Shorts_Director/internal/digest"
-	"github.com/Cloudbird-Software/Shorts_Director/internal/entity"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/jsoncmp"
-	"github.com/Cloudbird-Software/Shorts_Director/internal/slotquery"
 )
 
 // Measurement 是一次 probe 测量的产物：值 + 证据 URI（A2：非确定性
@@ -46,23 +44,19 @@ type ProbeOperator interface {
 }
 
 // Subject 是被检对象：渲染产物/生成物/素材，及其 QC 上下文。
-// Fields 是 applies_when 的求值属性（含不在 Shot 上的关联字段，
-// 如 Asset 的 source_kind）；Spec 是制作令 spec，供模板变量 {{spec.*}}。
+// Fields 是 applies_when 的求值属性（由编排层注入：生成域字段如
+// gen_form/model，或迁移前的素材白名单字段）；Spec 是制作令 spec，
+// 供模板变量 {{spec.*}}。
 type Subject struct {
 	MediaURI  string         `json:"media_uri"`
 	MediaHash string         `json:"media_hash,omitempty"` // 内容寻址；缓存键
-	Shot      *entity.Shot   `json:"shot,omitempty"`       // 关联 shot（可空）
 	Spec      map[string]any `json:"spec,omitempty"`       // 制作令 spec
 	Fields    map[string]any `json:"fields,omitempty"`     // applies_when 属性
 }
 
-// Attrs 返回 applies_when 求值属性集：Shot 白名单字段展平，
-// Fields 覆盖同名字段（关联字段与运行期覆盖优先）。
+// Attrs 返回 applies_when 求值属性集（Fields 即属性域，防御性拷贝）。
 func (s *Subject) Attrs() map[string]any {
 	attrs := map[string]any{}
-	if s.Shot != nil {
-		attrs = slotquery.FlattenShot(s.Shot)
-	}
 	for k, v := range s.Fields {
 		attrs[k] = v
 	}
@@ -145,7 +139,7 @@ func (e *Engine) Run(ctx context.Context, subj *Subject, assertions []Assertion)
 			return nil, fmt.Errorf("qc: 断言集非法: %w", err)
 		}
 		if a.AppliesWhen != nil {
-			apply, err := slotquery.EvaluateFields(*a.AppliesWhen, attrs)
+			apply, err := EvaluateFields(*a.AppliesWhen, attrs)
 			if err != nil {
 				return nil, fmt.Errorf("qc: %s applies_when: %w", a.AssertionID, err)
 			}
