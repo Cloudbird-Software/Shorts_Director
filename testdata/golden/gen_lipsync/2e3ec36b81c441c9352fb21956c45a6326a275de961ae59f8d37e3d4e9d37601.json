@@ -1,0 +1,12 @@
+{
+  "contract_version": 1,
+  "op": "gen_lipsync",
+  "status": "OK",
+  "outputs": {
+    "video_path": "/mnt/work/genls-f4/out_fake_lipsync.mp4",
+    "content_hash": "sha256:05b62342cc05391f48c3330b1dbc16c577418d720999bf62006caee0fa961ef0"
+  },
+  "metrics": { "wall_ms": 879 },
+  "operator_version": "gen_lipsync@0.1.0",
+  "model_versions": { "model": "fake-loop@1", "ffmpeg": "lavfi-loop" }
+}
