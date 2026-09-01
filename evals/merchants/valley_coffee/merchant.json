@@ -20,6 +20,15 @@
         "generator": "evals/gen_seed_images.sh"
       },
       "license_placeholder": "合成数据（ffmpeg lavfi 渐变），无第三方版权与真实人物"
+    },
+    {
+      "role": "portrait",
+      "path": "evals/merchants/valley_coffee/seed_portrait.png",
+      "source": {
+        "type": "synthetic",
+        "generator": "evals/gen_seed_images.sh"
+      },
+      "license_placeholder": "合成占位人像（渐变抽象图，无真实生物特征）；V100 实测前可替换为已登记授权的公开图库人像，授权记录落位于此"
     }
   ]
 }
