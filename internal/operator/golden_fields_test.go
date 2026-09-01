@@ -203,6 +203,7 @@ func TestG7ManifestContent(t *testing.T) {
 	want := map[string][]string{
 		"probe":             {"fps", "width"},
 		"blackdetect_ratio": {"evidence_uri", "value"},
+		"gen_i2v":           {"video_path", "content_hash"},
 	}
 	if len(m) != len(want) {
 		t.Errorf("golden 清单规模 %d ≠ %d（新 op 落 fixture 须同步本测试）", len(m), len(want))

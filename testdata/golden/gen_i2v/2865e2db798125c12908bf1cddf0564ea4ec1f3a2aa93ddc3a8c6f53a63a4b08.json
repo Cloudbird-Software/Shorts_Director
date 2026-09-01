@@ -1,0 +1,17 @@
+{
+  "contract_version": 1,
+  "op": "gen_i2v",
+  "status": "OK",
+  "outputs": {
+    "video_path": "/mnt/work/geni2v-e1/out_fake.mp4",
+    "content_hash": "sha256:80f895f92ea67987e6570346f13820e865ad7421fe89b894ea4e87b3ae83d7c3"
+  },
+  "metrics": {
+    "wall_ms": 169
+  },
+  "operator_version": "gen_i2v@0.1.0",
+  "model_versions": {
+    "model": "fake-lavfi@1",
+    "ffmpeg": "lavfi"
+  }
+}
