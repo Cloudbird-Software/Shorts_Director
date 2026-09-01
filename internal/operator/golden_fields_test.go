@@ -214,6 +214,7 @@ func TestG7ManifestContent(t *testing.T) {
 		"gen_lipsync":       {"video_path", "content_hash"},
 		"lipsync_lse_c":     {"evidence_uri", "value"},
 		"lipsync_lse_d":     {"evidence_uri", "value"},
+		"transcribe":        {"text"},
 	}
 	if len(m) != len(want) {
 		t.Errorf("golden 清单规模 %d ≠ %d（新 op 落 fixture 须同步本测试）", len(m), len(want))
