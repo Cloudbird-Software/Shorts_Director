@@ -117,7 +117,7 @@ def main():
     except ImportError as e:
         fail("RUNTIME_ERROR", "deps_missing",
              "算子镜像缺依赖（torch/diffusers）: %s；fake 后端无需依赖" % e, retryable=False)
-    except Exception as e:  # noqa: BLE001 —— 契约兜底：算子必须输出结构化错误
+    except Exception as e:  # 契约兜底：算子必须输出结构化错误，不得裸抛
         fail("RUNTIME_ERROR", "backend_failed",
              "%s 生成失败: %s" % (req.get("params", {}).get("model"), e), retryable=True)
 
