@@ -50,6 +50,9 @@ func TestTranscribeLocalEndToEnd(t *testing.T) {
 	if _, err := exec.LookPath("python3"); err != nil {
 		t.Skip("python3 缺失")
 	}
+	if _, err := exec.LookPath("ffmpeg"); err != nil {
+		t.Skip("ffmpeg 缺失")
+	}
 	bin := filepath.Join("..", "..", "operators", "transcribe", "run.sh")
 	audioPath := filepath.Join(t.TempDir(), "voice.wav")
 	if out, err := exec.Command("ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
