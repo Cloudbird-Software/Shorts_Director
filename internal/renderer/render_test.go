@@ -48,15 +48,25 @@ func placeholderIndex(t *testing.T, dir string) compiler.MediaIndex {
 	}
 }
 
-func fixtureFonts() []compiler.Font {
-	return []compiler.Font{{Family: "HarmonyOS_Sans_Bold", Path: "/fonts/hsb.otf", Hash: "sha256:aaaa"}}
+// fixtureFonts 提供真实可核验的字体（drawtext 信息层需要字体文件 +
+// 哈希一致；缺 DejaVu 的环境跳过合成段测试）。
+func fixtureFonts(t *testing.T) []compiler.Font {
+	t.Helper()
+	path := "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+	bs, err := os.ReadFile(path)
+	if err != nil {
+		t.Skipf("缺 DejaVu 字体（drawtext 信息层测试需要）: %v", err)
+	}
+	sum := sha256.Sum256(bs)
+	return []compiler.Font{{Family: "HarmonyOS_Sans_Bold", Path: path,
+		Hash: "sha256:" + hex.EncodeToString(sum[:])}}
 }
 
 func compileReq(t *testing.T, idx compiler.MediaIndex, outPath string) *compiler.RenderRequest {
 	t.Helper()
-	req, err := compiler.Compile(loadMinimalPlan(t), idx, fixtureFonts(),
+	req, err := compiler.Compile(loadMinimalPlan(t), idx, fixtureFonts(t),
 		compiler.Output{Path: outPath, Codec: "h264", CRF: 28, Preset: "veryfast"},
-		compiler.Modes{Deterministic: true},
+		compiler.Modes{Deterministic: true, PlaceholderMedia: true},
 		compiler.RendererExpect{FFmpeg: "7.1", Remotion: "4.0.230", Node: "22.11.0"})
 	if err != nil {
 		t.Fatalf("Compile: %v", err)
