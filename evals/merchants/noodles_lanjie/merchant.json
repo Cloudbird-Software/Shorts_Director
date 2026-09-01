@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "noodles_lanjie",
+  "vertical": "food",
+  "fictional": true,
+  "info": {
+    "shop_name": "兰姐牛肉面",
+    "signature_item": "兰州牛肉面（加蛋加肉双拼）",
+    "price": "¥28",
+    "address": "幸福路 88 号临街 1 层",
+    "phone": "138-0000-1234"
+  },
+  "aigc_disclosure": "本视频由 AI 生成，仅作演示",
+  "seed_images": [
+    {
+      "role": "hero",
+      "path": "evals/merchants/noodles_lanjie/seed_hero.png",
+      "source": {
+        "type": "synthetic",
+        "generator": "evals/gen_seed_images.sh"
+      },
+      "license_placeholder": "合成数据（ffmpeg lavfi 渐变），无第三方版权与真实人物"
+    }
+  ]
+}

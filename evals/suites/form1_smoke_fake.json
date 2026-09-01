@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "suite_id": "form1_smoke_fake",
+  "gen_form": "I2V_AMBIENCE",
+  "op": "gen_i2v",
+  "model": "fake",
+  "seeds": [7],
+  "fps": 24,
+  "params": { "width": 576, "height": 1024 },
+  "entries": [
+    {
+      "id": "noodles_lanjie",
+      "image_path": "evals/merchants/noodles_lanjie/seed_hero.png",
+      "prompt": "一碗热气腾腾的牛肉面特写，镜头缓慢推近，蒸汽升腾，暖色灯光，氛围感空镜",
+      "duration_sec": 6
+    }
+  ],
+  "assertion_pack": [],
+  "budget": { "wall_seconds": 600, "gpu_seconds": 100 }
+}

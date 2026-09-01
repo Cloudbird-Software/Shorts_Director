@@ -171,10 +171,10 @@ func TestRunYield(t *testing.T) {
 func TestRunGoldenFakeRunner(t *testing.T) {
 	s := &eval.Suite{
 		SchemaVersion: 1, SuiteID: "golden", GenForm: "I2V_AMBIENCE", Op: "gen_i2v",
-		Model: "fake", FPS: 16, Params: map[string]any{"width": float64(576), "height": float64(1024)},
+		Model: "fake", FPS: 24, Params: map[string]any{"width": float64(576), "height": float64(1024)},
 		Entries: []eval.Entry{{
-			ID: "noodles", ImagePath: "/mnt/assets/noodles_hero.jpg",
-			Prompt: "一碗热气腾腾的牛肉面特写，缓慢推近，蒸汽升腾", DurationSec: 3,
+			ID: "noodles", ImagePath: "evals/merchants/noodles_lanjie/seed_hero.png",
+			Prompt: "一碗热气腾腾的牛肉面特写，镜头缓慢推近，蒸汽升腾，暖色灯光，氛围感空镜", DurationSec: 6,
 		}},
 		Seeds:  []int64{7},
 		Budget: eval.Budget{WallSeconds: 600, GpuSeconds: 100},
@@ -419,7 +419,7 @@ func TestGoldenReportSample(t *testing.T) {
 	if err := json.Unmarshal(raw, &art); err != nil {
 		t.Fatal(err)
 	}
-	if want := "sha256:9b86e4f7569441f14ee97e962e560e41f4f3952d6e4975c3377427c7c48e12fe"; art.Digest != want {
+	if want := "sha256:1a6a5c50702c6455e37e5de22da0d969eb5b4b0eccafbbca8f42416ee7bf1249"; art.Digest != want {
 		t.Fatalf("golden 报告 digest 漂移: %s ≠ %s", art.Digest, want)
 	}
 	d, err := art.ComputeDigest()

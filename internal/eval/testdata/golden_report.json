@@ -7,17 +7,17 @@
     "op": "gen_i2v",
     "model": "fake",
     "seeds": [7],
-    "fps": 16,
+    "fps": 24,
     "params": {
       "height": 1024,
       "width": 576
     },
     "entries": [
       {
-        "id": "noodles",
-        "image_path": "/mnt/assets/noodles_hero.jpg",
-        "prompt": "一碗热气腾腾的牛肉面特写，缓慢推近，蒸汽升腾",
-        "duration_sec": 3
+        "id": "noodles_lanjie",
+        "image_path": "evals/merchants/noodles_lanjie/seed_hero.png",
+        "prompt": "一碗热气腾腾的牛肉面特写，镜头缓慢推近，蒸汽升腾，暖色灯光，氛围感空镜",
+        "duration_sec": 6
       }
     ],
     "assertion_pack": [
@@ -52,7 +52,7 @@
   "budget_truncated": false,
   "items": [
     {
-      "entry_id": "noodles",
+      "entry_id": "noodles_lanjie",
       "seed": 7,
       "status": "OK",
       "video_path": "/mnt/work/geni2v-e1/out_fake.mp4",
@@ -88,5 +88,5 @@
     "items_skipped_budget": 0,
     "gpu_seconds_total": 0
   },
-  "digest": "sha256:9b86e4f7569441f14ee97e962e560e41f4f3952d6e4975c3377427c7c48e12fe"
+  "digest": "sha256:1a6a5c50702c6455e37e5de22da0d969eb5b4b0eccafbbca8f42416ee7bf1249"
 }
