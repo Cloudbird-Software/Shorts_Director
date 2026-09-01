@@ -39,6 +39,9 @@ type Modes struct {
 	OverlayOnly   bool `json:"overlay_only"`
 	Preview       bool `json:"preview"`
 	Deterministic bool `json:"deterministic"` // R-1 开关：禁用一切时间/随机依赖
+	// PlaceholderMedia=true 时 SHOT/GENERATED 轨不解码源媒体，退回
+	// content_hash 派生纯色占位帧（测试模式；生产恒 false 走真实解码）。
+	PlaceholderMedia bool `json:"placeholder_media,omitempty"`
 }
 
 // RendererExpect 是版本钉死清单（防漂移）。

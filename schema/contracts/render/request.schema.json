@@ -68,7 +68,11 @@
           "description": "true 时只渲 Remotion alpha 层"
         },
         "preview": { "type": "boolean", "description": "低码率快出" },
-        "deterministic": { "type": "boolean", "description": "R-1 的开关" }
+        "deterministic": { "type": "boolean", "description": "R-1 的开关" },
+        "placeholder_media": {
+          "type": "boolean",
+          "description": "测试模式：SHOT/GENERATED 轨不解码源媒体，用 content_hash 派生纯色占位帧（IR-0007 E4 前保留路径）"
+        }
       },
       "additionalProperties": false
     },
