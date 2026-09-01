@@ -170,9 +170,38 @@ func hasAudio(p videoplan.Plan) bool {
 }
 
 // Render 执行完整渲染：抽帧（真实媒体）→ 帧序列 → 信息层 drawtext +
-// AIGC 元数据 → ffmpeg 合成 → 输出文件。
-// framesDigest（非 nil 时）回填帧序列的 sha256（R-1 测试锚点）。
+// AIGC 元数据 → ffmpeg 合成 → 输出文件。plan 携带音频轨时合成静音轨
+// （信息层形态）。framesDigest（非 nil 时）回填帧序列的 sha256（R-1 测试锚点）。
 func Render(req *compiler.RenderRequest, framesDigest *string) error {
+	return render(req, framesDigest, "")
+}
+
+// RenderVO 渲染并保留口播音轨（IR-0007 AC-7 / BEH-6）：voPath 是渲染
+// 宿主只读挂载的 VO 产物（gen_tts 输出）。R-4 无隐式回退：voPath 的
+// sha256 必须与 plan.Audio.VORef.Hash 逐字一致——TTS 重跑后旧 plan 必须
+// 显式失效，绝不静默混入新配音。
+func RenderVO(req *compiler.RenderRequest, framesDigest *string, voPath string) error {
+	if req.Plan.Audio.VORef == nil {
+		return fmt.Errorf("renderer: RenderVO 要求 plan.Audio.VORef 非空（口播引用缺失）")
+	}
+	if !hasAudio(req.Plan) {
+		return fmt.Errorf("renderer: RenderVO 要求 plan 携带音频轨（AUDIO_VO）")
+	}
+	h, err := fileDigest(voPath)
+	if err != nil {
+		return fmt.Errorf("renderer: VO 产物不可读（%s）: %w", voPath, err)
+	}
+	if h != req.Plan.Audio.VORef.Hash {
+		return fmt.Errorf(
+			"renderer: VO 版本漂移：plan 钉死 %s，现产物 %s——TTS 重跑后旧 plan 必须显式失效",
+			req.Plan.Audio.VORef.Hash, h)
+	}
+	return render(req, framesDigest, voPath)
+}
+
+// render 是渲染主体：voPath 非空时以其为第二输入（口播保留），否则
+// hasAudio 形态下合成静音轨。
+func render(req *compiler.RenderRequest, framesDigest *string, voPath string) error {
 	ffmpeg, err := exec.LookPath("ffmpeg")
 	if err != nil {
 		return ErrFFmpegMissing
@@ -216,10 +245,15 @@ func Render(req *compiler.RenderRequest, framesDigest *string) error {
 		"-i", filepath.Join(fdir, "frame_%06d.png"),
 	}
 	if hasAudio(req.Plan) {
-		args = append(args,
-			"-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
-			"-shortest",
-		)
+		if voPath != "" {
+			// 口播保留：VO 产物为第二输入（hash 已在 RenderVO 核验）
+			args = append(args, "-i", voPath, "-shortest")
+		} else {
+			args = append(args,
+				"-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
+				"-shortest",
+			)
+		}
 	}
 	args = append(args,
 		"-map", "0:v",
