@@ -1,0 +1,9 @@
+{
+  "contract_version": 1,
+  "op": "transcribe",
+  "status": "OK",
+  "outputs": { "text": "悦颜美甲，进口gel美甲128元，预约137-0000-9012" },
+  "metrics": { "wall_ms": 0 },
+  "operator_version": "transcribe@0.1.0",
+  "model_versions": { "model": "fake-hint@1" }
+}
