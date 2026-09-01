@@ -6,8 +6,6 @@ package videoplan
 
 import (
 	"fmt"
-
-	"github.com/Cloudbird-Software/Shorts_Director/internal/entity"
 )
 
 // SafeArea 是平台 UI 遮挡硬约束（像素单位）。
@@ -251,23 +249,23 @@ type ComplianceResult struct {
 // Plan 是单条视频的语义 IR——系统的心脏：
 // 语义完整（能回答"为什么这么剪"）+ 确定性（同一 IR 永远渲出同一帧）+ 可 diff。
 type Plan struct {
-	SchemaVersion      string              `json:"schema_version"` // "video_plan/1"
-	PlanID             string              `json:"plan_id"`        // UUIDv7
-	TenantID           string              `json:"tenant_id"`
-	ScheduledDate      string              `json:"scheduled_date"` // YYYY-MM-DD
-	Canvas             Canvas              `json:"canvas"`
-	Timebase           Timebase            `json:"timebase"`
-	BeatSchemaRef      entity.VersionedRef `json:"beat_schema_ref"`
-	StyleThemeRef      entity.VersionedRef `json:"style_theme_ref"`
-	Tracks             []Track             `json:"tracks"`
-	Copy               Copy                `json:"copy"`
-	Audio              Audio               `json:"audio"`
-	Overlays           []Overlay           `json:"overlays"`
-	ConstraintsReport  ConstraintsReport   `json:"constraints_report"`
-	DiversitySignature DiversitySignature  `json:"diversity_signature"`
-	Budget             Budget              `json:"budget"`
-	Compliance         *ComplianceResult   `json:"compliance,omitempty"` // ComplianceGate 回写
-	Provenance         entity.Provenance   `json:"provenance"`
+	SchemaVersion      string             `json:"schema_version"` // "video_plan/1"
+	PlanID             string             `json:"plan_id"`        // UUIDv7
+	TenantID           string             `json:"tenant_id"`
+	ScheduledDate      string             `json:"scheduled_date"` // YYYY-MM-DD
+	Canvas             Canvas             `json:"canvas"`
+	Timebase           Timebase           `json:"timebase"`
+	BeatSchemaRef      VersionedRef       `json:"beat_schema_ref"`
+	StyleThemeRef      VersionedRef       `json:"style_theme_ref"`
+	Tracks             []Track            `json:"tracks"`
+	Copy               Copy               `json:"copy"`
+	Audio              Audio              `json:"audio"`
+	Overlays           []Overlay          `json:"overlays"`
+	ConstraintsReport  ConstraintsReport  `json:"constraints_report"`
+	DiversitySignature DiversitySignature `json:"diversity_signature"`
+	Budget             Budget             `json:"budget"`
+	Compliance         *ComplianceResult  `json:"compliance,omitempty"` // ComplianceGate 回写
+	Provenance         Provenance         `json:"provenance"`
 }
 
 // TotalFrames 返回主时间线总时长（IV-VP-1 的权威值）。

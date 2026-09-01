@@ -1,19 +1,5 @@
 {
-  "_comment": "G2 双语言判定一致性的 Go 侧结构性豁免登记表：ajv（写侧结构校验）拒绝、Go Validate（业务不变式）放行的 invalid 样本 → 登记理由。两侧领域分工见 internal/entity/consistency_test.go。新增/删除登记都是评审焦点；值域类豁免同时是 Go 校验的改进候选（见 PR 描述）。",
-  "shot": {
-    "top_level_additional_field.json": "additionalProperties：Go 忽略未知字段（读侧语义见 internal/compat）",
-    "semantic_additional_field.json": "additionalProperties：同上",
-    "missing_semantic.json": "required 子对象缺失：Go 零值结构体，业务不变式不覆盖",
-    "missing_affordance.json": "required 子对象缺失：同上",
-    "missing_technical.json": "required 子对象缺失：同上",
-    "missing_compliance.json": "required 子对象缺失：同上",
-    "missing_lifecycle.json": "required 子对象缺失：同上",
-    "camera_motion_dir_bad.json": "受控枚举值域：CameraMotionDir 未在 Go 侧校验（改进候选）",
-    "negative_space_bad.json": "受控枚举值域：NegativeSpace 未在 Go 侧校验（改进候选）",
-    "quality_tier_out_of_range.json": "数值范围：QualityTier ∈[1,4] 未在 Go 侧校验（改进候选）",
-    "safe_crop_missing_ok.json": "required 字段缺失：safe_crop.ok 指针零值语义等价 false，未显式拒（改进候选）",
-    "identity_negative_in_frame.json": "数值下界：in_frame ≥0 未在 Go 侧校验（改进候选——建议补）"
-  },
+  "_comment": "G2 双语言判定一致性的 Go 侧结构性豁免登记表：ajv（写侧结构校验）拒绝、Go Validate（业务不变式）放行的 invalid 样本 → 登记理由。两侧领域分工见 internal/videoplan/consistency_test.go（IR-0007 退役-2/3 自 internal/entity 迁入，现仅 video_plan 有 Go 实体）。新增/删除登记都是评审焦点；值域类豁免同时是 Go 校验的改进候选（见 PR 描述）。",
   "video_plan": {
     "top_level_additional_field.json": "additionalProperties：Go 忽略未知字段",
     "missing_audio.json": "required 子对象缺失：Go 零值结构体",

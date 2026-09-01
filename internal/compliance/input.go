@@ -15,7 +15,7 @@ type Input struct {
 	Category       string              // 租户经营类目（如 food/medical/beauty）
 	CategoryPolicy CategoryPolicy      // 类目准入策略
 	BannedTerms    []BannedTerm        // 违禁词库（冷启动产物，§S8）
-	ShotRiskFlags  map[string][]string // shot_id → entity.Shot.Compliance.RiskFlags
+	ShotRiskFlags  map[string][]string // shot_id → 素材合规风险旗标（值域 compliance_risk 词表）
 	Authorizations []Authorization     // 出镜/声音授权记录
 	Now            string              // 判定基准日 YYYY-MM-DD（禁 time.Now）
 }

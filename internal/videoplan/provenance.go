@@ -1,8 +1,7 @@
-// Package entity 是冻结 schema 在 Go 侧的实体层：
-// 结构体与 schema 字段一一对应（json tag 对齐），并承载跨字段不变式
-// （IV-*）的运行期校验。JSON Schema 结构校验仍由 TS 侧 G1 harness 负责，
-// 本包只做"结构合法之后"的业务不变式——边界见本目录 AGENTS.md。
-package entity
+// provenance.go 承载通用溯源块与版本化引用（schema/common/provenance、
+// versioned_ref 的 Go 侧实体）。原属 internal/entity，IR-0007 退役-2/3
+// 迁入 videoplan（唯一存留消费方）。
+package videoplan
 
 import (
 	"errors"
@@ -45,14 +44,14 @@ func (p Provenance) Validate() error {
 	switch p.GeneratedBy {
 	case GeneratedByLLM, GeneratedByHuman, GeneratedByDeterministic, GeneratedByHybrid:
 	default:
-		return fmt.Errorf("entity/provenance: generated_by 非法 %q", p.GeneratedBy)
+		return fmt.Errorf("videoplan/provenance: generated_by 非法 %q", p.GeneratedBy)
 	}
 	if p.ModelID == "" || p.PromptVersion == "" || p.InputDigest == "" || p.CreatedAt == "" {
-		return errors.New("entity/provenance: model_id/prompt_version/input_digest/created_at 均必填")
+		return errors.New("videoplan/provenance: model_id/prompt_version/input_digest/created_at 均必填")
 	}
 	for i, e := range p.HumanEdits {
 		if e.Path == "" || e.After == nil && e.Before == nil || e.Editor == "" || e.At == "" {
-			return fmt.Errorf("entity/provenance: human_edits[%d] 字段不完整", i)
+			return fmt.Errorf("videoplan/provenance: human_edits[%d] 字段不完整", i)
 		}
 	}
 	return nil
@@ -67,10 +66,10 @@ type VersionedRef struct {
 // Validate 校验引用不退化成裸 id。
 func (r VersionedRef) Validate() error {
 	if r.ID == "" {
-		return errors.New("entity/versioned_ref: id 必填")
+		return errors.New("videoplan/versioned_ref: id 必填")
 	}
 	if r.Version < 1 {
-		return fmt.Errorf("entity/versioned_ref: version 必须 ≥1，得到 %d", r.Version)
+		return fmt.Errorf("videoplan/versioned_ref: version 必须 ≥1，得到 %d", r.Version)
 	}
 	return nil
 }
