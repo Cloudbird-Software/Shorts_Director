@@ -54,10 +54,21 @@
       "level": "L2",
       "severity": "MAJOR",
       "probe": { "op": "lipsync_lse_c", "args": {} },
-      "expect": { "op": "lte", "value": 0.35 },
+      "expect": { "op": "gte", "value": 6.0 },
       "remedy": {
         "action": "REGENERATE",
-        "instruction_template": "口型置信度 {{measured}} 低于阈值 0.35，重抽或换后端"
+        "instruction_template": "口型同步置信度 {{measured}} 低于阈值 6.0（SyncNet LSE-C），重抽或换后端"
+      }
+    },
+    {
+      "assertion_id": "L2.lipsync_distance",
+      "level": "L2",
+      "severity": "MAJOR",
+      "probe": { "op": "lipsync_lse_d", "args": {} },
+      "expect": { "op": "lte", "value": 8.4 },
+      "remedy": {
+        "action": "REGENERATE",
+        "instruction_template": "口型同步距离 {{measured}} 超过阈值 8.4（SyncNet LSE-D），重抽或换后端"
       }
     },
     {

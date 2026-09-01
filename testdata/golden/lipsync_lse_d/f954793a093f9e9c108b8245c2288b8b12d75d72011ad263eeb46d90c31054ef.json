@@ -1,0 +1,12 @@
+{
+  "contract_version": 1,
+  "op": "lipsync_lse_d",
+  "status": "OK",
+  "outputs": {
+    "value": 6.3,
+    "evidence_uri": "/mnt/work/syncnet-f4/evidence_lipsync_lse_d.json"
+  },
+  "metrics": { "wall_ms": 1 },
+  "operator_version": "syncnet_metric@0.1.0",
+  "model_versions": { "model": "fake-sha@1" }
+}

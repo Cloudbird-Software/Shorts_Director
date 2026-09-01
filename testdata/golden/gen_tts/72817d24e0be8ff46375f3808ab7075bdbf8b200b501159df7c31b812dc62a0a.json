@@ -1,0 +1,13 @@
+{
+  "contract_version": 1,
+  "op": "gen_tts",
+  "status": "OK",
+  "outputs": {
+    "audio_path": "/mnt/work/gentts-f4/out_fake.wav",
+    "content_hash": "sha256:fbe92cb0b5cb716223f012f7e2231be813ac5993e9fa9703cfc98ef69031f7b6",
+    "duration_sec": 19.68
+  },
+  "metrics": { "wall_ms": 173 },
+  "operator_version": "gen_tts@0.1.0",
+  "model_versions": { "model": "fake-lavfi@1", "ffmpeg": "lavfi" }
+}
