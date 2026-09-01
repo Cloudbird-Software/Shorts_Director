@@ -8,5 +8,6 @@ go.mod
 go.sum
 *.go
 baml/
+internal/doctor/testdata/*.json
 baml_client/
 internal/operators/testdata/

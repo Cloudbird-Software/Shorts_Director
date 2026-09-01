@@ -1,0 +1,133 @@
+{
+  "schema_version": "capability_profile/1",
+  "probed_at": "2026-09-01T12:00:00Z",
+  "gpu": {
+    "present": true,
+    "name": "NVIDIA V100-SXM2-32GB",
+    "compute_cap": "7.0",
+    "driver_version": "535.104.05",
+    "cuda_version": "12.2",
+    "memory_total_mb": 32768
+  },
+  "tools": {
+    "ffmpeg": {
+      "present": true,
+      "version": "6.1.1-3ubuntu5"
+    },
+    "docker": {
+      "present": true,
+      "version": "24.0.7"
+    }
+  },
+  "candidates": [
+    {
+      "id": "wan2.1-i2v-1.3b",
+      "kind": "i2v",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 8192MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "wan2.1-i2v-14b",
+      "kind": "i2v",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 24576MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "ltx-video-2b",
+      "kind": "i2v",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 8192MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "cogvideox-5b-i2v",
+      "kind": "i2v",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 12288MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "svd-xt-1.1",
+      "kind": "i2v",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 10240MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "cosyvoice2-0.5b",
+      "kind": "tts",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 4096MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "piper-1.x",
+      "kind": "tts",
+      "feasible": true,
+      "reasons": [
+        "无 GPU 硬件门槛（CPU 可运行）；最终可行性由 E1 单发冒烟裁决"
+      ]
+    },
+    {
+      "id": "wav2lip",
+      "kind": "lipsync",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 4096MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "musetalk",
+      "kind": "lipsync",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 8192MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "qwen2.5-vl-7b-instruct",
+      "kind": "vlm",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 16384MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    },
+    {
+      "id": "internvl2-8b",
+      "kind": "vlm",
+      "feasible": true,
+      "reasons": [
+        "compute cap 7.0 ≥ 门槛 7.0",
+        "显存 32768MB ≥ 门槛 16384MB",
+        "静态硬件门槛满足；最终可行性由 E1 单发冒烟裁决（DECISION-3）"
+      ]
+    }
+  ],
+  "digest": "sha256:2db123f85ad4c0939b2a371ba456c0d2752d40c70eb574a54a2d65d1515dcae9"
+}

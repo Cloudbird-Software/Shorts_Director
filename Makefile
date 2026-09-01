@@ -1,5 +1,6 @@
 .PHONY: setup gen fmt lint arch test build check render-demo
 .PHONY: go-setup go-fmt go-vet go-test go-check
+.PHONY: doctor
 setup:    ; npm ci
 gen:      ; node scripts/gen-vocab.mjs
 fmt:      ; npx prettier --write .
@@ -8,6 +9,7 @@ arch:     ; npx depcruise src
 test:     ; npx vitest run --coverage
 build:    ; npm run build
 render-demo: ; go run ./cmd/shorts-render -plan schema/testdata/video_plan/valid/minimal_music_plan.json -out out/demo.mp4
+doctor:   ; go run ./cmd/shorts-doctor
 check:    lint arch test
 go-setup: ; go mod download
 go-fmt:   ; test -z "$$(gofmt -l .)"
