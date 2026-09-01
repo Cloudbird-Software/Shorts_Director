@@ -123,6 +123,7 @@ blastRadius:
 **风险映射总纲**：本 spec 三类风险敞口——customer_upgrade_failure 体现为「实验平台不可复现/结论不可信」（run artifact 复算失败、非确定性未落盘）；llm_behavior_drift 体现为「生成与评审质量漂移」（换模型/换 seed 后断言口径漂移、评审探针失准）；fake_tests 体现为「评估摆拍」（断言永真、出片率数字与明细脱钩、golden 与实现共谋）。
 
 **active_now（每 PR gate）：**
+
 - T-01 unit_property_golden：**adopt**。Go 控制面（评估编排、出片率聚合、capability profile 解析）单测 + golden；property test 覆盖聚合口径（任意判定明细序列 → 出片率可复算）。理由：fake_tests 主防线。
 - T-02 race_detection：**adopt**（applies: go）。评估编排并发跑多条生成/断言时必须 -race 干净。理由：并发聚合是出片率数字的来源，data race 会直接污染结论。
 - T-03 goroutine_leak：**reject**。本平台为 CLI 一次性执行形态，无长驻进程；进程退出即回收。理由：触发条件 long_running_process 不满足。
@@ -140,6 +141,7 @@ blastRadius:
 - T-15 intent_backstop：**adopt**（gate 既有红队顺带意图回探）。
 
 **on_llm_product（条件激活——本 IR 主体即 LLM/GPU 产物评估）：**
+
 - L-01 eval_harness：**adopt（本 spec 的核心交付物之一）**。gate 跑小回归集（FakeRunner 化的套件回放），weekly/实验机跑全量真模型。
 - L-02 semantic_golden：**adopt**。评审探针对锚定样本集的判定以语义锚（判定+证据结构）固化为 golden，禁精确文本 diff。
 - L-03 metamorphic：**adopt**。不变关系三条——同 seed 重放产物哈希一致（或差异显式记录）；seed 顺序重排不改变聚合出片率；信息层叠加双跑字节一致（bitexact）。
@@ -148,10 +150,12 @@ blastRadius:
 - L-06 model_upgrade_differential：**adopt**。换模型=换实现——同套件在新旧模型下各跑一遍，产出双模型 diff 报告（这正是 E2 实验设计本身）。
 
 **on_rewrite_project（本 IR 含退役重构，激活）：**
+
 - R-01 upgrade_path / R-02 rollback / R-03 migration_idempotent / R-04 config_compatibility / R-05 fresh_install_smoke：**reject**。无线上客户、无旧版本升级路径、无生产部署——退役面向 git 历史而非运行时系统。理由：触发条件（真机升级/回滚/迁移）不成立。
 - R-06 capture_golden_now：**adopt（严格执行，不可逆操作）**。退役 PR 前抓全部将被删除模块的测试与 fixture 归档 tag——本 spec AC-2 的直接来源。
 
 **triggered（触发式）：**
+
 - G-01 contract_api_drift：**reject**。无对外公网 API。
 - G-02 integration_real_deps：**adopt（弱）**。算子-控制面集成以真实子进程握手测试（真 ffmpeg/真算子二进制）在实验机跑，gate 用 FakeRunner。理由：sql_layer_landed 不满足，但子进程契约面同类风险成立。
 - G-03 bench_regression：**adopt（weekly）**。数据密集路径（评估编排、聚合）基准趋势跟踪。
