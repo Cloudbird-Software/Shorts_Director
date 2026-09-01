@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 ### Added
+- IR-0007 AC-4/AC-5（E2）：internal/eval 评估编排 + cmd/shorts-eval——套件定义（形态×模型×seed 集×断言包×预算上限，硬件无关，受控校验：gen_form 词表 + IFACE-1 op 枚举 + qc 断言白名单）；逐条生成（C2 Runner）→ 逐条断言（复用 qc 引擎，基础设施故障重试 ≤1 BUDGET-2）→ 聚合出片率（IFACE-5 唯一口径：可用=过全断言，聚合=K 抽至少 1 条可用的条目比例）；run artifact 内容寻址落盘（内嵌套件全文 + capability profile 引用，自 artifact 可复算 IFACE-2）；预算截断 BUDGET-3（超限中止+部分结果标注 SKIPPED_BUDGET）；property test（任意判定明细→出片率复算，100 轮随机）+ 并发 -race + golden 报告样本 digest 钉死。
 - IR-0007 AC-3（E1）：operators/gen_i2v 图生视频算子——stdin/stdout JSON 走 C2 契约（四态、Determinism.seed、Metrics.gpu_seconds/peak_mem_mb/wall_ms、model_versions 回填）；输入 image_path/prompt/duration_sec/fps + params（model/分辨率/步数），输出 video_path/content_hash；模型后端可插拔（diffusers 统一接口：ltx-video-2b / wan2.1-i2v-1.3b / cogvideox-5b-i2v，与 doctor 候选清单对齐）+ 零依赖 fake 后端（ffmpeg lavfi，无 GPU 联调）；nvidia runtime Dockerfile 骨架；testdata/golden/gen_i2v fixtures（FakeRunner 查表）+ LocalRunner 端到端/重放一致性/INPUT_ERROR 测试；非确定性来源显式记入 model_versions.determinism（AC-3 重放条款）。
 - IR-0007 退役-3/3：gen_form 受控词表（6 生成形态，bindings 钉死时长区间/画幅/信息层要素/断言包，IFACE-3）；README Freeze Gate 看板替换为假设看板骨架（E0–E7，初始 pending）。
 - IR-0007 AC-1（E0）：internal/doctor 环境探测包 + cmd/shorts-doctor（make doctor）——GPU 算力/显存/驱动/CUDA（nvidia-smi 解析）、ffmpeg/docker 版本指纹、候选生成模型逐项 feasible|infeasible+原因；capability profile 内容寻址落盘（RFC 8785 JCS digest，文件名=digest hex 可回查）；无 GPU 显式 infeasible 不静默；nvidia-smi/工具输出 fixture 单测 + profile golden + CLI 端到端回查测试。
