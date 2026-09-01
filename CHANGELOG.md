@@ -6,6 +6,7 @@
 
 ### Added
 - IR-0007 退役-3/3：gen_form 受控词表（6 生成形态，bindings 钉死时长区间/画幅/信息层要素/断言包，IFACE-3）；README Freeze Gate 看板替换为假设看板骨架（E0–E7，初始 pending）。
+- IR-0007 AC-1（E0）：internal/doctor 环境探测包 + cmd/shorts-doctor（make doctor）——GPU 算力/显存/驱动/CUDA（nvidia-smi 解析）、ffmpeg/docker 版本指纹、候选生成模型逐项 feasible|infeasible+原因；capability profile 内容寻址落盘（RFC 8785 JCS digest，文件名=digest hex 可回查）；无 GPU 显式 infeasible 不静默；nvidia-smi/工具输出 fixture 单测 + profile golden + CLI 端到端回查测试。
 - 初始模板工程（CI gate / hygiene / dependabot / automerge 全套护栏）。
 - schema/ 单一真源目录与模块规约（schema/AGENTS.md）。
 - 受控词表 v1 第一批（结构类）：beat_role（冻结）、audio_role、shot_type、camera_motion、proof_type。

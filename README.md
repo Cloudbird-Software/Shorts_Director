@@ -51,14 +51,14 @@ specs/             IR 与条款级规格（specs/IR-0007/spec.md）
 
 ## Makefile 接口（所有语言统一，CI 只认这个）
 
-| 目标                           | 作用                                    |
-| ------------------------------ | --------------------------------------- |
-| `make setup`                   | 安装依赖（`npm ci`）                    |
-| `make gen`                     | 词表 codegen（schema/vocab → codegen/） |
-| `make check`                   | lint + test，**提交前必须全绿**         |
-| `make go-check`                | Go 控制面执法（gofmt + vet + test）     |
-| `make doctor`                  | 环境探测（规划中，卡 #113）             |
-| `make eval-suite SUITE=<形态>` | 制式评估（规划中，卡 #115）             |
+| 目标                           | 作用                                                                                     |
+| ------------------------------ | ---------------------------------------------------------------------------------------- |
+| `make setup`                   | 安装依赖（`npm ci`）                                                                     |
+| `make gen`                     | 词表 codegen（schema/vocab → codegen/）                                                  |
+| `make check`                   | lint + test，**提交前必须全绿**                                                          |
+| `make go-check`                | Go 控制面执法（gofmt + vet + test）                                                      |
+| `make doctor`                  | 环境探测：GPU/ffmpeg/docker + 候选模型可行性，落盘内容寻址 capability profile（卡 #113） |
+| `make eval-suite SUITE=<形态>` | 制式评估（规划中，卡 #115）                                                              |
 
 ## CI 结构
 
