@@ -1,8 +1,10 @@
 # videoplan —— VideoPlan IR v1 实体层
 
-schema/entities/video_plan.schema.json 的 Go 映射：PlanDay（internal/planner）
-的目标产物，Compiler（C3）的输入。结构体字段与 schema 一一对应（json tag
-对齐），漂移由 round-trip 测试发现（G1 valid 样本必须能反序列化并通过 Validate）。
+schema/entities/video_plan.schema.json 的 Go 映射：生成编排（internal/eval，
+IR-0007）的时间线产物，Compiler（C3）的输入。结构体字段与 schema 一一对应
+（json tag 对齐），漂移由 round-trip 测试发现（G1 valid 样本必须能反序列化
+并通过 Validate）。通用溯源块与版本化引用（provenance.go）随 IR-0007 退役-2/3
+自 internal/entity 迁入本包；G2 双语言一致性 Go 侧锚点见 consistency_test.go。
 
 ## 不变量（Validate 强制）
 

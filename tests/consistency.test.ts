@@ -1,7 +1,7 @@
 // Freeze Gate G2（TS 侧锚点）：Go 结构性豁免登记表防腐烂。
 // 登记表 testdata/g2_go_pass_invalid.json 记录「ajv 拒绝、Go Validate 放行」
 // 的 invalid 样本（纯结构性失败 + 理由）。Go 侧一致性测试
-// （internal/entity/consistency_test.go）负责判定对照；本测试保证：
+// （internal/videoplan/consistency_test.go）负责判定对照；本测试保证：
 //   1. 登记条目必须对应真实存在的 invalid 样本文件（防删除样本后登记残留）
 //   2. 登记的实体必须有对应 testdata 目录（防拼错实体名静默失效）
 //   3. 登记理由非空（每个豁免必须可评审）
