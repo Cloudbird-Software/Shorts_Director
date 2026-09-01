@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "valley_coffee",
+  "vertical": "food",
+  "fictional": true,
+  "info": {
+    "shop_name": "山谷咖啡烘焙工坊",
+    "signature_item": "手冲单品·日晒耶加雪菲",
+    "price": "¥32",
+    "address": "梧桐巷 12 号院內",
+    "phone": "139-0000-5678"
+  },
+  "aigc_disclosure": "本视频由 AI 生成，仅作演示",
+  "seed_images": [
+    {
+      "role": "hero",
+      "path": "evals/merchants/valley_coffee/seed_hero.png",
+      "source": {
+        "type": "synthetic",
+        "generator": "evals/gen_seed_images.sh"
+      },
+      "license_placeholder": "合成数据（ffmpeg lavfi 渐变），无第三方版权与真实人物"
+    }
+  ]
+}

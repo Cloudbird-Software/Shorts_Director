@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "suite_id": "form4_digital_human_v100",
+  "gen_form": "DIGITAL_HUMAN",
+  "op": "gen_lipsync",
+  "model": "wav2lip",
+  "seeds": [7, 42, 1013, 2026, 31337],
+  "fps": 25,
+  "params": { "width": 1080, "height": 1920 },
+  "entries": [
+    {
+      "id": "yueyan_beauty",
+      "image_path": "evals/merchants/yueyan_beauty/seed_portrait.png",
+      "prompt": "悦颜美甲美睫工作室，进口光疗 gel 美甲单色 128 元，地址在春熙里 3 号楼 802 室，预约电话 137-0000-9012，本视频由 AI 生成仅作演示。",
+      "duration_sec": 6
+    }
+  ],
+  "assertion_pack": [
+    {
+      "assertion_id": "L0.duration_in_form_range",
+      "level": "L0",
+      "severity": "BLOCKER",
+      "probe": { "op": "ffprobe_field", "args": { "field": "duration_sec" } },
+      "expect": { "op": "between", "value": [4, 8] },
+      "remedy": {
+        "action": "TRIM",
+        "instruction_template": "时长 {{measured}}s 超出形态区间 4–8s"
+      }
+    },
+    {
+      "assertion_id": "L0.canvas_width",
+      "level": "L0",
+      "severity": "BLOCKER",
+      "probe": { "op": "resolution", "args": { "dim": "width" } },
+      "expect": { "op": "eq", "value": 1080 },
+      "remedy": {
+        "action": "RE_CROP",
+        "instruction_template": "宽 {{measured}} ≠ 1080，按 9:16 画幅重裁"
+      }
+    },
+    {
+      "assertion_id": "L0.canvas_height",
+      "level": "L0",
+      "severity": "BLOCKER",
+      "probe": { "op": "resolution", "args": { "dim": "height" } },
+      "expect": { "op": "eq", "value": 1920 },
+      "remedy": {
+        "action": "RE_CROP",
+        "instruction_template": "高 {{measured}} ≠ 1920，按 9:16 画幅重裁"
+      }
+    },
+    {
+      "assertion_id": "L2.lipsync_confidence",
+      "level": "L2",
+      "severity": "MAJOR",
+      "probe": { "op": "lipsync_lse_c", "args": {} },
+      "expect": { "op": "lte", "value": 0.35 },
+      "remedy": {
+        "action": "REGENERATE",
+        "instruction_template": "口型置信度 {{measured}} 低于阈值 0.35，重抽或换后端"
+      }
+    },
+    {
+      "assertion_id": "L3.aigc_disclosure_overlay",
+      "level": "L3",
+      "severity": "BLOCKER",
+      "probe": { "op": "aigc_overlay_present", "args": {} },
+      "expect": { "op": "is_true", "value": true },
+      "remedy": {
+        "action": "ADD_DISCLAIMER",
+        "instruction_template": "缺 AIGC 标识，信息层必须叠加披露文案"
+      }
+    }
+  ],
+  "budget": { "wall_seconds": 7200, "gpu_seconds": 5400 }
+}

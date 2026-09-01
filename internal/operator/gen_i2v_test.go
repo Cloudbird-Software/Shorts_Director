@@ -20,7 +20,8 @@ func sha256Hex(b []byte) string {
 	return hex.EncodeToString(h[:])
 }
 
-// genI2VFakeRequest 是 fixture 2865e2… 的对应请求（workdir 不参与摘要）。
+// genI2VFakeRequest 是 fixture 757185… 的对应请求（与
+// evals/suites/form1_smoke_fake.json 的 noodles 条目一致；workdir 不参与摘要）。
 func genI2VFakeRequest(t *testing.T, workdir string) operator.Request {
 	t.Helper()
 	seed := int64(7)
@@ -28,10 +29,10 @@ func genI2VFakeRequest(t *testing.T, workdir string) operator.Request {
 		ContractVersion: 1,
 		Op:              "gen_i2v",
 		Inputs: map[string]any{
-			"image_path":   "/mnt/assets/noodles_hero.jpg",
-			"prompt":       "一碗热气腾腾的牛肉面特写，缓慢推近，蒸汽升腾",
-			"duration_sec": float64(3),
-			"fps":          16,
+			"image_path":   "evals/merchants/noodles_lanjie/seed_hero.png",
+			"prompt":       "一碗热气腾腾的牛肉面特写，镜头缓慢推近，蒸汽升腾，暖色灯光，氛围感空镜",
+			"duration_sec": float64(6),
+			"fps":          24,
 		},
 		Params:      map[string]any{"model": "fake", "width": float64(576), "height": float64(1024)},
 		Workdir:     workdir,
