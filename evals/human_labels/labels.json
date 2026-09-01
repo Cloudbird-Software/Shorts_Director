@@ -1,0 +1,805 @@
+{
+  "schema_version": 1,
+  "labels": [
+    {
+      "item_id": "sharp_001",
+      "media_path": "media/sharp_001.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_002",
+      "media_path": "media/sharp_002.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_003",
+      "media_path": "media/sharp_003.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_004",
+      "media_path": "media/sharp_004.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_005",
+      "media_path": "media/sharp_005.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_006",
+      "media_path": "media/sharp_006.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_007",
+      "media_path": "media/sharp_007.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_008",
+      "media_path": "media/sharp_008.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_009",
+      "media_path": "media/sharp_009.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_010",
+      "media_path": "media/sharp_010.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_011",
+      "media_path": "media/sharp_011.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_012",
+      "media_path": "media/sharp_012.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_013",
+      "media_path": "media/sharp_013.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_014",
+      "media_path": "media/sharp_014.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_015",
+      "media_path": "media/sharp_015.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_016",
+      "media_path": "media/sharp_016.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_017",
+      "media_path": "media/sharp_017.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_018",
+      "media_path": "media/sharp_018.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_019",
+      "media_path": "media/sharp_019.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_020",
+      "media_path": "media/sharp_020.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_021",
+      "media_path": "media/sharp_021.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_022",
+      "media_path": "media/sharp_022.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_023",
+      "media_path": "media/sharp_023.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_024",
+      "media_path": "media/sharp_024.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "sharp_025",
+      "media_path": "media/sharp_025.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": true,
+      "labeler": "human-first-pass@1",
+      "notes": "清晰渐变，首过人工判定可用"
+    },
+    {
+      "item_id": "blur_001",
+      "media_path": "media/blur_001.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_002",
+      "media_path": "media/blur_002.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_003",
+      "media_path": "media/blur_003.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_004",
+      "media_path": "media/blur_004.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_005",
+      "media_path": "media/blur_005.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_006",
+      "media_path": "media/blur_006.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_007",
+      "media_path": "media/blur_007.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_008",
+      "media_path": "media/blur_008.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_009",
+      "media_path": "media/blur_009.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_010",
+      "media_path": "media/blur_010.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_011",
+      "media_path": "media/blur_011.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_012",
+      "media_path": "media/blur_012.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_013",
+      "media_path": "media/blur_013.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_014",
+      "media_path": "media/blur_014.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_015",
+      "media_path": "media/blur_015.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_016",
+      "media_path": "media/blur_016.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_017",
+      "media_path": "media/blur_017.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_018",
+      "media_path": "media/blur_018.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_019",
+      "media_path": "media/blur_019.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_020",
+      "media_path": "media/blur_020.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_021",
+      "media_path": "media/blur_021.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_022",
+      "media_path": "media/blur_022.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_023",
+      "media_path": "media/blur_023.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_024",
+      "media_path": "media/blur_024.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "blur_025",
+      "media_path": "media/blur_025.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：模糊不可用"
+    },
+    {
+      "item_id": "black_001",
+      "media_path": "media/black_001.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_002",
+      "media_path": "media/black_002.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_003",
+      "media_path": "media/black_003.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_004",
+      "media_path": "media/black_004.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_005",
+      "media_path": "media/black_005.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_006",
+      "media_path": "media/black_006.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_007",
+      "media_path": "media/black_007.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_008",
+      "media_path": "media/black_008.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_009",
+      "media_path": "media/black_009.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_010",
+      "media_path": "media/black_010.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_011",
+      "media_path": "media/black_011.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_012",
+      "media_path": "media/black_012.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_013",
+      "media_path": "media/black_013.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_014",
+      "media_path": "media/black_014.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_015",
+      "media_path": "media/black_015.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_016",
+      "media_path": "media/black_016.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_017",
+      "media_path": "media/black_017.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_018",
+      "media_path": "media/black_018.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_019",
+      "media_path": "media/black_019.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_020",
+      "media_path": "media/black_020.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_021",
+      "media_path": "media/black_021.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_022",
+      "media_path": "media/black_022.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_023",
+      "media_path": "media/black_023.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_024",
+      "media_path": "media/black_024.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "black_025",
+      "media_path": "media/black_025.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：全黑不可用"
+    },
+    {
+      "item_id": "distort_001",
+      "media_path": "media/distort_001.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_002",
+      "media_path": "media/distort_002.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_003",
+      "media_path": "media/distort_003.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_004",
+      "media_path": "media/distort_004.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_005",
+      "media_path": "media/distort_005.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_006",
+      "media_path": "media/distort_006.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_007",
+      "media_path": "media/distort_007.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_008",
+      "media_path": "media/distort_008.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_009",
+      "media_path": "media/distort_009.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_010",
+      "media_path": "media/distort_010.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_011",
+      "media_path": "media/distort_011.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_012",
+      "media_path": "media/distort_012.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_013",
+      "media_path": "media/distort_013.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_014",
+      "media_path": "media/distort_014.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_015",
+      "media_path": "media/distort_015.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_016",
+      "media_path": "media/distort_016.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_017",
+      "media_path": "media/distort_017.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_018",
+      "media_path": "media/distort_018.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_019",
+      "media_path": "media/distort_019.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_020",
+      "media_path": "media/distort_020.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_021",
+      "media_path": "media/distort_021.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_022",
+      "media_path": "media/distort_022.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_023",
+      "media_path": "media/distort_023.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_024",
+      "media_path": "media/distort_024.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    },
+    {
+      "item_id": "distort_025",
+      "media_path": "media/distort_025.png",
+      "question": "该画面是否可直接用于营销视频成片（清晰、非全黑、无明显畸变）？",
+      "human_label": false,
+      "labeler": "human-first-pass@1",
+      "notes": "L-04 对抗：像素化畸变不可用"
+    }
+  ]
+}

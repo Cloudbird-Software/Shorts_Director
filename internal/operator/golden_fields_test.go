@@ -24,6 +24,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Cloudbird-Software/Shorts_Director/internal/calibrate"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/eval"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/form1"
 	"github.com/Cloudbird-Software/Shorts_Director/internal/form4"
@@ -147,10 +148,11 @@ func outputsAccesses(t *testing.T, root string) map[string]map[string]bool {
 // 并在该包暴露 ConsumedGoldenOps 变量。
 func consumerDecl() map[string][]string {
 	return map[string][]string{
-		"qc":    qc.ConsumedGoldenOps,
-		"eval":  eval.ConsumedGoldenOps,
-		"form1": form1.ConsumedGoldenOps,
-		"form4": form4.ConsumedGoldenOps,
+		"qc":        qc.ConsumedGoldenOps,
+		"eval":      eval.ConsumedGoldenOps,
+		"form1":     form1.ConsumedGoldenOps,
+		"form4":     form4.ConsumedGoldenOps,
+		"calibrate": calibrate.ConsumedGoldenOps,
 	}
 }
 
@@ -211,6 +213,7 @@ func TestG7ManifestContent(t *testing.T) {
 		"lipsync_lse_c":     {"evidence_uri", "value"},
 		"lipsync_lse_d":     {"evidence_uri", "value"},
 		"transcribe":        {"text"},
+		"vlm_boolean":       {"answer", "evidence"},
 	}
 	if len(m) != len(want) {
 		t.Errorf("golden 清单规模 %d ≠ %d（新 op 落 fixture 须同步本测试）", len(m), len(want))
