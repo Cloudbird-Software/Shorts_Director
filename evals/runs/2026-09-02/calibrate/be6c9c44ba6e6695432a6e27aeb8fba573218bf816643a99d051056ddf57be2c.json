@@ -1,0 +1,717 @@
+{
+  "schema_version": 1,
+  "model": "fake",
+  "labels_ref": "evals/human_labels/labels.json",
+  "labels_digest": "sha256:917235f41d110fd20f5a8d100d1420711d2e93ed241b110eb8e20ca6d931dc5a",
+  "matrix": {
+    "true_positive": 14,
+    "false_positive": 30,
+    "true_negative": 45,
+    "false_negative": 11
+  },
+  "agreement": 0.59,
+  "errors": 0,
+  "items": [
+    {
+      "item_id": "sharp_001",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xf4 → True"
+    },
+    {
+      "item_id": "sharp_002",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x65 → False"
+    },
+    {
+      "item_id": "sharp_003",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x64 → True"
+    },
+    {
+      "item_id": "sharp_004",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x21 → False"
+    },
+    {
+      "item_id": "sharp_005",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x04 → True"
+    },
+    {
+      "item_id": "sharp_006",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xf3 → False"
+    },
+    {
+      "item_id": "sharp_007",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xf2 → True"
+    },
+    {
+      "item_id": "sharp_008",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xc0 → True"
+    },
+    {
+      "item_id": "sharp_009",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x0c → True"
+    },
+    {
+      "item_id": "sharp_010",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x6d → False"
+    },
+    {
+      "item_id": "sharp_011",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x39 → False"
+    },
+    {
+      "item_id": "sharp_012",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xe6 → True"
+    },
+    {
+      "item_id": "sharp_013",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xec → True"
+    },
+    {
+      "item_id": "sharp_014",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x88 → True"
+    },
+    {
+      "item_id": "sharp_015",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x9f → False"
+    },
+    {
+      "item_id": "sharp_016",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xe7 → False"
+    },
+    {
+      "item_id": "sharp_017",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x92 → True"
+    },
+    {
+      "item_id": "sharp_018",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xe4 → True"
+    },
+    {
+      "item_id": "sharp_019",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x48 → True"
+    },
+    {
+      "item_id": "sharp_020",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x9f → False"
+    },
+    {
+      "item_id": "sharp_021",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x5e → True"
+    },
+    {
+      "item_id": "sharp_022",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xdb → False"
+    },
+    {
+      "item_id": "sharp_023",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x49 → False"
+    },
+    {
+      "item_id": "sharp_024",
+      "human_label": true,
+      "probe_answer": true,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x4c → True"
+    },
+    {
+      "item_id": "sharp_025",
+      "human_label": true,
+      "probe_answer": false,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x8f → False"
+    },
+    {
+      "item_id": "blur_001",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x78 → True"
+    },
+    {
+      "item_id": "blur_002",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x81 → False"
+    },
+    {
+      "item_id": "blur_003",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x64 → True"
+    },
+    {
+      "item_id": "blur_004",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x16 → True"
+    },
+    {
+      "item_id": "blur_005",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x07 → False"
+    },
+    {
+      "item_id": "blur_006",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x52 → True"
+    },
+    {
+      "item_id": "blur_007",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x3f → False"
+    },
+    {
+      "item_id": "blur_008",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xa9 → False"
+    },
+    {
+      "item_id": "blur_009",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xae → True"
+    },
+    {
+      "item_id": "blur_010",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x87 → False"
+    },
+    {
+      "item_id": "blur_011",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x36 → True"
+    },
+    {
+      "item_id": "blur_012",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x1e → True"
+    },
+    {
+      "item_id": "blur_013",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x50 → True"
+    },
+    {
+      "item_id": "blur_014",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x55 → False"
+    },
+    {
+      "item_id": "blur_015",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x29 → False"
+    },
+    {
+      "item_id": "blur_016",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xcc → True"
+    },
+    {
+      "item_id": "blur_017",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xee → True"
+    },
+    {
+      "item_id": "blur_018",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xb4 → True"
+    },
+    {
+      "item_id": "blur_019",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x93 → False"
+    },
+    {
+      "item_id": "blur_020",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x4b → False"
+    },
+    {
+      "item_id": "blur_021",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x2c → True"
+    },
+    {
+      "item_id": "blur_022",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "blur_023",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x9b → False"
+    },
+    {
+      "item_id": "blur_024",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xf6 → True"
+    },
+    {
+      "item_id": "blur_025",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x81 → False"
+    },
+    {
+      "item_id": "black_001",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_002",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_003",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_004",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_005",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_006",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_007",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_008",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_009",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_010",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_011",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_012",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_013",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_014",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_015",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_016",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_017",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_018",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_019",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_020",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_021",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_022",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "black_023",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x97 → False"
+    },
+    {
+      "item_id": "black_024",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "black_025",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x27 → False"
+    },
+    {
+      "item_id": "distort_001",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x15 → False"
+    },
+    {
+      "item_id": "distort_002",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xbc → True"
+    },
+    {
+      "item_id": "distort_003",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x3f → False"
+    },
+    {
+      "item_id": "distort_004",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xd4 → True"
+    },
+    {
+      "item_id": "distort_005",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xc8 → True"
+    },
+    {
+      "item_id": "distort_006",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x05 → False"
+    },
+    {
+      "item_id": "distort_007",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xa7 → False"
+    },
+    {
+      "item_id": "distort_008",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x98 → True"
+    },
+    {
+      "item_id": "distort_009",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x2a → True"
+    },
+    {
+      "item_id": "distort_010",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xbb → False"
+    },
+    {
+      "item_id": "distort_011",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x5f → False"
+    },
+    {
+      "item_id": "distort_012",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x75 → False"
+    },
+    {
+      "item_id": "distort_013",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xc6 → True"
+    },
+    {
+      "item_id": "distort_014",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x2e → True"
+    },
+    {
+      "item_id": "distort_015",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xdd → False"
+    },
+    {
+      "item_id": "distort_016",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x69 → False"
+    },
+    {
+      "item_id": "distort_017",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x25 → False"
+    },
+    {
+      "item_id": "distort_018",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xd3 → False"
+    },
+    {
+      "item_id": "distort_019",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xe3 → False"
+    },
+    {
+      "item_id": "distort_020",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x56 → True"
+    },
+    {
+      "item_id": "distort_021",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x0f → False"
+    },
+    {
+      "item_id": "distort_022",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x44 → True"
+    },
+    {
+      "item_id": "distort_023",
+      "human_label": false,
+      "probe_answer": false,
+      "agree": true,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0x15 → False"
+    },
+    {
+      "item_id": "distort_024",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xb8 → True"
+    },
+    {
+      "item_id": "distort_025",
+      "human_label": false,
+      "probe_answer": true,
+      "agree": false,
+      "evidence": "fake 无语义负对照：sha256(媒体内容‖问题) 首字节 0xd8 → True"
+    }
+  ],
+  "digest": "sha256:be6c9c44ba6e6695432a6e27aeb8fba573218bf816643a99d051056ddf57be2c"
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": "capability_profile/1",
+  "probed_at": "2026-09-02T00:34:45Z",
+  "gpu": {
+    "present": false,
+    "notes": [
+      "nvidia-smi 不可用（exec: \"nvidia-smi\": executable file not found in $PATH）——显式 infeasible，不静默降级"
+    ]
+  },
+  "tools": {
+    "ffmpeg": {
+      "present": true,
+      "version": "6.1.1-3ubuntu5"
+    },
+    "docker": {
+      "present": false,
+      "note": "docker 不可用: exec: \"docker\": executable file not found in $PATH"
+    }
+  },
+  "candidates": [
+    {
+      "id": "wan2.1-i2v-1.3b",
+      "kind": "i2v",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "wan2.1-i2v-14b",
+      "kind": "i2v",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "ltx-video-2b",
+      "kind": "i2v",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "cogvideox-5b-i2v",
+      "kind": "i2v",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "svd-xt-1.1",
+      "kind": "i2v",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "cosyvoice2-0.5b",
+      "kind": "tts",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "piper-1.x",
+      "kind": "tts",
+      "feasible": true,
+      "reasons": [
+        "无 GPU 硬件门槛（CPU 可运行）；最终可行性由 E1 单发冒烟裁决"
+      ]
+    },
+    {
+      "id": "wav2lip",
+      "kind": "lipsync",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "musetalk",
+      "kind": "lipsync",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "qwen2.5-vl-7b-instruct",
+      "kind": "vlm",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    },
+    {
+      "id": "internvl2-8b",
+      "kind": "vlm",
+      "feasible": false,
+      "reasons": [
+        "无 NVIDIA GPU（nvidia-smi 不可用）"
+      ]
+    }
+  ],
+  "digest": "sha256:6068867f40e271919e287f71c8949b3495f260c887d3188b88cb05ed6d43dea6"
+}
