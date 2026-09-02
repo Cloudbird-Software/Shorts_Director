@@ -11,3 +11,4 @@ baml/
 internal/doctor/testdata/*.json
 baml_client/
 internal/operators/testdata/
+evals/runs/

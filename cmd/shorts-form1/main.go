@@ -43,6 +43,7 @@ func main() {
 	workdir := flag.String("workdir", "", "逐条目工作目录根（默认 <out>/work）")
 	profilePath := flag.String("profile", "", "capability profile JSON（内容寻址引用来源）")
 	date := flag.String("date", time.Now().UTC().Format("2006-01-02"), "确定性锚日期 YYYY-MM-DD")
+	seedsCSV := flag.String("seeds", "", "覆盖套件 seed 集（逗号分隔；默认取套件首个 seed——AC-6 每商家 ≥1 条；E2 抽卡传全部 seed）")
 	flag.Parse()
 
 	suite, err := eval.LoadSuite(*suitePath)
@@ -90,11 +91,22 @@ func main() {
 			os.Exit(1)
 		}
 	}
+	var seeds []int64
+	if *seedsCSV != "" {
+		for _, s := range strings.Split(*seedsCSV, ",") {
+			var v int64
+			if _, err := fmt.Sscanf(strings.TrimSpace(s), "%d", &v); err != nil {
+				fmt.Fprintf(os.Stderr, "shorts-form1: seed %q 不是整数\n", s)
+				os.Exit(1)
+			}
+			seeds = append(seeds, v)
+		}
+	}
 	art, err := form1.Run(context.Background(), form1.Options{
 		Suite: suite, Merchants: merchants, Gen: gen,
 		Engine: mustEngine(*probeBin),
 		Font:   font, RunnerMode: *runnerMode, ProfileRef: profileRef,
-		WorkdirRoot: root, Date: *date,
+		WorkdirRoot: root, Date: *date, Seeds: seeds,
 		RendererExpect: compiler.RendererExpect{
 			FFmpeg: ffmpegVersion(), Remotion: "4.0.230", Node: "22.11.0"},
 	})

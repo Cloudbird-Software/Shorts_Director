@@ -1,0 +1,2273 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-02",
+  "capability_profile_ref": "sha256:6068867f40e271919e287f71c8949b3495f260c887d3188b88cb05ed6d43dea6",
+  "capability_profile_path": "evals/runs/2026-09-02/doctor/6068867f40e271919e287f71c8949b3495f260c887d3188b88cb05ed6d43dea6.json",
+  "suites": [
+    {
+      "artifact_path": "evals/runs/2026-09-02/form1/fe2b36b0e23f511c94b72fd202826442197c42114f0cbc4aa03bb4dd4b4abb9d.json",
+      "artifact_digest": "sha256:fe2b36b0e23f511c94b72fd202826442197c42114f0cbc4aa03bb4dd4b4abb9d",
+      "suite_id": "form1_ambience_v100",
+      "gen_form": "I2V_AMBIENCE",
+      "model": "fake",
+      "runner_mode": "local",
+      "capability_profile_ref": "sha256:6068867f40e271919e287f71c8949b3495f260c887d3188b88cb05ed6d43dea6",
+      "items": [
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/noodles_lanjie/seed-7/final.mp4",
+          "content_hash": "sha256:d83b5ad5087e3d05c7c4db992636e342f3ef100a591db2dc7d4ec798520eb541",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰州牛肉面（加蛋加肉双拼）",
+              "expected": "兰州牛肉面（加蛋加肉双拼）",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥28",
+              "expected": "¥28",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "幸福路 88 号临街 1 层",
+              "expected": "幸福路 88 号临街 1 层",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "138-0000-1234",
+              "expected": "138-0000-1234",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14174
+        },
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 42,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/noodles_lanjie/seed-42/final.mp4",
+          "content_hash": "sha256:2efd2918cdc91533ae52ee5c2406aac8670bb88fe1bbe5a8b812e216222bbaf2",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰州牛肉面（加蛋加肉双拼）",
+              "expected": "兰州牛肉面（加蛋加肉双拼）",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥28",
+              "expected": "¥28",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "幸福路 88 号临街 1 层",
+              "expected": "幸福路 88 号临街 1 层",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "138-0000-1234",
+              "expected": "138-0000-1234",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 13835
+        },
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 1013,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/noodles_lanjie/seed-1013/final.mp4",
+          "content_hash": "sha256:4e79bf7918a93483549a905d6115c5390c71acc5189ff40260e54b373a395f20",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9989316239316239,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰州牛肉面（加蛋加肉双拼）",
+              "expected": "兰州牛肉面（加蛋加肉双拼）",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥28",
+              "expected": "¥28",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "幸福路 88 号临街 1 层",
+              "expected": "幸福路 88 号临街 1 层",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "138-0000-1234",
+              "expected": "138-0000-1234",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14217
+        },
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 2026,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/noodles_lanjie/seed-2026/final.mp4",
+          "content_hash": "sha256:7dd526f06748b88ebb09be6bdc3f6c67ac72a474d0cc89a221c8cfb46ee3b9d0",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰州牛肉面（加蛋加肉双拼）",
+              "expected": "兰州牛肉面（加蛋加肉双拼）",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥28",
+              "expected": "¥28",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "幸福路 88 号临街 1 层",
+              "expected": "幸福路 88 号临街 1 层",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "138-0000-1234",
+              "expected": "138-0000-1234",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14128
+        },
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 31337,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/noodles_lanjie/seed-31337/final.mp4",
+          "content_hash": "sha256:c5ef57450111b4fa9efc4db619e63c7250903bd7fc946610599692025ab757b9",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰州牛肉面（加蛋加肉双拼）",
+              "expected": "兰州牛肉面（加蛋加肉双拼）",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥28",
+              "expected": "¥28",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "幸福路 88 号临街 1 层",
+              "expected": "幸福路 88 号临街 1 层",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "138-0000-1234",
+              "expected": "138-0000-1234",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14538
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/valley_coffee/seed-7/final.mp4",
+          "content_hash": "sha256:8024b857bde295349b6b26dafc529807a296c16adbb9423b2721f81a174f9d74",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡烘焙工坊",
+              "expected": "山谷咖啡烘焙工坊",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "手冲单品·日晒耶加雪菲",
+              "expected": "手冲单品·日晒耶加雪菲",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥32",
+              "expected": "¥32",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "梧桐巷 12 号院內",
+              "expected": "梧桐巷 12 号院內",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "139-0000-5678",
+              "expected": "139-0000-5678",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14645
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 42,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/valley_coffee/seed-42/final.mp4",
+          "content_hash": "sha256:c136c1c037cba160e9ba984c75820e7e6dae43881d23cfca98f14c037db28b5f",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡烘焙工坊",
+              "expected": "山谷咖啡烘焙工坊",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "手冲单品·日晒耶加雪菲",
+              "expected": "手冲单品·日晒耶加雪菲",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥32",
+              "expected": "¥32",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "梧桐巷 12 号院內",
+              "expected": "梧桐巷 12 号院內",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "139-0000-5678",
+              "expected": "139-0000-5678",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14510
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 1013,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/valley_coffee/seed-1013/final.mp4",
+          "content_hash": "sha256:5b8f349775bc0ec5b96209c9c97fff3ae83696ef82639327e05163c6aaeafff8",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9989316239316239,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡烘焙工坊",
+              "expected": "山谷咖啡烘焙工坊",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "手冲单品·日晒耶加雪菲",
+              "expected": "手冲单品·日晒耶加雪菲",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥32",
+              "expected": "¥32",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "梧桐巷 12 号院內",
+              "expected": "梧桐巷 12 号院內",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "139-0000-5678",
+              "expected": "139-0000-5678",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14590
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 2026,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/valley_coffee/seed-2026/final.mp4",
+          "content_hash": "sha256:814fb9a23add3757fc3a835a5bc81049f6165682ddaa5faf7cad9d3444b813a0",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡烘焙工坊",
+              "expected": "山谷咖啡烘焙工坊",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "手冲单品·日晒耶加雪菲",
+              "expected": "手冲单品·日晒耶加雪菲",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥32",
+              "expected": "¥32",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "梧桐巷 12 号院內",
+              "expected": "梧桐巷 12 号院內",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "139-0000-5678",
+              "expected": "139-0000-5678",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14494
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 31337,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/valley_coffee/seed-31337/final.mp4",
+          "content_hash": "sha256:4a1f63b2760d29428c3c10d8c3b5bed88efcad58ee3b77c08da005302554354c",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡烘焙工坊",
+              "expected": "山谷咖啡烘焙工坊",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "手冲单品·日晒耶加雪菲",
+              "expected": "手冲单品·日晒耶加雪菲",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥32",
+              "expected": "¥32",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "梧桐巷 12 号院內",
+              "expected": "梧桐巷 12 号院內",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "139-0000-5678",
+              "expected": "139-0000-5678",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14817
+        },
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/yueyan_beauty/seed-7/final.mp4",
+          "content_hash": "sha256:f79704e0e9309cf619df22d5142aa3d6e00b4bd29a3a7f76a951bee00ea29d9d",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲美睫工作室",
+              "expected": "悦颜美甲美睫工作室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "进口光疗 gel 美甲（单色）",
+              "expected": "进口光疗 gel 美甲（单色）",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥128",
+              "expected": "¥128",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "春熙里 3 号楼 802 室",
+              "expected": "春熙里 3 号楼 802 室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "137-0000-9012",
+              "expected": "137-0000-9012",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14914
+        },
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 42,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/yueyan_beauty/seed-42/final.mp4",
+          "content_hash": "sha256:f661b4f52d7312fcc798b865bdc656cb4c0e93527de0f35e0fa5b00054068d64",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲美睫工作室",
+              "expected": "悦颜美甲美睫工作室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "进口光疗 gel 美甲（单色）",
+              "expected": "进口光疗 gel 美甲（单色）",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥128",
+              "expected": "¥128",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "春熙里 3 号楼 802 室",
+              "expected": "春熙里 3 号楼 802 室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "137-0000-9012",
+              "expected": "137-0000-9012",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14452
+        },
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 1013,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/yueyan_beauty/seed-1013/final.mp4",
+          "content_hash": "sha256:4044624a603b878d45b724a5f3ae296b3532856d73a613c33f04eb9ed78ba729",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9989316239316239,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲美睫工作室",
+              "expected": "悦颜美甲美睫工作室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "进口光疗 gel 美甲（单色）",
+              "expected": "进口光疗 gel 美甲（单色）",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥128",
+              "expected": "¥128",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "春熙里 3 号楼 802 室",
+              "expected": "春熙里 3 号楼 802 室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "137-0000-9012",
+              "expected": "137-0000-9012",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14163
+        },
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 2026,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/yueyan_beauty/seed-2026/final.mp4",
+          "content_hash": "sha256:2868166235489e0f9e35b6c1c391e50e1ea0dabb18868a1e25e50b5a5ffe05df",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲美睫工作室",
+              "expected": "悦颜美甲美睫工作室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "进口光疗 gel 美甲（单色）",
+              "expected": "进口光疗 gel 美甲（单色）",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥128",
+              "expected": "¥128",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "春熙里 3 号楼 802 室",
+              "expected": "春熙里 3 号楼 802 室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "137-0000-9012",
+              "expected": "137-0000-9012",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14079
+        },
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 31337,
+          "status": "OK",
+          "video_path": "/workspace/out/form1/work/yueyan_beauty/seed-31337/final.mp4",
+          "content_hash": "sha256:de03a38d086544dad2ee02d6b861cedd552e412b7b38006a500758cd604cc696",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_in_form_range",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 6,
+              "expected": [
+                5,
+                8
+              ]
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L0.black_ratio",
+              "level": "L0",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 0,
+              "expected": 0.01,
+              "evidence_uri": "/tmp/shorts-form1-probes/blackdetect.log"
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9972222222222222,
+              "expected": 0.005,
+              "evidence_uri": "/tmp/shorts-form1-probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L1.info_layer.shop_name",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲美睫工作室",
+              "expected": "悦颜美甲美睫工作室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.signature_item",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "进口光疗 gel 美甲（单色）",
+              "expected": "进口光疗 gel 美甲（单色）",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.price",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "¥128",
+              "expected": "¥128",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.address",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "春熙里 3 号楼 802 室",
+              "expected": "春熙里 3 号楼 802 室",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.phone",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "137-0000-9012",
+              "expected": "137-0000-9012",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 14042
+        }
+      ],
+      "yield": {
+        "entries_total": 3,
+        "entries_with_usable": 3,
+        "yield_ratio": 1,
+        "items_total": 15,
+        "items_usable": 15,
+        "items_gen_fail": 0,
+        "items_assert_fail": 0,
+        "items_assert_error": 0,
+        "items_skipped_budget": 0,
+        "gpu_seconds_total": 0
+      },
+      "avg_item_ms": 14373.2,
+      "wall_seconds_total": 215.598,
+      "gpu_seconds_total": 0
+    },
+    {
+      "artifact_path": "evals/runs/2026-09-02/form4/5f5997f7b550622af76d6d0c5ac4f80e6b19963730610df2b35b4574faeef4c7.json",
+      "artifact_digest": "sha256:5f5997f7b550622af76d6d0c5ac4f80e6b19963730610df2b35b4574faeef4c7",
+      "suite_id": "form4_digital_human_v100",
+      "gen_form": "DIGITAL_HUMAN",
+      "model": "fake",
+      "runner_mode": "local",
+      "capability_profile_ref": "sha256:6068867f40e271919e287f71c8949b3495f260c887d3188b88cb05ed6d43dea6",
+      "items": [
+        {
+          "entry_id": "yueyan_beauty",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form4/work/yueyan_beauty/seed-7/final.mp4",
+          "content_hash": "sha256:39b4a8218b05b3dc29089ea3d8781b1ab42e47c4e8051434eb44a7553fb496a0",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "lipsync.ffmpeg": "lavfi-loop",
+            "lipsync.model": "fake-loop@1",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_upper_bound",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 5.28,
+              "expected": 6
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9541666666666667,
+              "expected": 0.005,
+              "evidence_uri": "/workspace/out/form4/work/probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L2.lipsync_confidence",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 9.3,
+              "expected": 6,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_c.json"
+            },
+            {
+              "assertion_id": "L2.lipsync_distance",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 5.8,
+              "expected": 8.4,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_d.json"
+            },
+            {
+              "assertion_id": "L1.transcribe.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲128元，预约13700009012",
+              "expected": "悦颜美甲",
+              "evidence_uri": "/workspace/out/form4/work/yueyan_beauty/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.selling_point",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲128元，预约13700009012",
+              "expected": "128元",
+              "evidence_uri": "/workspace/out/form4/work/yueyan_beauty/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.cta",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲128元，预约13700009012",
+              "expected": "13700009012",
+              "evidence_uri": "/workspace/out/form4/work/yueyan_beauty/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.info_layer.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "悦颜美甲",
+              "expected": "悦颜美甲",
+              "evidence_uri": "evals/merchants/yueyan_beauty/form4.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/yueyan_beauty/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 21043
+        },
+        {
+          "entry_id": "noodles_lanjie",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form4/work/noodles_lanjie/seed-7/final.mp4",
+          "content_hash": "sha256:fa3662544088b79b6585ee608da48f6730f2c3a27af2e76f3960e070852db04a",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "lipsync.ffmpeg": "lavfi-loop",
+            "lipsync.model": "fake-loop@1",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_upper_bound",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 5.28,
+              "expected": 6
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9488247863247863,
+              "expected": 0.005,
+              "evidence_uri": "/workspace/out/form4/work/probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L2.lipsync_confidence",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 9.6,
+              "expected": 6,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_c.json"
+            },
+            {
+              "assertion_id": "L2.lipsync_distance",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 6.1,
+              "expected": 8.4,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_d.json"
+            },
+            {
+              "assertion_id": "L1.transcribe.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面28元，外卖13800001234",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "/workspace/out/form4/work/noodles_lanjie/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.selling_point",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面28元，外卖13800001234",
+              "expected": "28元",
+              "evidence_uri": "/workspace/out/form4/work/noodles_lanjie/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.cta",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面28元，外卖13800001234",
+              "expected": "13800001234",
+              "evidence_uri": "/workspace/out/form4/work/noodles_lanjie/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.info_layer.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "兰姐牛肉面",
+              "expected": "兰姐牛肉面",
+              "evidence_uri": "evals/merchants/noodles_lanjie/form4.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/noodles_lanjie/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 19697
+        },
+        {
+          "entry_id": "valley_coffee",
+          "seed": 7,
+          "status": "OK",
+          "video_path": "/workspace/out/form4/work/valley_coffee/seed-7/final.mp4",
+          "content_hash": "sha256:29f85f63505cdc56e433cc1c08f3a8f13007f3ed7cefeabaf44cdc4ad0cbd7db",
+          "model_versions": {
+            "ffmpeg": "lavfi",
+            "lipsync.ffmpeg": "lavfi-loop",
+            "lipsync.model": "fake-loop@1",
+            "model": "fake-lavfi@1"
+          },
+          "assertions": [
+            {
+              "assertion_id": "L0.duration_upper_bound",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 5.04,
+              "expected": 6
+            },
+            {
+              "assertion_id": "L0.canvas_width",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1080,
+              "expected": 1080
+            },
+            {
+              "assertion_id": "L0.canvas_height",
+              "level": "L0",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 1920,
+              "expected": 1920
+            },
+            {
+              "assertion_id": "L3.aigc_implicit_metadata",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": true,
+              "expected": true
+            },
+            {
+              "assertion_id": "L3.aigc_disclosure_overlay",
+              "level": "L3",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": 0.9476495726495726,
+              "expected": 0.005,
+              "evidence_uri": "/workspace/out/form4/work/probes/ov_final/f_000012.png"
+            },
+            {
+              "assertion_id": "L2.lipsync_confidence",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 6.3,
+              "expected": 6,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_c.json"
+            },
+            {
+              "assertion_id": "L2.lipsync_distance",
+              "level": "L2",
+              "severity": "MAJOR",
+              "pass": true,
+              "measured": 5.8,
+              "expected": 8.4,
+              "evidence_uri": "/workspace/out/form4/work/probes/evidence_lipsync_lse_d.json"
+            },
+            {
+              "assertion_id": "L1.transcribe.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡32元，来店13900005678",
+              "expected": "山谷咖啡",
+              "evidence_uri": "/workspace/out/form4/work/valley_coffee/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.selling_point",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡32元，来店13900005678",
+              "expected": "32元",
+              "evidence_uri": "/workspace/out/form4/work/valley_coffee/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.transcribe.cta",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡32元，来店13900005678",
+              "expected": "13900005678",
+              "evidence_uri": "/workspace/out/form4/work/valley_coffee/seed-7/tts/out_fake.wav"
+            },
+            {
+              "assertion_id": "L1.info_layer.brand",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "山谷咖啡",
+              "expected": "山谷咖啡",
+              "evidence_uri": "evals/merchants/valley_coffee/form4.json"
+            },
+            {
+              "assertion_id": "L1.info_layer.aigc_disclosure",
+              "level": "L1",
+              "severity": "BLOCKER",
+              "pass": true,
+              "measured": "本视频由 AI 生成，仅作演示",
+              "expected": "本视频由 AI 生成，仅作演示",
+              "evidence_uri": "evals/merchants/valley_coffee/merchant.json"
+            }
+          ],
+          "usable": true,
+          "total_ms": 18211
+        }
+      ],
+      "yield": {
+        "entries_total": 3,
+        "entries_with_usable": 3,
+        "yield_ratio": 1,
+        "items_total": 3,
+        "items_usable": 3,
+        "items_gen_fail": 0,
+        "items_assert_fail": 0,
+        "items_assert_error": 0,
+        "items_skipped_budget": 0,
+        "gpu_seconds_total": 0
+      },
+      "avg_item_ms": 19650.333333333332,
+      "wall_seconds_total": 58.951,
+      "gpu_seconds_total": 0
+    }
+  ],
+  "totals": {
+    "suites": 2,
+    "entries_total": 6,
+    "entries_usable": 6,
+    "items_total": 18,
+    "items_usable": 18,
+    "gpu_seconds_total": 0
+  },
+  "capacity": {
+    "estimated": true,
+    "unit": "条/日（可用成品，单卡串行）",
+    "daily_low": 4105,
+    "daily_high": 6245,
+    "basis_items": 18,
+    "method": "单卡串行口径：日产能区间 = 86400s ÷ 实测单条全链耗时（下界取最慢单条、上界取最快单条）；全部数字为估算，非实测直读。",
+    "a100_note": "向 A100 对照迁移的口径（DECISION-5）：套件定义硬件无关，A100 到位后同套件全量重跑（doctor→E1→E2/E3→E7），以 capability profile 与 run artifact 环境签名自动产出双机 diff；V100 阶段不为 A100 预做代码特化，本报告不设 A100 换算倍率。",
+    "cost_note": "成本口径（DECISION-6）：月租含电价——本报告只以实测耗时与资源计量外推产能，不引入电价变量；gpu_seconds 为 0 时代表 fake 后端无 GPU 计量。",
+    "warning": "外推基含 fake 后端计时（管道联调口径），数字仅供仪器演练，不代表真实模型产能——真实外推须在实验机以真实后端重跑同套件。"
+  },
+  "digest": "sha256:fb79b5a04b96dfe7ad66eadec96905e237dea80ea31abaf61e32991b4e3162e1"
+}
